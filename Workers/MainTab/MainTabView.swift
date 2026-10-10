@@ -7,6 +7,7 @@ struct MainTabView: View {
     @SceneStorage("SelectedTab") var selectedTab: AppTab = .workers
     @State var resources: AccountResources?
     @State private var recentSidebarPick: SidebarPick?
+    @State private var isShowingAccount = false
     private let navigator = AppNavigator.shared
 
     var usesSidebar: Bool {
@@ -45,11 +46,12 @@ struct MainTabView: View {
                     AnalyticsView(client: resources.client, accountId: resources.accountId)
                 }
             }
-            Tab(.tabsMore, systemImage: "ellipsis", value: AppTab.more) {
-                MoreView()
-            }
         }
         .tabViewStyle(.sidebarAdaptable)
+        .environment(\.isAccountSheetPresented, $isShowingAccount)
+        .sheet(isPresented: $isShowingAccount) {
+            AccountView()
+        }
         .onChange(of: accountKey, initial: true) { oldKey, newKey in
             if let client = session.client, let account = session.selectedAccount {
                 if resources?.accountId != account.id || resources?.client !== client {
@@ -137,7 +139,10 @@ struct MainTabView: View {
             content(resources)
                 .id(accountKey)
         } else if session.accounts.isLoading || session.selectedAccount != nil {
-            ProgressView()
+            NavigationStack {
+                ProgressView()
+                    .accountToolbar()
+            }
         } else {
             NavigationStack {
                 ContentUnavailableView {
@@ -150,6 +155,7 @@ struct MainTabView: View {
                         Task { await session.refreshAccounts() }
                     }
                 }
+                .accountToolbar()
             }
         }
     }

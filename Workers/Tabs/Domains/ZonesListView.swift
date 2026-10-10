@@ -25,6 +25,7 @@ struct ZonesListView: View {
             }
             .listStyle(.insetGrouped)
             .navigationTitle(.tabsDomains)
+            .accountToolbar()
             .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text(.domainsSearch))
             .resourceStatus(
                 resources.zones,

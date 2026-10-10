@@ -1,8 +1,9 @@
 import CloudflareKit
 import SwiftUI
 
-struct MoreView: View {
+struct AccountView: View {
     @Environment(CloudflareSession.self) private var session
+    @Environment(\.dismiss) private var dismiss
     @State private var isConfirmingSignOut = false
     @State private var isConfirmingClearCache = false
     @State private var isManagingAccounts = false
@@ -11,6 +12,13 @@ struct MoreView: View {
     var body: some View {
         NavigationStack {
             List {
+                Section {
+                    AccountSwitcherMenu(
+                        isManagingAccounts: $isManagingAccounts,
+                        isShowingDemoAlert: $isShowingDemoAccountsAlert
+                    )
+                }
+
                 if let client = session.client, let account = session.selectedAccount {
                     AccountUsageSection(
                         client: client,
@@ -61,13 +69,13 @@ struct MoreView: View {
                     .tint(.primary)
                 }
             }
-            .navigationTitle(.tabsMore)
+            .navigationTitle(.accountTitle)
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    AccountSwitcherMenu(
-                        isManagingAccounts: $isManagingAccounts,
-                        isShowingDemoAlert: $isShowingDemoAccountsAlert
-                    )
+                    Button(role: .confirm) {
+                        dismiss()
+                    }
                 }
             }
             .sheet(isPresented: $isManagingAccounts) {

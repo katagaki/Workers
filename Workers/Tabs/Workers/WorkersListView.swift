@@ -31,6 +31,7 @@ struct WorkersListView: View {
             }
             .listStyle(.insetGrouped)
             .navigationTitle(.tabsWorkers)
+            .accountToolbar()
             .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text(.workersSearch))
             .resourceStatus(
                 resources.scripts,

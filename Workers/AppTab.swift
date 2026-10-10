@@ -3,7 +3,6 @@ enum AppTab: Hashable {
     case storage
     case domains
     case analytics
-    case more
     case worker(name: String)
     case storageCategory(StorageCategory)
     case zone(id: String)
@@ -27,7 +26,7 @@ extension AppTab: RawRepresentable {
         case ("storage", nil): self = .storage
         case ("domains", nil): self = .domains
         case ("analytics", nil): self = .analytics
-        case ("more", nil): self = .more
+        case ("more", nil): self = .workers
         case ("worker", let name?): self = .worker(name: name)
         case ("storage", let category?):
             guard let category = StorageCategory(rawValue: category) else { return nil }
@@ -43,7 +42,6 @@ extension AppTab: RawRepresentable {
         case .storage: "storage"
         case .domains: "domains"
         case .analytics: "analytics"
-        case .more: "more"
         case .worker(let name): "worker:\(name)"
         case .storageCategory(let category): "storage:\(category.rawValue)"
         case .zone(let id): "zone:\(id)"

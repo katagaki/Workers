@@ -25,6 +25,7 @@ struct AnalyticsView: View {
                 .id("\(range.rawValue)-\(refreshToken)")
             }
             .navigationTitle(.tabsAnalytics)
+            .accountToolbar()
             .refreshable {
                 refreshToken = UUID()
             }

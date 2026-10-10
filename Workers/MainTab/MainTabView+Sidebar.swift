@@ -14,6 +14,7 @@ extension MainTabView {
                                 selectedTab = .workers
                             }
                             .navigationBarTitleDisplayMode(.large)
+                            .accountToolbar()
                             .navigationDestination(for: WorkersDestination.self) { destination in
                                 destination.view(client: resources.client, accountId: resources.accountId)
                             }
@@ -37,6 +38,7 @@ extension MainTabView {
                         NavigationStack {
                             category.view(resources: resources)
                                 .navigationBarTitleDisplayMode(.large)
+                                .accountToolbar()
                                 .navigationDestination(for: StorageDestination.self) { destination in
                                     destination.view(client: resources.client, accountId: resources.accountId)
                                 }
@@ -62,6 +64,7 @@ extension MainTabView {
                                 resources.replaceZone(updated)
                             }
                             .navigationBarTitleDisplayMode(.large)
+                            .accountToolbar()
                             .navigationDestination(for: DomainsDestination.self) { destination in
                                 destination.view(client: resources.client)
                             }

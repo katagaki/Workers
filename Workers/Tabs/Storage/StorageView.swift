@@ -20,6 +20,7 @@ struct StorageView: View {
                 }
             }
             .navigationTitle(.tabsStorage)
+            .accountToolbar()
             .navigationDestination(for: StorageCategory.self) { category in
                 category.view(resources: resources)
             }
