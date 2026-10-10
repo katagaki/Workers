@@ -1,12 +1,26 @@
 import SwiftUI
 
 struct SettingsIcon: View {
-    let systemImage: String
+    enum Glyph {
+        case system(String)
+        case asset(ImageResource)
+    }
+
+    let glyph: Glyph
     let color: Color
 
     @ScaledMetric(relativeTo: .body) private var size: CGFloat = 30
 
-    private var glyphPointSize: CGFloat {
+    init(glyph: Glyph, color: Color) {
+        self.glyph = glyph
+        self.color = color
+    }
+
+    init(systemImage: String, color: Color) {
+        self.init(glyph: .system(systemImage), color: color)
+    }
+
+    private func glyphPointSize(for systemImage: String) -> CGFloat {
         let referencePointSize: CGFloat = 100
         let configuration = UIImage.SymbolConfiguration(pointSize: referencePointSize, weight: .semibold)
         guard let symbol = UIImage(systemName: systemImage, withConfiguration: configuration),
@@ -18,11 +32,24 @@ struct SettingsIcon: View {
     }
 
     var body: some View {
-        Image(systemName: systemImage)
-            .font(.system(size: glyphPointSize, weight: .semibold))
+        glyphImage
             .foregroundStyle(.white)
             .frame(width: size, height: size)
             .background(color.gradient, in: .rect(cornerRadius: size * 0.24, style: .continuous))
             .accessibilityHidden(true)
+    }
+
+    @ViewBuilder
+    private var glyphImage: some View {
+        switch glyph {
+        case .system(let systemImage):
+            Image(systemName: systemImage)
+                .font(.system(size: glyphPointSize(for: systemImage), weight: .semibold))
+        case .asset(let resource):
+            Image(resource)
+                .resizable()
+                .scaledToFit()
+                .frame(width: size * 0.72, height: size * 0.54)
+        }
     }
 }

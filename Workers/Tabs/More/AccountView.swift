@@ -19,10 +19,10 @@ struct AccountView: View {
 
                 Section(.moreCloudflare) {
                     Link(destination: URL(string: "https://dash.cloudflare.com")!) {
-                        safariLinkLabel(title: .moreDashboard, systemImage: "cloud.fill", color: .orange)
+                        safariLinkLabel(SettingsLabel(title: .moreDashboard, image: .cloudflare, color: .orange))
                     }
                     Link(destination: URL(string: "https://www.cloudflarestatus.com")!) {
-                        safariLinkLabel(title: .moreSystemStatus, systemImage: "waveform.path.ecg", color: .green)
+                        safariLinkLabel(SettingsLabel(title: .moreSystemStatus, systemImage: "waveform.path.ecg", color: .green))
                     }
                 }
 
@@ -102,9 +102,9 @@ struct AccountView: View {
         }
     }
 
-    private func safariLinkLabel(title: LocalizedStringResource, systemImage: String, color: Color) -> some View {
+    private func safariLinkLabel(_ label: SettingsLabel) -> some View {
         HStack {
-            SettingsLabel(title: title, systemImage: systemImage, color: color)
+            label
             Spacer()
             Image(systemName: "safari")
                 .font(.body)
