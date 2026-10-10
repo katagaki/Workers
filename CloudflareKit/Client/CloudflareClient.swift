@@ -57,6 +57,9 @@ public final class CloudflareClient: Sendable {
         guard let httpResponse = response as? HTTPURLResponse else {
             throw CloudflareError.invalidResponse
         }
+        if [401, 403].contains(httpResponse.statusCode) {
+            throw CloudflareError.http(statusCode: httpResponse.statusCode)
+        }
         let envelope = try? CloudflareJSON.makeDecoder().decode(APIEnvelope<Result>.self, from: data)
         if let envelope, let errors = envelope.errors, !errors.isEmpty, envelope.success != true {
             throw CloudflareError.api(messages: errors.map(\.message))
@@ -119,6 +122,9 @@ public final class CloudflareClient: Sendable {
         let (data, response) = try await session.data(for: request)
         guard let httpResponse = response as? HTTPURLResponse else {
             throw CloudflareError.invalidResponse
+        }
+        if [401, 403].contains(httpResponse.statusCode) {
+            throw CloudflareError.http(statusCode: httpResponse.statusCode)
         }
         guard (200..<300).contains(httpResponse.statusCode) else {
             if let envelope = try? CloudflareJSON.makeDecoder().decode(APIEnvelope<JSONValue>.self, from: data),

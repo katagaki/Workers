@@ -16,7 +16,6 @@ final class CloudflareSession {
     private(set) var accountLists: [UUID: CachedResource<[Account]>] = [:]
     private var demoAccounts = CachedResource<[Account]>(key: "accounts-demo")
     private let emptyAccounts = CachedResource<[Account]>(key: "accounts-none")
-    var isTokenSaveFailed = false
 
     var selectedAccountId: String? {
         didSet {
@@ -101,7 +100,7 @@ final class CloudflareSession {
     func addToken(name: String, token: String) async throws {
         let trimmedToken = token.trimmingCharacters(in: .whitespacesAndNewlines)
         let candidate = CloudflareClient(token: trimmedToken)
-        let fetchedAccounts = try await candidate.accounts()
+        let fetchedAccounts = try await candidate.accountsForSignIn()
         let trimmedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
         let savedToken = SavedToken(
             id: UUID(),
@@ -109,7 +108,9 @@ final class CloudflareSession {
                 ? fetchedAccounts.first?.name ?? String(localized: .accountsDefaultName)
                 : trimmedName
         )
-        isTokenSaveFailed = !KeychainStore.save(trimmedToken, for: savedToken.keychainKey)
+        guard KeychainStore.save(trimmedToken, for: savedToken.keychainKey) else {
+            throw TokenStorageError.saveFailed
+        }
         savedTokens.append(savedToken)
         persistTokens()
         let list = Self.accountList(for: savedToken.id)

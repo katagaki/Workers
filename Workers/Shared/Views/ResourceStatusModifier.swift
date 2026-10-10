@@ -10,23 +10,23 @@ struct ResourceStatusModifier<Value: Codable>: ViewModifier {
     func body(content: Content) -> some View {
         content
             .overlay {
-                if let value = resource.value {
-                    if isEmpty(value) && !resource.isLoading {
-                        ContentUnavailableView {
-                            Label(emptyTitle, systemImage: emptySystemImage)
-                        } description: {
-                            if let emptyDescription {
-                                Text(emptyDescription)
-                            }
-                        }
-                    }
-                } else if resource.isLoading {
+                if resource.isLoading && resource.value == nil {
                     ProgressView()
-                } else if let error = resource.error {
+                } else if let error = resource.error,
+                          resource.value.map(isEmpty) ?? true,
+                          !resource.isLoading {
                     ContentUnavailableView {
                         Label(.sharedCouldntLoad, systemImage: "exclamationmark.triangle")
                     } description: {
                         Text(error.localizedDescription)
+                    }
+                } else if let value = resource.value, isEmpty(value) && !resource.isLoading {
+                    ContentUnavailableView {
+                        Label(emptyTitle, systemImage: emptySystemImage)
+                    } description: {
+                        if let emptyDescription {
+                            Text(emptyDescription)
+                        }
                     }
                 }
             }

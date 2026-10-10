@@ -8,6 +8,7 @@ struct AddAccountView: View {
     @State private var token = ""
     @State private var isValidating = false
     @State private var validationError: String?
+    @State private var isShowingError = false
 
     private var canAdd: Bool {
         !token.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
@@ -46,6 +47,11 @@ struct AddAccountView: View {
                     }
                 }
             }
+            .alert(.signInErrorTitle, isPresented: $isShowingError) {
+                Button(role: .confirm) {}
+            } message: {
+                Text(validationError ?? "")
+            }
             .navigationTitle(.accountsAdd)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -77,6 +83,7 @@ struct AddAccountView: View {
             dismiss()
         } catch {
             validationError = error.localizedDescription
+            isShowingError = true
         }
     }
 }

@@ -179,6 +179,9 @@ extension CloudflareClient {
         guard let httpResponse = response as? HTTPURLResponse else {
             throw CloudflareError.invalidResponse
         }
+        if [401, 403].contains(httpResponse.statusCode) {
+            throw CloudflareError.http(statusCode: httpResponse.statusCode)
+        }
         let decoded = try? CloudflareJSON.makeDecoder().decode(GraphQLResponse<DataType>.self, from: data)
         if let errors = decoded?.errors, !errors.isEmpty {
             throw CloudflareError.graphQL(messages: errors.map(\.message))

@@ -1,6 +1,41 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "SignIn.Error.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't Sign In"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サインインできませんでした"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "로그인할 수 없습니다"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法登录"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法登入"
+          }
+        }
+      }
+    },
     "Security.Action.Block" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -8317,31 +8352,31 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your API token couldn't be saved to the keychain. You'll be signed out the next time you open the app."
+            "value" : "Your API token couldn't be saved securely on this device. Please try again."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "API トークンをキーチェーンに保存できませんでした。次回アプリを開いたときにサインアウトされます。"
+            "value" : "このデバイスに API トークンを安全に保存できませんでした。もう一度お試しください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "API 토큰을 키체인에 저장할 수 없습니다. 다음에 앱을 열 때 로그아웃됩니다."
+            "value" : "이 기기에 API 토큰을 안전하게 저장할 수 없습니다. 다시 시도해 주세요."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法将 API 令牌保存到钥匙串。下次打开 App 时你将被退出登录。"
+            "value" : "无法在此设备上安全地保存 API 令牌。请重试。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無法將 API 權杖儲存到鑰匙圈。下次打開 App 時你將被登出。"
+            "value" : "無法在此裝置上安全地儲存 API 權杖。請再試一次。"
           }
         }
       }

@@ -5,6 +5,7 @@ struct SignInView: View {
     @State private var token = ""
     @State private var isSigningIn = false
     @State private var errorMessage: String?
+    @State private var isShowingError = false
 
     var body: some View {
         NavigationStack {
@@ -73,7 +74,7 @@ struct SignInView: View {
                             Spacer()
                         }
                     }
-                    .disabled(token.trimmingCharacters(in: .whitespaces).isEmpty || isSigningIn)
+                    .disabled(token.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || isSigningIn)
                 }
 
                 Section {
@@ -90,6 +91,11 @@ struct SignInView: View {
                     Text(.signInDemoFooter)
                 }
             }
+            .alert(.signInErrorTitle, isPresented: $isShowingError) {
+                Button(role: .confirm) {}
+            } message: {
+                Text(errorMessage ?? "")
+            }
             .navigationTitle(.signInWelcomeTitle)
             .navigationBarTitleDisplayMode(.inline)
         }
@@ -104,6 +110,7 @@ struct SignInView: View {
                 try await session.signIn(token: token)
             } catch {
                 errorMessage = error.localizedDescription
+                isShowingError = true
             }
             isSigningIn = false
         }

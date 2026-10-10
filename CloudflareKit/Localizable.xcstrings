@@ -1,6 +1,146 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Errors.InvalidToken" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cloudflare couldn't accept this API token. Copy the full token again, or create a new one if it has expired or been disabled. Use an API token, rather than your Global API Key."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cloudflare がこの API トークンを受け付けませんでした。トークン全体をもう一度コピーしてください。有効期限切れや無効化された場合は、新しいトークンを作成してください。グローバル API キーではなく API トークンを使用してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cloudflare에서 이 API 토큰을 수락하지 못했습니다. 토큰 전체를 다시 복사하거나, 만료되었거나 비활성화된 경우 새 토큰을 만드세요. 글로벌 API 키 대신 API 토큰을 사용하세요."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cloudflare 无法接受此 API 令牌。请重新复制完整令牌，如果令牌已过期或被禁用，请创建新令牌。请使用 API 令牌，而非全局 API 密钥。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cloudflare 無法接受此 API 權杖。請重新複製完整權杖，如果權杖已過期或被停用，請建立新權杖。請使用 API 權杖，而非全域 API 金鑰。"
+          }
+        }
+      }
+    },
+    "Errors.PermissionDenied" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cloudflare refused this request. Check that your API token has permission for this feature and includes this account or domain. Also check the token's expiry and IP address restrictions in Cloudflare."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cloudflare がこのリクエストを拒否しました。API トークンにこの機能の権限があり、対象のアカウントまたはドメインが含まれているか確認してください。Cloudflare でトークンの有効期限と IP アドレス制限も確認してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cloudflare에서 이 요청을 거부했습니다. API 토큰에 이 기능의 권한이 있고 해당 계정 또는 도메인이 포함되어 있는지 확인하세요. Cloudflare에서 토큰의 만료일과 IP 주소 제한도 확인하세요."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cloudflare 拒绝了此请求。请检查 API 令牌是否具有此功能的权限，并包含此账户或域名。同时请在 Cloudflare 中检查令牌的有效期和 IP 地址限制。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cloudflare 拒絕了此請求。請檢查 API 權杖是否具有此功能的權限，並包含此帳戶或網域。同時請在 Cloudflare 中檢查權杖的有效期限和 IP 位址限制。"
+          }
+        }
+      }
+    },
+    "Errors.AccountAccessDenied" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cloudflare wouldn't let us load your accounts. Check that your token has Account Settings: Read permission and includes the account you want to use. Also check its expiry and IP address restrictions, or use Create API Token to create a new token with the suggested permissions."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cloudflare がアカウントの読み込みを許可しませんでした。トークンに Account Settings: Read 権限があり、使用するアカウントが含まれているか確認してください。有効期限と IP アドレス制限も確認するか、「API トークンを作成」から推奨権限の新しいトークンを作成してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cloudflare에서 계정 불러오기를 허용하지 않았습니다. 토큰에 Account Settings: Read 권한이 있고 사용하려는 계정이 포함되어 있는지 확인하세요. 만료일과 IP 주소 제한도 확인하거나, API 토큰 만들기를 통해 권장 권한으로 새 토큰을 만드세요."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cloudflare 未允许我们加载你的账户。请检查令牌是否具有 Account Settings: Read 权限，并包含你要使用的账户。同时请检查有效期和 IP 地址限制，或通过“创建 API 令牌”使用建议的权限创建新令牌。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cloudflare 未允許我們載入你的帳戶。請檢查權杖是否具有 Account Settings: Read 權限，並包含你要使用的帳戶。同時請檢查有效期限和 IP 位址限制，或透過「建立 API 權杖」使用建議的權限建立新權杖。"
+          }
+        }
+      }
+    },
+    "Errors.NoAccessibleAccounts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This token didn't return any accounts. In Cloudflare, give it Account Settings: Read permission and include at least one account you have access to. You can also use Create API Token to create a token with the suggested permissions."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このトークンではアカウントが返されませんでした。Cloudflare で Account Settings: Read 権限を付与し、アクセスできるアカウントを少なくとも 1 つ含めてください。「API トークンを作成」から推奨権限のトークンを作成することもできます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 토큰으로 계정이 반환되지 않았습니다. Cloudflare에서 Account Settings: Read 권한을 부여하고 접근 가능한 계정을 하나 이상 포함하세요. API 토큰 만들기를 통해 권장 권한으로 토큰을 만들 수도 있습니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此令牌未返回任何账户。请在 Cloudflare 中授予 Account Settings: Read 权限，并至少包含一个你有权访问的账户。你也可以通过“创建 API 令牌”使用建议的权限创建令牌。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此權杖未傳回任何帳戶。請在 Cloudflare 中授予 Account Settings: Read 權限，並至少包含一個你有權存取的帳戶。你也可以透過「建立 API 權杖」使用建議的權限建立權杖。"
+          }
+        }
+      }
+    },
     "Errors.HttpStatus" : {
       "extractionState" : "manual",
       "localizations" : {
