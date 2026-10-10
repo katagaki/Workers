@@ -4,16 +4,14 @@ import SwiftUI
 struct WorkersUsageSection: View {
     let client: CloudflareClient
     let account: Account
-    let tokenName: String?
 
     @AppStorage private var plan: WorkersPlan
     @State private var freeUsage: CachedResource<Int>
     @State private var paidUsage: CachedResource<Int>
 
-    init(client: CloudflareClient, account: Account, tokenName: String?) {
+    init(client: CloudflareClient, account: Account) {
         self.client = client
         self.account = account
-        self.tokenName = tokenName
         _plan = AppStorage(wrappedValue: .free, "WorkersPlan.\(account.id)")
         _freeUsage = State(initialValue: CachedResource(key: "usage-\(account.id)-free"))
         _paidUsage = State(initialValue: CachedResource(key: "usage-\(account.id)-paid"))
@@ -25,11 +23,6 @@ struct WorkersUsageSection: View {
 
     var body: some View {
         Section {
-            if let tokenName, tokenName != account.name {
-                Text(tokenName)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-            }
             Picker(.morePlanTitle, selection: $plan) {
                 ForEach(WorkersPlan.allCases) { plan in
                     Text(plan.title).tag(plan)

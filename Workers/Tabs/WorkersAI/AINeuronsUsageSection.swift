@@ -4,15 +4,13 @@ import SwiftUI
 struct AINeuronsUsageSection: View {
     let client: CloudflareClient
     let account: Account
-    let tokenName: String?
     let refreshCount: Int
     @AppStorage private var plan: WorkersPlan
     @State private var usage: CachedResource<[AIAnalyticsPoint]>
 
-    init(client: CloudflareClient, account: Account, tokenName: String?, refreshCount: Int) {
+    init(client: CloudflareClient, account: Account, refreshCount: Int) {
         self.client = client
         self.account = account
-        self.tokenName = tokenName
         self.refreshCount = refreshCount
         _plan = AppStorage(wrappedValue: .free, "WorkersPlan.\(account.id)")
         _usage = State(initialValue: CachedResource(key: "ai-neurons-\(account.id)-today"))
@@ -20,9 +18,6 @@ struct AINeuronsUsageSection: View {
 
     var body: some View {
         Section {
-            if let tokenName, tokenName != account.name {
-                Text(tokenName).font(.subheadline).foregroundStyle(.secondary)
-            }
             Picker(.morePlanTitle, selection: $plan) {
                 ForEach(WorkersPlan.allCases) { plan in
                     Text(plan.title).tag(plan)

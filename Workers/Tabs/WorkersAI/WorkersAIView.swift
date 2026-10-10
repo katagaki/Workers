@@ -22,7 +22,7 @@ struct WorkersAIView: View {
             List {
                 if let account = session.selectedAccount {
                     AINeuronsUsageSection(client: resources.client, account: account,
-                        tokenName: session.savedTokens.first { $0.id == session.selectedTokenId }?.name, refreshCount: refreshCount)
+                        refreshCount: refreshCount)
                 }
                 Section {
                     AnalyticsRangePicker(range: $range)

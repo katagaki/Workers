@@ -26,8 +26,7 @@ struct WorkersListView: View {
                 if let account = session.selectedAccount {
                     WorkersUsageSection(
                         client: resources.client,
-                        account: account,
-                        tokenName: session.savedTokens.first { $0.id == session.selectedTokenId }?.name
+                        account: account
                     )
                 }
                 RefreshErrorSection(resource: resources.scripts)
