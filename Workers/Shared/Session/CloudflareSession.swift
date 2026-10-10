@@ -140,10 +140,21 @@ final class CloudflareSession {
         select(tokenId: owner?.id ?? selectedTokenId ?? UUID(), accountId: accountId)
     }
 
-    func rename(tokenId: UUID, to name: String) {
-        let trimmedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmedName.isEmpty, let index = savedTokens.firstIndex(where: { $0.id == tokenId }) else { return }
-        savedTokens[index].name = trimmedName
+    func rename(tokenId: UUID, to name: String) async {
+        guard let savedToken = savedTokens.first(where: { $0.id == tokenId }) else { return }
+        var resolvedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        if resolvedName.isEmpty {
+            let profileName: String?
+            if let token = KeychainStore.read(savedToken.keychainKey) {
+                profileName = try? await CloudflareClient(token: token).userProfile().displayName
+            } else {
+                profileName = nil
+            }
+            resolvedName = profileName ?? accountLists[tokenId]?.value?.first?.name
+                ?? String(localized: .accountsDefaultName)
+        }
+        guard let index = savedTokens.firstIndex(where: { $0.id == tokenId }) else { return }
+        savedTokens[index].name = resolvedName
         persistTokens()
     }
 

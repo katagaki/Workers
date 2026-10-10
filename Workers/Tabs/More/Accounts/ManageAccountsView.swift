@@ -7,7 +7,6 @@ struct ManageAccountsView: View {
 
     @State private var isAddingAccount = false
     @State private var tokenToRename: SavedToken?
-    @State private var renameText = ""
 
     var body: some View {
         NavigationStack {
@@ -15,7 +14,7 @@ struct ManageAccountsView: View {
                 Section {
                     ForEach(session.savedTokens) { savedToken in
                         Button {
-                            session.select(tokenId: savedToken.id, accountId: nil)
+                            tokenToRename = savedToken
                         } label: {
                             SavedTokenRow(
                                 savedToken: savedToken,
@@ -33,7 +32,6 @@ struct ManageAccountsView: View {
                         }
                         .contextMenu {
                             Button {
-                                renameText = savedToken.name
                                 tokenToRename = savedToken
                             } label: {
                                 Label(.accountsRename, systemImage: "pencil")
@@ -69,20 +67,8 @@ struct ManageAccountsView: View {
             .sheet(isPresented: $isAddingAccount) {
                 AddAccountView()
             }
-            .alert(Text(.accountsRename), isPresented: Binding(
-                get: { tokenToRename != nil },
-                set: { if !$0 { tokenToRename = nil } }
-            )) {
-                TextField(String(localized: .accountsName), text: $renameText)
-                Button(role: .cancel) {
-                    tokenToRename = nil
-                }
-                Button(.sharedSave) {
-                    if let tokenToRename {
-                        session.rename(tokenId: tokenToRename.id, to: renameText)
-                    }
-                    tokenToRename = nil
-                }
+            .sheet(item: $tokenToRename) { savedToken in
+                AccountNameEditorView(savedToken: savedToken)
             }
             .onChange(of: session.savedTokens.isEmpty) { _, isEmpty in
                 if isEmpty {
