@@ -53,6 +53,9 @@ struct ZoneDetailView: View {
                 NavigationLink(value: DomainsDestination.workerRoutes(zoneId: zone.id)) {
                     SettingsLabel(title: .domainsRoutesTitle, systemImage: "arrow.triangle.branch", color: .purple)
                 }
+                NavigationLink(value: DomainsDestination.securityRules(zone)) {
+                    SettingsLabel(title: .securityTitle, systemImage: "checkmark.shield", color: .blue)
+                }
             }
 
             Section(.sharedOverview) {

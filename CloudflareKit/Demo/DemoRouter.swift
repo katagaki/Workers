@@ -133,6 +133,9 @@ enum DemoRouter {
 
     private static func zoneRoute(method: String, zoneId: String, parts: [String], body: [String: Any]?) -> [String: Any]? {
         guard let zone = DemoData.zones.first(where: { $0.id == zoneId }) else { return nil }
+        if parts.first == "rulesets" {
+            return DemoSecurity.shared.response(method: method, zoneId: zoneId, parts: parts, body: body)
+        }
         switch (method, parts) {
         case ("GET", []):
             return envelope(DemoResources.zone(zone))
