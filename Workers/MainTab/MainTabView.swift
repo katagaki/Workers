@@ -6,6 +6,7 @@ struct MainTabView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @SceneStorage("SelectedTab") var selectedTab: AppTab = .workers
     @State var resources: AccountResources?
+    @State private var recentSidebarPick: SidebarPick?
     private let navigator = AppNavigator.shared
 
     var usesSidebar: Bool {
@@ -17,7 +18,7 @@ struct MainTabView: View {
     }
 
     var body: some View {
-        TabView(selection: displayedSelection) {
+        TabView(selection: tabSelection) {
             if usesSidebar {
                 workersSection
                 storageSection
@@ -70,6 +71,13 @@ struct MainTabView: View {
                 selectedTab = selectedTab.tabBarTab
             }
         }
+        .onChange(of: sidebarLandingKey, initial: true) {
+            guard usesSidebar else { return }
+            let landing = sidebarSelection(for: selectedTab)
+            if landing != selectedTab {
+                selectedTab = landing
+            }
+        }
         .onChange(of: navigator.pendingRequest, initial: true) { _, request in
             guard let request else { return }
             session.selectAccount(id: request.accountId)
@@ -83,25 +91,39 @@ struct MainTabView: View {
         .demoModeAccessory(isEnabled: session.isDemo && !UserDefaults.standard.bool(forKey: "ScreenshotMode"))
     }
 
-    /// On iPad the sidebar sections replace the Workers, Storage, and Domains tabs, so
-    /// those land on the first item of their section instead.
-    private var displayedSelection: Binding<AppTab> {
+    /// Picking another item in the selected section from the portrait overlay sidebar makes
+    /// the tab bar select the section's previous item again right away, so that revert is ignored.
+    private var tabSelection: Binding<AppTab> {
         Binding {
-            usesSidebar ? sidebarSelection(for: selectedTab) : selectedTab
+            selectedTab
         } set: { tab in
+            if usesSidebar, let pick = recentSidebarPick, tab == pick.previous,
+               tab.tabBarTab == pick.picked.tabBarTab, Date.now.timeIntervalSince(pick.date) < 0.5 {
+                return
+            }
+            recentSidebarPick = SidebarPick(previous: selectedTab, picked: tab, date: .now)
             selectedTab = tab
         }
     }
 
+    /// Changes whenever the selection may need moving onto a sidebar item.
+    private var sidebarLandingKey: String {
+        "\(usesSidebar)-\(selectedTab.rawValue)-\(resources?.scripts.value?.count ?? -1)-\(resources?.zones.value?.count ?? -1)"
+    }
+
+    /// On iPad the sidebar sections replace the Workers, Storage, and Domains tabs, so
+    /// those land on the first item of their section instead.
     private func sidebarSelection(for tab: AppTab) -> AppTab {
         guard let resources else { return tab }
         switch tab {
         case .workers:
-            return resources.sortedScripts.first.map { .worker(name: $0.name) } ?? .analytics
+            guard let scripts = resources.scripts.value else { return tab }
+            return scripts.isEmpty ? .analytics : .worker(name: resources.sortedScripts[0].name)
         case .storage:
             return .storageCategory(.d1)
         case .domains:
-            return resources.sortedZones.first.map { .zone(id: $0.id) } ?? .analytics
+            guard let zones = resources.zones.value else { return tab }
+            return zones.isEmpty ? .analytics : .zone(id: resources.sortedZones[0].id)
         default:
             return tab
         }
