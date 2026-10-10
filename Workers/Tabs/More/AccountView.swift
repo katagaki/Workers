@@ -19,15 +19,6 @@ struct AccountView: View {
                     )
                 }
 
-                if let client = session.client, let account = session.selectedAccount {
-                    AccountUsageSection(
-                        client: client,
-                        account: account,
-                        tokenName: session.savedTokens.first { $0.id == session.selectedTokenId }?.name
-                    )
-                    .id("\(session.selectedTokenId?.uuidString ?? "")-\(account.id)")
-                }
-
                 Section(.moreCloudflare) {
                     Link(destination: URL(string: "https://dash.cloudflare.com")!) {
                         safariLinkLabel(title: .moreDashboard, systemImage: "cloud.fill", color: .orange)

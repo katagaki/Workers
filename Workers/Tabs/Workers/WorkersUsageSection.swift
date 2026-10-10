@@ -1,7 +1,7 @@
 import CloudflareKit
 import SwiftUI
 
-struct AccountUsageSection: View {
+struct WorkersUsageSection: View {
     let client: CloudflareClient
     let account: Account
     let tokenName: String?
@@ -41,7 +41,7 @@ struct AccountUsageSection: View {
             }
             usageRow
         } header: {
-            Text(.moreAccount)
+            Text(.workersUsageTitle)
         } footer: {
             Text(plan == .free ? .moreUsageFreeFooter : .moreUsagePaidFooter)
         }
