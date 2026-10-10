@@ -93,8 +93,8 @@ let screenshots = [
     Screenshot(
         name: "06-analytics",
         copy: [
-            "en": Copy(header: "Made for Dark Mode", caption: "Analytics across your whole account"),
-            "ja": Copy(header: "ダークモードに対応", caption: "アカウント全体の分析を一画面で"),
+            "en": Copy(header: "The whole picture", caption: "Analytics across your entire account"),
+            "ja": Copy(header: "全体をひと目で", caption: "アカウント全体の分析を一画面で"),
         ]
     ),
 ]
