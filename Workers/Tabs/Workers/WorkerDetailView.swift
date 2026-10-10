@@ -105,11 +105,8 @@ struct WorkerDetailView: View {
                 Menu {
                     if let workersDevURL {
                         ShareLink(item: workersDevURL)
+                        Divider()
                     }
-                    Link(destination: dashboardURL) {
-                        Label(.sharedOpenInDashboard, systemImage: "safari")
-                    }
-                    Divider()
                     Button(role: .destructive) {
                         isConfirmingDelete = true
                     } label: {
@@ -141,10 +138,6 @@ struct WorkerDetailView: View {
         }
         .task { await reload() }
         .refreshable { await reload() }
-    }
-
-    private var dashboardURL: URL {
-        URL(string: "https://dash.cloudflare.com/\(accountId)/workers/services/view/\(script.name)/production")!
     }
 
     private func reload() async {

@@ -5,7 +5,6 @@ struct SecurityRuleEditorView: View {
     let client: CloudflareClient
     let zone: Zone
     let mode: SecurityRuleEditorMode
-    let dashboardURL: URL
     let onSave: (SecurityRuleset) -> Void
 
     @Environment(\.dismiss) var dismiss
@@ -15,11 +14,10 @@ struct SecurityRuleEditorView: View {
     @State private var isConfirmingDelete = false
     @State private var template = ""
 
-    init(client: CloudflareClient, zone: Zone, mode: SecurityRuleEditorMode, dashboardURL: URL, onSave: @escaping (SecurityRuleset) -> Void) {
+    init(client: CloudflareClient, zone: Zone, mode: SecurityRuleEditorMode, onSave: @escaping (SecurityRuleset) -> Void) {
         self.client = client
         self.zone = zone
         self.mode = mode
-        self.dashboardURL = dashboardURL
         self.onSave = onSave
         switch mode {
         case .create: _input = State(initialValue: SecurityRuleInput())
@@ -82,7 +80,6 @@ struct SecurityRuleEditorView: View {
                     Section {
                         Text(.securityAdvancedMessage)
                             .foregroundStyle(.secondary)
-                        Link(.sharedOpenInDashboard, destination: dashboardURL)
                     }
                 }
 

@@ -132,11 +132,6 @@ struct ZoneDetailView: View {
                             Label(.domainsOpenWebsite, systemImage: "globe")
                         }
                     }
-                    if let url = URL(string: "https://dash.cloudflare.com/\(accountId)/\(zone.name)") {
-                        Link(destination: url) {
-                            Label(.sharedOpenInDashboard, systemImage: "safari")
-                        }
-                    }
                 } label: {
                     Label(.sharedMore, systemImage: "ellipsis")
                 }

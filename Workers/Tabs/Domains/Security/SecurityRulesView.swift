@@ -28,10 +28,6 @@ struct SecurityRulesView: View {
         ruleset.value != nil && !ruleset.isLoading && !isWorking && !needsPermission
     }
 
-    var dashboardURL: URL {
-        URL(string: "https://dash.cloudflare.com/\(zone.account?.id ?? "")/\(zone.name)/security/waf/custom-rules")!
-    }
-
     var body: some View {
         List {
             if needsPermission {
@@ -94,11 +90,6 @@ struct SecurityRulesView: View {
                 }
             }
 
-            Section {
-                Link(destination: dashboardURL) {
-                    Label(.sharedOpenInDashboard, systemImage: "arrow.up.right.square")
-                }
-            }
         }
         .navigationTitle(.securityTitle)
         .environment(\.editMode, $editMode)
@@ -119,7 +110,7 @@ struct SecurityRulesView: View {
             }
         }
         .sheet(item: $editorMode) { mode in
-            SecurityRuleEditorView(client: client, zone: zone, mode: mode, dashboardURL: dashboardURL) { updated in
+            SecurityRuleEditorView(client: client, zone: zone, mode: mode) { updated in
                 ruleset.update { $0 = updated }
             }
         }
