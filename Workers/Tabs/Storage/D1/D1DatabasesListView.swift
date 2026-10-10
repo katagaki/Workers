@@ -30,6 +30,7 @@ struct D1DatabasesListView: View {
                 }
             }
         }
+        .listStyle(.insetGrouped)
         .navigationTitle(.storageD1Title)
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text(.storageD1Search))
         .resourceStatus(

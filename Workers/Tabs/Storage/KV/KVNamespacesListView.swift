@@ -24,6 +24,7 @@ struct KVNamespacesListView: View {
                 }
             }
         }
+        .listStyle(.insetGrouped)
         .navigationTitle(.storageKvTitle)
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text(.storageKvSearch))
         .resourceStatus(

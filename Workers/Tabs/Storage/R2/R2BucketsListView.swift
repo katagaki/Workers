@@ -31,6 +31,7 @@ struct R2BucketsListView: View {
                 }
             }
         }
+        .listStyle(.insetGrouped)
         .navigationTitle(.storageR2Title)
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text(.storageR2Search))
         .resourceStatus(
