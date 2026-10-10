@@ -1,6 +1,41 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Accounts.DemoSwitchUnavailable.Message" : {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Switching accounts isn't available in demo mode. Exit demo mode and sign in with an API token to switch accounts."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "デモモードではアカウントを切り替えられません。アカウントを切り替えるには、デモモードを終了して API トークンでサインインしてください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "데모 모드에서는 계정을 전환할 수 없습니다. 계정을 전환하려면 데모 모드를 종료하고 API 토큰으로 로그인하세요."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "演示模式下无法切换账户。请退出演示模式并使用 API 令牌登录以切换账户。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "展示模式下無法切換帳號。請結束展示模式並使用 API 權杖登入以切換帳號。"
+          }
+        }
+      }
+    },
     "Accounts.Profile" : {
       "extractionState": "manual",
       "localizations": {

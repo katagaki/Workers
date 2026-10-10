@@ -4,6 +4,7 @@ struct AccountSelectionSection: View {
     @Environment(CloudflareSession.self) private var session
     @Binding var isManagingAccounts: Bool
     @Binding var isShowingDemoAlert: Bool
+    @State private var isShowingDemoSwitchAlert = false
 
     var body: some View {
         Section {
@@ -37,6 +38,11 @@ struct AccountSelectionSection: View {
                 }
             }
         }
+        .alert(Text(.accountsDemoUnavailableTitle), isPresented: $isShowingDemoSwitchAlert) {
+            Button(.sharedOk, role: .cancel) {}
+        } message: {
+            Text(.accountsDemoSwitchUnavailableMessage)
+        }
     }
 
     private var profileSelection: Binding<UUID?> {
@@ -52,9 +58,13 @@ struct AccountSelectionSection: View {
         Binding {
             session.selectedAccount?.id ?? ""
         } set: { accountId in
-            if session.isDemo {
-                session.selectAccount(id: accountId)
-            } else if let tokenId = session.selectedTokenId {
+            guard !session.isDemo else {
+                if accountId != session.selectedAccount?.id {
+                    isShowingDemoSwitchAlert = true
+                }
+                return
+            }
+            if let tokenId = session.selectedTokenId {
                 session.select(tokenId: tokenId, accountId: accountId)
             }
         }

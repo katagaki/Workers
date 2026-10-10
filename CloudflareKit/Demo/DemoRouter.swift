@@ -47,7 +47,12 @@ enum DemoRouter {
                 "name": "Kivotos Cloud",
                 "type": "standard",
                 "created_on": DemoData.ago(hours: 24 * 400)
-            ]], info: ["page": 1, "per_page": 50, "count": 1, "total_count": 1, "total_pages": 1])
+            ], [
+                "id": DemoData.hex(2),
+                "name": "Seminar East",
+                "type": "standard",
+                "created_on": DemoData.ago(hours: 24 * 200)
+            ]], info: ["page": 1, "per_page": 50, "count": 2, "total_count": 2, "total_pages": 1])
         case (_, _, "accounts") where parts.count >= 3:
             return accountRoute(method: method, parts: Array(parts.dropFirst(2)), query: query, body: body)
         case ("GET", 1, "zones"):

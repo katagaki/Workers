@@ -90,7 +90,8 @@ final class CloudflareSession {
     }
 
     var selectedAccount: Account? {
-        accounts.value?.first { $0.id == selectedAccountId } ?? accounts.value?.first
+        if isDemo { return accounts.value?.first }
+        return accounts.value?.first { $0.id == selectedAccountId } ?? accounts.value?.first
     }
 
     func signIn(token: String) async throws {
@@ -121,6 +122,7 @@ final class CloudflareSession {
     }
 
     func select(tokenId: UUID, accountId: String?) {
+        guard !isDemo else { return }
         guard let savedToken = savedTokens.first(where: { $0.id == tokenId }),
               let token = KeychainStore.read(savedToken.keychainKey) else { return }
         if selectedTokenId != tokenId || client == nil {
@@ -132,10 +134,7 @@ final class CloudflareSession {
     }
 
     func selectAccount(id accountId: String) {
-        if isDemo {
-            selectedAccountId = accountId
-            return
-        }
+        guard !isDemo else { return }
         let owner = savedTokens.first { accountLists[$0.id]?.value?.contains { $0.id == accountId } == true }
         select(tokenId: owner?.id ?? selectedTokenId ?? UUID(), accountId: accountId)
     }

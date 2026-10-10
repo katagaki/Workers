@@ -2,7 +2,11 @@ import Foundation
 
 extension DemoAnalytics {
     static func aiResponse(query: String, buckets: [Date], hourly: Bool) -> [String: Any] {
-        let modelIds = ["@cf/meta/llama-3.3-70b-instruct-fp8-fast", "@cf/baai/bge-base-en-v1.5", "@cf/black-forest-labs/flux-1-schnell"]
+        let modelIds = [
+            "@cf/veritas/sensei-voice-v1.2",
+            "@cf/seminar-research/threat-analysis-4b-fast",
+            "@cf/seminar-research/koyuki-chat-2-2b"
+        ]
         let filterModel = value(after: "modelId: ", in: query)
         let groups = modelIds.filter { filterModel == nil || $0 == filterModel }.flatMap { modelId in
             buckets.enumerated().map { index, date -> [String: Any] in

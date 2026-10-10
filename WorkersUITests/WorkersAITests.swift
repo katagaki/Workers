@@ -12,7 +12,7 @@ final class WorkersAITests: XCTestCase {
         XCTAssertLessThan(aiTab.frame.minX, app.tabBars.buttons["Domains"].frame.minX)
         aiTab.tap()
         XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label ==[c] %@", "Neurons Usage")).firstMatch.waitForExistence(timeout: 15))
-        let model = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", "@cf/baai/bge-base-en-v1.5")).firstMatch
+        let model = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", "@cf/seminar-research/koyuki-chat-2-2b")).firstMatch
         XCTAssertTrue(model.waitForExistence(timeout: 15))
         model.tap()
         XCTAssertTrue(app.staticTexts["Input Tokens"].waitForExistence(timeout: 10))
