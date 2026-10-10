@@ -27,8 +27,15 @@ extension SecurityRulesView {
         var desired = current.rules
         desired.move(fromOffsets: source, toOffset: destination)
         await performMutation {
-            var updated = current
-            for (index, rule) in desired.enumerated() where updated.rules[index].id != rule.id {
+            var updated = try await client.securityRuleset(zoneId: zone.id)
+            guard updated.rules.map(\.id) == current.rules.map(\.id) else {
+                throw CloudflareError.http(statusCode: 409)
+            }
+            for (index, rule) in desired.enumerated() {
+                guard updated.rules.count == desired.count, Set(updated.rules.map(\.id)) == Set(desired.map(\.id)) else {
+                    throw CloudflareError.http(statusCode: 409)
+                }
+                if updated.rules[index].id == rule.id { continue }
                 updated = try await client.moveSecurityRule(
                     zoneId: zone.id, rulesetId: rulesetId, ruleId: rule.id,
                     beforeRuleId: updated.rules[index].id
