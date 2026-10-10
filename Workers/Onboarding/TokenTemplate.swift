@@ -4,6 +4,7 @@ enum TokenTemplate {
     // Unknown keys are silently dropped by the dashboard instead of failing.
     private static let permissions: [(key: String, type: String)] = [
         ("account_settings", "read"),
+        ("user_details", "read"),
         ("workers_scripts", "read"),
         ("workers_tail", "read"),
         ("workers_observability", "read"),

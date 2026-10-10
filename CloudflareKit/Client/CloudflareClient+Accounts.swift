@@ -5,6 +5,10 @@ public extension CloudflareClient {
         try await result(path: "user/tokens/verify")
     }
 
+    func userProfile() async throws -> UserProfile {
+        try await result(path: "user")
+    }
+
     func accountsForSignIn() async throws -> [Account] {
         let accessibleAccounts: [Account]
         do {

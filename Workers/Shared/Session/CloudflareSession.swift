@@ -101,13 +101,12 @@ final class CloudflareSession {
         let trimmedToken = token.trimmingCharacters(in: .whitespacesAndNewlines)
         let candidate = CloudflareClient(token: trimmedToken)
         let fetchedAccounts = try await candidate.accountsForSignIn()
-        let trimmedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
-        let savedToken = SavedToken(
-            id: UUID(),
-            name: trimmedName.isEmpty
-                ? fetchedAccounts.first?.name ?? String(localized: .accountsDefaultName)
-                : trimmedName
-        )
+        var resolvedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        if resolvedName.isEmpty {
+            let profileName = try? await candidate.userProfile().displayName
+            resolvedName = profileName ?? fetchedAccounts.first?.name ?? String(localized: .accountsDefaultName)
+        }
+        let savedToken = SavedToken(id: UUID(), name: resolvedName)
         guard KeychainStore.save(trimmedToken, for: savedToken.keychainKey) else {
             throw TokenStorageError.saveFailed
         }
