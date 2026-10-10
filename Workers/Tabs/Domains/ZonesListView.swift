@@ -8,6 +8,7 @@ struct ZonesListView: View {
     @State private var zones: CachedResource<[Zone]>
     @State private var searchText = ""
     @State private var selection: Zone?
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     private let navigator = AppNavigator.shared
 
     init(client: CloudflareClient, accountId: String) {
@@ -32,7 +33,7 @@ struct ZonesListView: View {
                     }
                 }
             }
-            .listStyle(.plain)
+            .splitColumn(horizontalSizeClass)
             .navigationTitle(.tabsDomains)
             .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text(.domainsSearch))
             .resourceStatus(

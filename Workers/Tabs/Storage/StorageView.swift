@@ -10,6 +10,7 @@ struct StorageView: View {
     @State private var buckets: CachedResource<[R2Bucket]>
     @State private var databases: CachedResource<[D1Database]>
     @State private var selection: StorageCategory?
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
     init(client: CloudflareClient, accountId: String) {
         self.client = client
@@ -36,6 +37,7 @@ struct StorageView: View {
                     row(title: .storageR2Title, systemImage: "archivebox.fill", color: .purple, count: buckets.value?.count)
                 }
             }
+            .splitColumn(horizontalSizeClass, isPlainWhenCompact: false)
             .navigationTitle(.tabsStorage)
             .task { await reload() }
             .refreshable { await reload() }

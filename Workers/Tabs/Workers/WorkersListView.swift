@@ -9,6 +9,7 @@ struct WorkersListView: View {
     @State private var analytics: CachedResource<[WorkerAnalyticsPoint]>
     @State private var searchText = ""
     @State private var selection: WorkerScript?
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     private let navigator = AppNavigator.shared
 
     init(client: CloudflareClient, accountId: String) {
@@ -40,7 +41,7 @@ struct WorkersListView: View {
                     }
                 }
             }
-            .listStyle(.plain)
+            .splitColumn(horizontalSizeClass)
             .navigationTitle(.tabsWorkers)
             .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text(.workersSearch))
             .resourceStatus(
