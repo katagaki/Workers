@@ -82,7 +82,7 @@ struct SeriesChart: View {
     }
 
     private var chart: some View {
-        Chart(foldedPoints) { point in
+        Chart(foldedPoints.filledBuckets(for: range, seriesNames: seriesNames)) { point in
             switch style {
             case .area:
                 AreaMark(
