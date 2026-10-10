@@ -9,11 +9,18 @@ struct SeriesChart: View {
         case bar
     }
 
+    struct Series {
+        let name: String
+        let color: Color
+    }
+
     var title: LocalizedStringResource?
     let points: [ChartPoint]
     let range: AnalyticsRange
     var style: Style = .area
     var tint: Color? = nil
+    var series: [Series] = []
+    var showsLegendTotals = false
     var valueFormatter: (Double) -> String = { Int($0).compactFormatted }
 
     private static let maximumSeries = 6
@@ -40,6 +47,7 @@ struct SeriesChart: View {
     }
 
     private var seriesNames: [String] {
+        if !series.isEmpty { return series.map(\.name) }
         let names = Set(foldedPoints.map(\.series))
         let sorted = names.subtracting([Self.otherSeries]).sorted()
         return names.contains(Self.otherSeries) ? sorted + [Self.otherSeries] : sorted
@@ -64,7 +72,9 @@ struct SeriesChart: View {
             } else {
                 chart
                 if showsLegend {
-                    ChartLegend(entries: Array(zip(seriesNames, palette)).map { (name: $0.0, color: $0.1) })
+                    ChartLegend(entries: Array(zip(seriesNames, palette)).map { name, color in
+                        (name: name, color: color, value: showsLegendTotals ? valueFormatter(total(of: name)) : nil)
+                    })
                 }
             }
         }
@@ -116,7 +126,12 @@ struct SeriesChart: View {
         .frame(height: 180)
     }
 
+    private func total(of seriesName: String) -> Double {
+        foldedPoints.filter { $0.series == seriesName }.reduce(0) { $0 + $1.value }
+    }
+
     private var palette: [Color] {
+        if !series.isEmpty { return series.map(\.color) }
         if let tint, seriesNames.count == 1 {
             return [tint]
         }

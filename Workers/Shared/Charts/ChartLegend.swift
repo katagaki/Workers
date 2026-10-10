@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ChartLegend: View {
-    let entries: [(name: String, color: Color)]
+    let entries: [(name: String, color: Color, value: String?)]
 
     var body: some View {
         FlowLayout(horizontalSpacing: 12, verticalSpacing: 4) {
@@ -14,6 +14,10 @@ struct ChartLegend: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                         .lineLimit(1)
+                    if let value = entry.value {
+                        Text(value)
+                            .font(.caption.weight(.medium))
+                    }
                 }
             }
         }

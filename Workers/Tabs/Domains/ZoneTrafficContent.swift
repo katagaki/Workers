@@ -11,16 +11,23 @@ struct ZoneTrafficContent: View {
     private var threats: Int { points.reduce(0) { $0 + $1.threats } }
     private var uniqueVisitors: Int { points.reduce(0) { $0 + $1.uniqueVisitors } }
 
-    private var groupedByDate: [Date: (cached: Int, uncached: Int, bytes: Int)] {
+    private var groupedByDate: [Date: (mitigated: Int, cached: Int, origin: Int, bytes: Int)] {
         points.reduce(into: [:]) { result, point in
-            let existing = result[point.date] ?? (0, 0, 0)
+            let existing = result[point.date] ?? (0, 0, 0, 0)
             result[point.date] = (
+                existing.mitigated + point.threats,
                 existing.cached + point.cachedRequests,
-                existing.uncached + point.requests - point.cachedRequests,
+                existing.origin + max(point.requests - point.cachedRequests - point.threats, 0),
                 existing.bytes + point.bytes
             )
         }
     }
+
+    private static let outcomeSeries: [SeriesChart.Series] = [
+        SeriesChart.Series(name: String(localized: .domainsTrafficMitigated), color: .blue),
+        SeriesChart.Series(name: String(localized: .domainsTrafficServedByCloudflare), color: .orange),
+        SeriesChart.Series(name: String(localized: .domainsTrafficServedByOrigin), color: .pink)
+    ]
 
     var body: some View {
         StatGrid(stats: [
@@ -34,15 +41,16 @@ struct ZoneTrafficContent: View {
             Stat(title: .statsThreatsBlocked, value: threats.compactFormatted)
         ])
         SeriesChart(
-            title: .domainsRequestsByCacheStatus,
+            title: .domainsRequestsByOutcome,
             points: groupedByDate.flatMap { date, totals in
-                [
-                    ChartPoint(date: date, series: String(localized: .statsCached), value: Double(totals.cached)),
-                    ChartPoint(date: date, series: String(localized: .statsUncached), value: Double(totals.uncached))
-                ]
+                zip(Self.outcomeSeries, [totals.mitigated, totals.cached, totals.origin]).map { series, value in
+                    ChartPoint(date: date, series: series.name, value: Double(value))
+                }
             }
             .sorted { $0.date < $1.date },
-            range: range
+            range: range,
+            series: Self.outcomeSeries,
+            showsLegendTotals: true
         )
         SeriesChart(
             title: .statsBandwidth,
