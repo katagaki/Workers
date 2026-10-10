@@ -17,7 +17,7 @@ struct ZonesListView: View {
     }
 
     private var filteredZones: [Zone] {
-        let all = (zones.value ?? []).sorted { $0.name < $1.name }
+        let all = (zones.value ?? []).sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
         guard !searchText.isEmpty else { return all }
         return all.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
     }

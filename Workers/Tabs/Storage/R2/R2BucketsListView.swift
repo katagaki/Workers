@@ -9,7 +9,7 @@ struct R2BucketsListView: View {
     @State private var searchText = ""
 
     private var filteredBuckets: [R2Bucket] {
-        let all = (buckets.value ?? []).sorted { $0.name < $1.name }
+        let all = (buckets.value ?? []).sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
         guard !searchText.isEmpty else { return all }
         return all.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
     }

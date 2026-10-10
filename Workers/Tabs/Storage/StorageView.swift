@@ -23,6 +23,11 @@ struct StorageView: View {
         NavigationStack {
             List {
                 NavigationLink {
+                    D1DatabasesListView(client: client, accountId: accountId, databases: databases)
+                } label: {
+                    row(title: .storageD1Title, systemImage: "cylinder.fill", color: .green, count: databases.value?.count)
+                }
+                NavigationLink {
                     NamespacesListView(client: client, accountId: accountId)
                 } label: {
                     row(title: .tabsDurableObjects, systemImage: "shippingbox.fill", color: .orange, count: durableObjectNamespaces.value?.count)
@@ -36,11 +41,6 @@ struct StorageView: View {
                     R2BucketsListView(client: client, accountId: accountId, buckets: buckets)
                 } label: {
                     row(title: .storageR2Title, systemImage: "archivebox.fill", color: .purple, count: buckets.value?.count)
-                }
-                NavigationLink {
-                    D1DatabasesListView(client: client, accountId: accountId, databases: databases)
-                } label: {
-                    row(title: .storageD1Title, systemImage: "cylinder.fill", color: .green, count: databases.value?.count)
                 }
             }
             .navigationTitle(.tabsStorage)

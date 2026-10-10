@@ -23,8 +23,8 @@ struct NamespacesListView: View {
                 || ($0.script ?? "").localizedCaseInsensitiveContains(searchText)
         }
         return Dictionary(grouping: filtered) { $0.script ?? String(localized: .sharedOther) }
-            .map { ($0.key, $0.value.sorted { $0.displayName < $1.displayName }) }
-            .sorted { $0.0 < $1.0 }
+            .map { ($0.key, $0.value.sorted { $0.displayName.localizedStandardCompare($1.displayName) == .orderedAscending }) }
+            .sorted { $0.0.localizedStandardCompare($1.0) == .orderedAscending }
     }
 
     private var requestCounts: [String: Int] {

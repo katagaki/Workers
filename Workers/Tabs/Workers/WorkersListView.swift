@@ -19,9 +19,7 @@ struct WorkersListView: View {
     }
 
     private var filteredScripts: [WorkerScript] {
-        let all = (scripts.value ?? []).sorted {
-            ($0.modifiedOn ?? .distantPast) > ($1.modifiedOn ?? .distantPast)
-        }
+        let all = (scripts.value ?? []).sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
         guard !searchText.isEmpty else { return all }
         return all.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
     }

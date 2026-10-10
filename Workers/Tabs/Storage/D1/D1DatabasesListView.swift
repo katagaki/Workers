@@ -9,7 +9,7 @@ struct D1DatabasesListView: View {
     @State private var searchText = ""
 
     private var filteredDatabases: [D1Database] {
-        let all = (databases.value ?? []).sorted { $0.name < $1.name }
+        let all = (databases.value ?? []).sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
         guard !searchText.isEmpty else { return all }
         return all.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
     }
