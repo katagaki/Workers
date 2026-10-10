@@ -48,7 +48,7 @@ struct NamespacesListView: View {
                 }
             }
             .navigationTitle(.tabsDurableObjects)
-            .searchable(text: $searchText, prompt: Text(.durableObjectsSearch))
+            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text(.durableObjectsSearch))
             .resourceStatus(
                 namespaces,
                 emptyTitle: .durableObjectsEmptyTitle,

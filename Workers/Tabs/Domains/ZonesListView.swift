@@ -30,8 +30,9 @@ struct ZonesListView: View {
                     }
                 }
             }
+            .listStyle(.plain)
             .navigationTitle(.tabsDomains)
-            .searchable(text: $searchText, prompt: Text(.domainsSearch))
+            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text(.domainsSearch))
             .resourceStatus(
                 zones,
                 emptyTitle: .domainsEmptyTitle,

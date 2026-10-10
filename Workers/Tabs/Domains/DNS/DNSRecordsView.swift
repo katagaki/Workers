@@ -71,7 +71,7 @@ struct DNSRecordsView: View {
             }
         }
         .navigationTitle(.dnsTitle)
-        .searchable(text: $searchText, prompt: Text(.dnsSearch))
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text(.dnsSearch))
         .resourceStatus(
             records,
             emptyTitle: .dnsEmptyTitle,

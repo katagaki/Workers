@@ -40,8 +40,9 @@ struct WorkersListView: View {
                     }
                 }
             }
+            .listStyle(.plain)
             .navigationTitle(.tabsWorkers)
-            .searchable(text: $searchText, prompt: Text(.workersSearch))
+            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text(.workersSearch))
             .resourceStatus(
                 scripts,
                 emptyTitle: .workersEmptyTitle,

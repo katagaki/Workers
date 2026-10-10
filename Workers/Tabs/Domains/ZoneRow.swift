@@ -5,16 +5,19 @@ struct ZoneRow: View {
     let zone: Zone
 
     var body: some View {
-        HStack(spacing: 12) {
-            ZoneStatusIcon(zone: zone)
-            VStack(alignment: .leading, spacing: 3) {
-                Text(zone.name)
-                    .font(.body.weight(.medium))
-                    .lineLimit(1)
+        VStack(alignment: .leading, spacing: 3) {
+            Text(zone.name)
+                .font(.body.weight(.medium))
+                .lineLimit(1)
+            Label {
                 Text(zone.subtitle)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
+            } icon: {
+                Image(systemName: zone.statusSymbol)
+                    .foregroundStyle(zone.statusColor)
             }
+            .labelStyle(.compact)
+            .font(.subheadline)
+            .foregroundStyle(.secondary)
         }
         .padding(.vertical, 2)
     }

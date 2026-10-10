@@ -18,7 +18,7 @@ struct RecentLogsView: View {
             searchText: searchText
         )
         .id(window)
-        .searchable(text: $searchText, prompt: Text(.logsFilter))
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text(.logsFilter))
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
