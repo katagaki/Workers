@@ -34,8 +34,6 @@ struct AddAccountView: View {
                             Spacer()
                         }
                     }
-                } footer: {
-                    Text(.securityTokenOnboarding)
                 }
 
                 Section {

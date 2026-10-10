@@ -665,23 +665,6 @@
         }
       }
     },
-    "Security.Token.Onboarding" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The suggested permissions include Zone > Zone WAF > Edit for managing security rules. Choose the domains you want to manage before creating your token."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "推奨の権限には、セキュリティルールを管理するための Zone > Zone WAF > Edit が含まれています。トークンの作成前に管理するドメインを選択してください。"
-          }
-        }
-      }
-    },
     "Security.Untitled" : {
       "extractionState" : "manual",
       "localizations" : {
