@@ -20,11 +20,8 @@ struct AINeuronsUsageSection: View {
 
     var body: some View {
         Section {
-            VStack(alignment: .leading, spacing: 2) {
-                Text(account.name).font(.headline)
-                if let tokenName, tokenName != account.name {
-                    Text(tokenName).font(.subheadline).foregroundStyle(.secondary)
-                }
+            if let tokenName, tokenName != account.name {
+                Text(tokenName).font(.subheadline).foregroundStyle(.secondary)
             }
             Picker(.morePlanTitle, selection: $plan) {
                 ForEach(WorkersPlan.allCases) { plan in
