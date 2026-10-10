@@ -40,8 +40,6 @@ struct SignInView: View {
                             Spacer()
                         }
                     }
-                } footer: {
-                    Text(.securityTokenOnboarding)
                 }
 
                 Section {
