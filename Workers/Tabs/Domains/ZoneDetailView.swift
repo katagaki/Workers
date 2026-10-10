@@ -145,7 +145,7 @@ struct ZoneDetailView: View {
             }
         }
         .alert(Text(.domainsPurgeConfirm), isPresented: $isConfirmingPurge) {
-            Button(.sharedCancel, role: .cancel) {}
+            Button(role: .cancel) {}
             Button(.domainsPurgeEverything, role: .destructive) {
                 Task { await purgeCache() }
             }
@@ -156,7 +156,7 @@ struct ZoneDetailView: View {
             Text(zone.paused == true ? .domainsResumeConfirm : .domainsPauseConfirm),
             isPresented: $isConfirmingPause
         ) {
-            Button(.sharedCancel, role: .cancel) {}
+            Button(role: .cancel) {}
             Button(zone.paused == true ? .domainsResumeAction : .domainsPauseAction, role: zone.paused == true ? nil : .destructive) {
                 Task { await togglePause() }
             }

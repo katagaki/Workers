@@ -117,7 +117,7 @@ struct DNSRecordEditorView: View {
             .interactiveDismissDisabled(isSaving)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(.sharedCancel, role: .cancel) {
+                    Button(role: .cancel) {
                         dismiss()
                     }
                 }
@@ -125,7 +125,7 @@ struct DNSRecordEditorView: View {
                     if isSaving {
                         ProgressView()
                     } else {
-                        Button(.sharedSave, role: .confirm) {
+                        Button(role: .confirm) {
                             Task { await save() }
                         }
                         .disabled(!canSave)

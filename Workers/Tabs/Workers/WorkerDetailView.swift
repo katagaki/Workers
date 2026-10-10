@@ -135,7 +135,7 @@ struct WorkerDetailView: View {
             Text(.workersDeleteConfirm(script.name)),
             isPresented: $isConfirmingDelete
         ) {
-            Button(.sharedCancel, role: .cancel) {}
+            Button(role: .cancel) {}
             Button(.workersDeleteTitle, role: .destructive) {
                 Task { await deleteWorker() }
             }

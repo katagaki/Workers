@@ -71,7 +71,7 @@ struct MoreView: View {
                 await session.refreshAccounts()
             }
             .alert(Text(.moreClearCacheConfirm), isPresented: $isConfirmingClearCache) {
-                Button(.sharedCancel, role: .cancel) {}
+                Button(role: .cancel) {}
                 Button(.moreClearCacheTitle, role: .destructive) {
                     DiskCache.shared.clear()
                 }
@@ -80,7 +80,7 @@ struct MoreView: View {
                 Text(session.isDemo ? .moreExitDemoConfirm : .moreSignOutConfirm),
                 isPresented: $isConfirmingSignOut
             ) {
-                Button(.sharedCancel, role: .cancel) {}
+                Button(role: .cancel) {}
                 Button(session.isDemo ? .moreExitDemoTitle : .moreSignOutTitle, role: .destructive) {
                     session.signOut()
                 }

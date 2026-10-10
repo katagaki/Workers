@@ -120,7 +120,7 @@ struct DNSRecordsView: View {
             ),
             presenting: recordPendingDeletion
         ) { record in
-            Button(.sharedCancel, role: .cancel) {}
+            Button(role: .cancel) {}
             Button(.dnsDeleteAction(record.type), role: .destructive) {
                 Task { await delete(record) }
             }
