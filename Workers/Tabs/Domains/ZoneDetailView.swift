@@ -121,7 +121,6 @@ struct ZoneDetailView: View {
             .disabled(isWorking)
         }
         .navigationTitle(zone.name)
-        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {

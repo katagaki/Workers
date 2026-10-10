@@ -100,7 +100,6 @@ struct WorkerDetailView: View {
             }
         }
         .navigationTitle(script.name)
-        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {

@@ -2,90 +2,62 @@ import CloudflareKit
 import SwiftUI
 
 struct WorkersListView: View {
-    let client: CloudflareClient
-    let accountId: String
+    let resources: AccountResources
 
-    @State private var scripts: CachedResource<[WorkerScript]>
-    @State private var analytics: CachedResource<[WorkerAnalyticsPoint]>
     @State private var searchText = ""
-    @State private var selection: WorkerScript?
-    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @State private var path = NavigationPath()
     private let navigator = AppNavigator.shared
 
-    init(client: CloudflareClient, accountId: String) {
-        self.client = client
-        self.accountId = accountId
-        _scripts = State(initialValue: CachedResource(key: "workers-\(accountId)"))
-        _analytics = State(initialValue: CachedResource(key: "workers-analytics-\(accountId)-day"))
-    }
-
     private var filteredScripts: [WorkerScript] {
-        let all = (scripts.value ?? []).sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
-        guard !searchText.isEmpty else { return all }
-        return all.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+        guard !searchText.isEmpty else { return resources.sortedScripts }
+        return resources.sortedScripts.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
     }
 
     private var requestCounts: [String: Int] {
-        (analytics.value ?? []).reduce(into: [:]) { counts, point in
+        (resources.workerAnalytics.value ?? []).reduce(into: [:]) { counts, point in
             counts[point.scriptName, default: 0] += point.requests
         }
     }
 
     var body: some View {
-        NavigationSplitView {
-            List(selection: $selection) {
-                RefreshErrorSection(resource: scripts)
+        NavigationStack(path: $path) {
+            List {
+                RefreshErrorSection(resource: resources.scripts)
                 ForEach(filteredScripts) { script in
                     NavigationLink(value: script) {
                         WorkerRow(script: script, requests: requestCounts[script.name])
                     }
                 }
             }
-            .splitColumn(horizontalSizeClass)
+            .listStyle(.plain)
             .navigationTitle(.tabsWorkers)
             .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text(.workersSearch))
             .resourceStatus(
-                scripts,
+                resources.scripts,
                 emptyTitle: .workersEmptyTitle,
                 emptySystemImage: "hammer",
                 emptyDescription: .workersEmptyMessage
             )
+            .navigationDestination(for: WorkerScript.self) { script in
+                WorkerDetailView(client: resources.client, accountId: resources.accountId, script: script) {
+                    resources.removeScript(script)
+                }
+                .navigationBarTitleDisplayMode(.inline)
+            }
+            .navigationDestination(for: WorkersDestination.self) { destination in
+                destination.view(client: resources.client, accountId: resources.accountId)
+            }
+            .navigationDestination(for: StorageDestination.self) { destination in
+                destination.view(client: resources.client, accountId: resources.accountId)
+            }
             .onChange(of: navigator.pendingRequest, initial: true) { _, request in
-                guard let request, request.accountId == accountId,
+                guard let request, request.accountId == resources.accountId,
                       case .worker(let script) = request.destination else { return }
-                selection = script
+                path = NavigationPath([script])
                 navigator.pendingRequest = nil
             }
-            .task { await reload() }
-            .refreshable { await reload() }
-        } detail: {
-            if let selection {
-                NavigationStack {
-                    WorkerDetailView(client: client, accountId: accountId, script: selection) {
-                        scripts.update { $0.removeAll { $0.id == selection.id } }
-                        self.selection = nil
-                    }
-                    .navigationDestination(for: WorkersDestination.self) { destination in
-                        destination.view(client: client, accountId: accountId)
-                    }
-                    .navigationDestination(for: StorageDestination.self) { destination in
-                        destination.view(client: client, accountId: accountId)
-                    }
-                }
-                .id(selection.id)
-            } else {
-                ContentUnavailableView(.workersNoSelection, systemImage: "hammer")
-            }
+            .task { await resources.reloadWorkers() }
+            .refreshable { await resources.reloadWorkers() }
         }
-    }
-
-    private func reload() async {
-        async let scriptsLoad: Void = scripts.refresh {
-            try await client.workerScripts(accountId: accountId)
-        }
-        async let analyticsLoad: Void = analytics.refresh {
-            try await client.workerAnalytics(accountId: accountId, range: .day)
-        }
-        _ = await (scriptsLoad, analyticsLoad)
     }
 }

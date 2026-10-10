@@ -13,6 +13,13 @@ final class AppNavigator {
             case .zone: .domains
             }
         }
+
+        var sidebarTab: AppTab {
+            switch self {
+            case .worker(let script): .worker(name: script.name)
+            case .zone(let zone): .zone(id: zone.id)
+            }
+        }
     }
 
     struct Request: Equatable {

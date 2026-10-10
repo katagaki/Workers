@@ -2,81 +2,53 @@ import CloudflareKit
 import SwiftUI
 
 struct ZonesListView: View {
-    let client: CloudflareClient
-    let accountId: String
+    let resources: AccountResources
 
-    @State private var zones: CachedResource<[Zone]>
     @State private var searchText = ""
-    @State private var selection: Zone?
-    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @State private var path = NavigationPath()
     private let navigator = AppNavigator.shared
 
-    init(client: CloudflareClient, accountId: String) {
-        self.client = client
-        self.accountId = accountId
-        _zones = State(initialValue: CachedResource(key: "zones-\(accountId)"))
-    }
-
     private var filteredZones: [Zone] {
-        let all = (zones.value ?? []).sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
-        guard !searchText.isEmpty else { return all }
-        return all.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+        guard !searchText.isEmpty else { return resources.sortedZones }
+        return resources.sortedZones.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
     }
 
     var body: some View {
-        NavigationSplitView {
-            List(selection: $selection) {
-                RefreshErrorSection(resource: zones)
+        NavigationStack(path: $path) {
+            List {
+                RefreshErrorSection(resource: resources.zones)
                 ForEach(filteredZones) { zone in
                     NavigationLink(value: zone) {
                         ZoneRow(zone: zone)
                     }
                 }
             }
-            .splitColumn(horizontalSizeClass)
+            .listStyle(.plain)
             .navigationTitle(.tabsDomains)
             .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text(.domainsSearch))
             .resourceStatus(
-                zones,
+                resources.zones,
                 emptyTitle: .domainsEmptyTitle,
                 emptySystemImage: "globe",
                 emptyDescription: .domainsEmptyMessage
             )
+            .navigationDestination(for: Zone.self) { zone in
+                ZoneDetailView(client: resources.client, accountId: resources.accountId, zone: zone) { updated in
+                    resources.replaceZone(updated)
+                }
+                .navigationBarTitleDisplayMode(.inline)
+            }
+            .navigationDestination(for: DomainsDestination.self) { destination in
+                destination.view(client: resources.client)
+            }
             .onChange(of: navigator.pendingRequest, initial: true) { _, request in
-                guard let request, request.accountId == accountId,
+                guard let request, request.accountId == resources.accountId,
                       case .zone(let zone) = request.destination else { return }
-                selection = zone
+                path = NavigationPath([zone])
                 navigator.pendingRequest = nil
             }
-            .task { await reload() }
-            .refreshable { await reload() }
-        } detail: {
-            if let selection {
-                NavigationStack {
-                    ZoneDetailView(client: client, accountId: accountId, zone: selection) { updated in
-                        zones.update { list in
-                            if let index = list.firstIndex(where: { $0.id == updated.id }) {
-                                list[index] = updated
-                            }
-                        }
-                        if self.selection?.id == updated.id {
-                            self.selection = updated
-                        }
-                    }
-                    .navigationDestination(for: DomainsDestination.self) { destination in
-                        destination.view(client: client)
-                    }
-                }
-                .id(selection.id)
-            } else {
-                ContentUnavailableView(.domainsNoSelection, systemImage: "globe")
-            }
-        }
-    }
-
-    private func reload() async {
-        await zones.refresh {
-            try await client.zones(accountId: accountId)
+            .task { await resources.reloadZones() }
+            .refreshable { await resources.reloadZones() }
         }
     }
 }
