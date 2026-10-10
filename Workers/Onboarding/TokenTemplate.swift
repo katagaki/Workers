@@ -12,6 +12,7 @@ enum TokenTemplate {
         ("workers_r2", "read"),
         ("d1", "read"),
         ("zone", "read"),
+        ("zone_waf", "edit"),
         ("dns", "edit"),
         ("analytics", "read"),
         ("cache", "purge"),

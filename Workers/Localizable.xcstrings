@@ -671,13 +671,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "To manage security rules, add Zone > Zone WAF > Edit for the domains you want to manage before creating your token."
+            "value" : "The suggested permissions include Zone > Zone WAF > Edit for managing security rules. Choose the domains you want to manage before creating your token."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "セキュリティルールを管理するには、トークンの作成前に対象のドメインの Zone > Zone WAF > Edit の権限を追加してください。"
+            "value" : "推奨の権限には、セキュリティルールを管理するための Zone > Zone WAF > Edit が含まれています。トークンの作成前に管理するドメインを選択してください。"
           }
         }
       }
