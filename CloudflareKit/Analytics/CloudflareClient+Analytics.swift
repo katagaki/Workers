@@ -92,6 +92,44 @@ public extension CloudflareClient {
         }
     }
 
+    func zoneRequestOutcomes(zoneId: String, range: AnalyticsRange) async throws -> [ZoneOutcomePoint] {
+        let interval = range.interval()
+        let timeDimension = range.usesHourlyBuckets ? "datetimeHour" : "date"
+        let query = """
+        {
+          viewer {
+            zones(filter: { zoneTag_in: [\(literal(zoneId))] }) {
+              httpRequestsAdaptiveGroups(limit: 10000, filter: { datetime_geq: \(literal(timestamp(interval.start))), datetime_lt: \(literal(timestamp(interval.end))), requestSource: "eyeball" }, orderBy: [\(timeDimension)_ASC]) {
+                count
+                dimensions { \(timeDimension) securityAction originResponseStatus }
+              }
+            }
+          }
+        }
+        """
+        let data: ViewerData<ZonesViewer<ZoneOutcomesData>> = try await graphQL(query)
+        var totals: [Date: (mitigated: Int, servedByCloudflare: Int, servedByOrigin: Int)] = [:]
+        for group in data.viewer.zones.first?.httpRequestsAdaptiveGroups ?? [] {
+            guard let date = group.dimensions.datetimeHour ?? group.dimensions.date else { continue }
+            var total = totals[date] ?? (0, 0, 0)
+            if Self.mitigatingActions.contains(group.dimensions.securityAction ?? "") {
+                total.mitigated += group.count
+            } else if (group.dimensions.originResponseStatus ?? 0) > 0 {
+                total.servedByOrigin += group.count
+            } else {
+                total.servedByCloudflare += group.count
+            }
+            totals[date] = total
+        }
+        return totals
+            .map { ZoneOutcomePoint(date: $0.key, mitigated: $0.value.mitigated, servedByCloudflare: $0.value.servedByCloudflare, servedByOrigin: $0.value.servedByOrigin) }
+            .sorted { $0.date < $1.date }
+    }
+
+    private static let mitigatingActions: Set<String> = [
+        "block", "challenge", "jschallenge", "managed_challenge", "connection_close", "force_connection_close"
+    ]
+
     func durableObjectAnalytics(
         accountId: String,
         range: AnalyticsRange,

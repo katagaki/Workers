@@ -3,6 +3,7 @@ import SwiftUI
 
 struct ZoneTrafficContent: View {
     let points: [ZoneAnalyticsPoint]
+    let outcomes: [ZoneOutcomePoint]?
     let range: AnalyticsRange
 
     private var requests: Int { points.reduce(0) { $0 + $1.requests } }
@@ -11,15 +12,9 @@ struct ZoneTrafficContent: View {
     private var threats: Int { points.reduce(0) { $0 + $1.threats } }
     private var uniqueVisitors: Int { points.reduce(0) { $0 + $1.uniqueVisitors } }
 
-    private var groupedByDate: [Date: (mitigated: Int, cached: Int, origin: Int, bytes: Int)] {
+    private var bytesByDate: [Date: Int] {
         points.reduce(into: [:]) { result, point in
-            let existing = result[point.date] ?? (0, 0, 0, 0)
-            result[point.date] = (
-                existing.mitigated + point.threats,
-                existing.cached + point.cachedRequests,
-                existing.origin + max(point.requests - point.cachedRequests - point.threats, 0),
-                existing.bytes + point.bytes
-            )
+            result[point.date, default: 0] += point.bytes
         }
     }
 
@@ -40,22 +35,23 @@ struct ZoneTrafficContent: View {
             ),
             Stat(title: .statsThreatsBlocked, value: threats.compactFormatted)
         ])
-        SeriesChart(
-            title: .domainsRequestsByOutcome,
-            points: groupedByDate.flatMap { date, totals in
-                zip(Self.outcomeSeries, [totals.mitigated, totals.cached, totals.origin]).map { series, value in
-                    ChartPoint(date: date, series: series.name, value: Double(value))
-                }
-            }
-            .sorted { $0.date < $1.date },
-            range: range,
-            series: Self.outcomeSeries,
-            showsLegendTotals: true
-        )
+        if let outcomes {
+            SeriesChart(
+                title: .domainsRequestsByOutcome,
+                points: outcomes.flatMap { outcome in
+                    zip(Self.outcomeSeries, [outcome.mitigated, outcome.servedByCloudflare, outcome.servedByOrigin]).map { series, value in
+                        ChartPoint(date: outcome.date, series: series.name, value: Double(value))
+                    }
+                },
+                range: range,
+                series: Self.outcomeSeries,
+                showsLegendTotals: true
+            )
+        }
         SeriesChart(
             title: .statsBandwidth,
-            points: groupedByDate.map {
-                ChartPoint(date: $0.key, series: String(localized: .statsBandwidth), value: Double($0.value.bytes))
+            points: bytesByDate.map {
+                ChartPoint(date: $0.key, series: String(localized: .statsBandwidth), value: Double($0.value))
             }
             .sorted { $0.date < $1.date },
             range: range,

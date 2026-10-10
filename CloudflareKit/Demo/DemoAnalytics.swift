@@ -50,6 +50,29 @@ enum DemoAnalytics {
             return ["viewer": ["accounts": [["durableObjectsInvocationsAdaptiveGroups": groups]]]]
         }
 
+        if query.contains("httpRequestsAdaptiveGroups") {
+            let zones = DemoData.zones.filter { zoneTags(in: query).contains($0.id) }.map { zone -> [String: Any] in
+                let groups = buckets.enumerated().flatMap { index, date -> [[String: Any]] in
+                    let seed = DemoData.stableHash(zone.id) &+ index
+                    let requests = zone.baseRequests * bucketScale * DemoData.daily(date) * (0.8 + DemoData.noise(seed) * 0.4)
+                    let timeKey = isHourly ? "datetimeHour" : "date"
+                    let timeValue = isHourly ? DemoData.iso(date) : day(date)
+                    return [
+                        ("managed_challenge", 0, requests * 0.04 * DemoData.noise(seed + 3)),
+                        ("unknown", 0, requests * (0.55 + DemoData.noise(seed + 1) * 0.25)),
+                        ("unknown", 200, requests * 0.3)
+                    ].map { action, status, count in
+                        [
+                            "count": Int(count),
+                            "dimensions": [timeKey: timeValue, "securityAction": action, "originResponseStatus": status]
+                        ]
+                    }
+                }
+                return ["zoneTag": zone.id, "httpRequestsAdaptiveGroups": groups]
+            }
+            return ["viewer": ["zones": zones]]
+        }
+
         let zoneIds = zoneTags(in: query)
         let groupsKey = isHourly ? "httpRequests1hGroups" : "httpRequests1dGroups"
         let zones = DemoData.zones.filter { zoneIds.contains($0.id) }.map { zone -> [String: Any] in
