@@ -1,7 +1,8 @@
 import Foundation
 
 // Usage: swift Assets/Scripts/ZoneOutcomesProbe.swift
-// Reads CLOUDFLARE_API_TOKEN and CLOUDFLARE_ZONE_ID from .env next to this script.
+// Reads CLOUDFLARE_API_TOKEN from .env next to this script.
+// The zone is looked up from the token; set CLOUDFLARE_ZONE_NAME (or CLOUDFLARE_ZONE_ID) if it can see several zones.
 // Optional: PROBE_DAYS (default 7) to match the dashboard time range.
 
 let scriptDirectory = URL(fileURLWithPath: #filePath).deletingLastPathComponent()
@@ -26,18 +27,55 @@ func loadEnvironment() -> [String: String] {
 }
 
 let environment = loadEnvironment()
-guard let token = environment["CLOUDFLARE_API_TOKEN"], !token.isEmpty,
-      let zoneId = environment["CLOUDFLARE_ZONE_ID"], !zoneId.isEmpty else {
-    print("Set CLOUDFLARE_API_TOKEN and CLOUDFLARE_ZONE_ID in .env")
+guard let token = environment["CLOUDFLARE_API_TOKEN"], !token.isEmpty else {
+    print("Set CLOUDFLARE_API_TOKEN in .env")
     exit(1)
 }
 let days = Int(environment["PROBE_DAYS"] ?? "") ?? 7
 
-func graphQL(_ query: String) async throws -> [String: Any] {
-    var request = URLRequest(url: URL(string: "https://api.cloudflare.com/client/v4/graphql")!)
-    request.httpMethod = "POST"
+func authorizedRequest(_ path: String) -> URLRequest {
+    var request = URLRequest(url: URL(string: "https://api.cloudflare.com/client/v4/\(path)")!)
     request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    return request
+}
+
+func resolveZoneId() async throws -> String {
+    if let zoneId = environment["CLOUDFLARE_ZONE_ID"], !zoneId.isEmpty { return zoneId }
+    let (data, _) = try await URLSession.shared.data(for: authorizedRequest("zones?per_page=50"))
+    let object = try JSONSerialization.jsonObject(with: data) as? [String: Any] ?? [:]
+    let zones = (object["result"] as? [[String: Any]] ?? []).compactMap { zone -> (id: String, name: String)? in
+        guard let id = zone["id"] as? String, let name = zone["name"] as? String else { return nil }
+        return (id, name)
+    }
+    guard !zones.isEmpty else {
+        print("No zones visible to this token (needs Zone > Zone > Read): \(object["errors"] ?? "")")
+        exit(1)
+    }
+    print("Zones visible to this token:")
+    for zone in zones {
+        print("  \(zone.name)\t\(zone.id)")
+    }
+    if let zoneName = environment["CLOUDFLARE_ZONE_NAME"], !zoneName.isEmpty {
+        guard let match = zones.first(where: { $0.name == zoneName }) else {
+            print("CLOUDFLARE_ZONE_NAME \(zoneName) not found")
+            exit(1)
+        }
+        return match.id
+    }
+    guard zones.count == 1 else {
+        print("Several zones found; set CLOUDFLARE_ZONE_NAME in .env")
+        exit(1)
+    }
+    return zones[0].id
+}
+
+let zoneId = try await resolveZoneId()
+print("Using zone \(zoneId)")
+
+func graphQL(_ query: String) async throws -> [String: Any] {
+    var request = authorizedRequest("graphql")
+    request.httpMethod = "POST"
     request.httpBody = try JSONSerialization.data(withJSONObject: ["query": query])
     let (data, _) = try await URLSession.shared.data(for: request)
     let object = try JSONSerialization.jsonObject(with: data) as? [String: Any] ?? [:]
