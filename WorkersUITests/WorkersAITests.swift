@@ -17,7 +17,7 @@ final class WorkersAITests: XCTestCase {
         model.tap()
         XCTAssertTrue(app.staticTexts["Input Tokens"].waitForExistence(timeout: 10))
         XCTAssertTrue(app.staticTexts["Output Tokens"].exists)
-        XCTAssertTrue(app.staticTexts["Average Inference Time"].exists)
+        XCTAssertTrue(app.staticTexts["Avg. Inference"].exists)
         app.segmentedControls.buttons["30 Days"].tap()
         XCTAssertTrue(app.staticTexts["Input Tokens"].waitForExistence(timeout: 10))
     }
