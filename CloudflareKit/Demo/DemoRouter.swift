@@ -1,6 +1,20 @@
 import Foundation
 
 enum DemoRouter {
+    static func rawResponse(method: String, url: URL) -> Data? {
+        let prefix = CloudflareClient.apiBaseURL.path()
+        let path = String(url.path().dropFirst(prefix.count)).trimmingCharacters(in: CharacterSet(charactersIn: "/"))
+        let parts = path.split(separator: "/", maxSplits: 6).map { String($0).removingPercentEncoding ?? String($0) }
+        guard method == "GET", parts.count == 7, parts[0] == "accounts" else { return nil }
+        if parts[2] == "storage", parts[5] == "values" {
+            return DemoStorage.kvValue(namespaceId: parts[4], key: parts[6])
+        }
+        if parts[2] == "r2", parts[5] == "objects" {
+            return DemoStorage.r2ObjectData(key: parts[6])
+        }
+        return nil
+    }
+
     static func response(method: String, url: URL, body: Data?) -> [String: Any] {
         let prefix = CloudflareClient.apiBaseURL.path()
         let path = String(url.path().dropFirst(prefix.count)).trimmingCharacters(in: CharacterSet(charactersIn: "/"))
@@ -70,6 +84,22 @@ enum DemoRouter {
             let filters = parameters?["filters"] as? [[String: Any]]
             let scriptName = filters?.first?["value"] as? String
             return envelope(["events": ["events": DemoResources.events(scriptName: scriptName)]])
+        case ("GET", ["storage", "kv", "namespaces"]):
+            let namespaces = DemoStorage.kvNamespaces.map { ["id": $0.id, "title": $0.title] }
+            return envelope(namespaces, info: ["page": 1, "per_page": 100, "count": namespaces.count, "total_count": namespaces.count, "total_pages": 1])
+        case ("GET", let path) where path.count == 5 && path[0] == "storage" && path[4] == "keys":
+            let prefix = query.first { $0.name == "prefix" }?.value
+            return envelope(DemoStorage.kvKeys(namespaceId: path[3], prefix: prefix), info: ["cursor": ""])
+        case ("GET", ["r2", "buckets"]):
+            return envelope(["buckets": DemoStorage.buckets])
+        case ("GET", let path) where path.count == 4 && path[0] == "r2" && path[3] == "objects":
+            let prefix = query.first { $0.name == "prefix" }?.value ?? ""
+            return DemoStorage.r2Objects(bucketName: path[2], prefix: prefix)
+        case ("GET", ["d1", "database"]):
+            let databases = DemoStorage.databases
+            return envelope(databases, info: ["page": 1, "per_page": 100, "count": databases.count, "total_count": databases.count, "total_pages": 1])
+        case ("POST", let path) where path.count == 4 && path[0] == "d1" && path[3] == "raw":
+            return DemoStorage.d1Query(sql: body?["sql"] as? String ?? "")
         case (_, let path) where path.count >= 3 && path[0] == "workers" && path[1] == "scripts":
             return scriptRoute(method: method, scriptName: path[2], parts: Array(path.dropFirst(3)))
         default:

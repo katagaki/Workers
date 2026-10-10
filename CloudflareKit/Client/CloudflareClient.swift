@@ -106,6 +106,30 @@ public final class CloudflareClient: Sendable {
         return items
     }
 
+    func rawData(path: String, pathComponent: String) async throws -> Data {
+        var allowed = CharacterSet.urlPathAllowed
+        allowed.remove(charactersIn: "/?#%")
+        let encodedComponent = pathComponent.addingPercentEncoding(withAllowedCharacters: allowed) ?? pathComponent
+        guard let url = URL(string: Self.apiBaseURL.absoluteString + "/" + path + "/" + encodedComponent) else {
+            throw CloudflareError.invalidResponse
+        }
+        var request = try makeRequest(.get, path: path)
+        request.url = url
+        request.setValue("*/*", forHTTPHeaderField: "Accept")
+        let (data, response) = try await session.data(for: request)
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw CloudflareError.invalidResponse
+        }
+        guard (200..<300).contains(httpResponse.statusCode) else {
+            if let envelope = try? CloudflareJSON.makeDecoder().decode(APIEnvelope<JSONValue>.self, from: data),
+               let errors = envelope.errors, !errors.isEmpty {
+                throw CloudflareError.api(messages: errors.map(\.message))
+            }
+            throw CloudflareError.http(statusCode: httpResponse.statusCode)
+        }
+        return data
+    }
+
     func encode(_ value: some Encodable) throws -> Data {
         try CloudflareJSON.makeEncoder().encode(value)
     }

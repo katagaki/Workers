@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Check worker requests in ${applicationName}" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ja" : {
           "stringSet" : {
@@ -38,6 +39,7 @@
       }
     },
     "How many requests did my worker get in ${applicationName}" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ja" : {
           "stringSet" : {
@@ -74,6 +76,7 @@
       }
     },
     "Open a domain in ${applicationName}" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ja" : {
           "stringSet" : {
@@ -110,6 +113,7 @@
       }
     },
     "Open a worker in ${applicationName}" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ja" : {
           "stringSet" : {
@@ -146,6 +150,7 @@
       }
     },
     "Pause a domain in ${applicationName}" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ja" : {
           "stringSet" : {
@@ -182,6 +187,7 @@
       }
     },
     "Purge cache in ${applicationName}" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ja" : {
           "stringSet" : {

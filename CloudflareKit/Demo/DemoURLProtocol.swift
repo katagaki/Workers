@@ -12,12 +12,17 @@ final class DemoURLProtocol: URLProtocol {
     override func startLoading() {
         guard let url = request.url else { return }
         let body = request.httpBody ?? request.httpBodyStream.map(Self.readStream)
-        let payload = DemoRouter.response(
-            method: request.httpMethod ?? "GET",
-            url: url,
-            body: body
-        )
-        let data = (try? JSONSerialization.data(withJSONObject: payload)) ?? Data()
+        let data: Data
+        if let raw = DemoRouter.rawResponse(method: request.httpMethod ?? "GET", url: url) {
+            data = raw
+        } else {
+            let payload = DemoRouter.response(
+                method: request.httpMethod ?? "GET",
+                url: url,
+                body: body
+            )
+            data = (try? JSONSerialization.data(withJSONObject: payload)) ?? Data()
+        }
         let response = HTTPURLResponse(
             url: url,
             statusCode: 200,

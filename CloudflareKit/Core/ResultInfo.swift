@@ -7,4 +7,6 @@ struct ResultInfo: Decodable {
     let totalCount: Int?
     let totalPages: Int?
     let cursor: String?
+    let isTruncated: Bool?
+    let delimited: [String]?
 }
