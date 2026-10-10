@@ -29,9 +29,7 @@ struct RecentLogsList: View {
         List {
             RefreshErrorSection(resource: events)
             ForEach(filteredEvents) { event in
-                NavigationLink {
-                    ObservabilityEventDetailView(event: event)
-                } label: {
+                NavigationLink(value: WorkersDestination.observabilityEvent(event)) {
                     LogRow(
                         severity: LogSeverity(isError: event.isError, statusCode: event.metadata.statusCode.map { Int($0) }),
                         title: event.summary,

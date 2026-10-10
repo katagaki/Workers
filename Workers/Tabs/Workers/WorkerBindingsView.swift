@@ -4,7 +4,16 @@ import SwiftUI
 struct WorkerBindingsView: View {
     let client: CloudflareClient
     let accountId: String
-    let settings: CachedResource<WorkerSettings>
+    let scriptName: String
+
+    @State private var settings: CachedResource<WorkerSettings>
+
+    init(client: CloudflareClient, accountId: String, scriptName: String) {
+        self.client = client
+        self.accountId = accountId
+        self.scriptName = scriptName
+        _settings = State(initialValue: CachedResource(key: "worker-settings-\(accountId)-\(scriptName)"))
+    }
 
     private var groupedBindings: [(String, [WorkerBinding])] {
         let bindings = settings.value?.bindings ?? []
@@ -19,9 +28,7 @@ struct WorkerBindingsView: View {
                 Section(title) {
                     ForEach(bindings, id: \.bindingIdentifier) { binding in
                         if let destination = storageDestination(for: binding) {
-                            NavigationLink {
-                                destination
-                            } label: {
+                            NavigationLink(value: destination) {
                                 bindingLabel(binding)
                             }
                         } else {
@@ -45,6 +52,14 @@ struct WorkerBindingsView: View {
             emptySystemImage: "link",
             isEmpty: { ($0.bindings ?? []).isEmpty && ($0.compatibilityFlags ?? []).isEmpty }
         )
+        .task { await reload() }
+        .refreshable { await reload() }
+    }
+
+    private func reload() async {
+        await settings.refresh {
+            try await client.workerSettings(accountId: accountId, scriptName: scriptName)
+        }
     }
 
     private func bindingLabel(_ binding: WorkerBinding) -> some View {
@@ -61,23 +76,16 @@ struct WorkerBindingsView: View {
         }
     }
 
-    @ViewBuilder
-    private func storageDestination(for binding: WorkerBinding) -> (some View)? {
+    private func storageDestination(for binding: WorkerBinding) -> StorageDestination? {
         switch binding.type {
         case "kv_namespace":
-            if let namespaceId = binding.namespaceId {
-                KVNamespaceView(client: client, accountId: accountId, namespaceId: namespaceId, title: binding.name)
-            }
+            binding.namespaceId.map { .kvNamespace(namespaceId: $0, title: binding.name) }
         case "r2_bucket":
-            if let bucketName = binding.bucketName {
-                R2BucketView(client: client, accountId: accountId, bucketName: bucketName)
-            }
+            binding.bucketName.map { .r2Bucket(bucketName: $0, prefix: "") }
         case "d1":
-            if let databaseId = binding.databaseId ?? binding.id {
-                D1DatabaseView(client: client, accountId: accountId, databaseId: databaseId, name: binding.name)
-            }
+            (binding.databaseId ?? binding.id).map { .d1Database(databaseId: $0, name: binding.name, database: nil) }
         default:
-            EmptyView()
+            nil
         }
     }
 }

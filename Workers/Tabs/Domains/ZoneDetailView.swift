@@ -47,14 +47,10 @@ struct ZoneDetailView: View {
             }
 
             Section(.domainsManage) {
-                NavigationLink {
-                    DNSRecordsView(client: client, zone: zone)
-                } label: {
+                NavigationLink(value: DomainsDestination.dnsRecords(zone)) {
                     SettingsLabel(title: .dnsTitle, systemImage: "list.bullet", color: .blue)
                 }
-                NavigationLink {
-                    ZoneWorkerRoutesView(client: client, zoneId: zone.id)
-                } label: {
+                NavigationLink(value: DomainsDestination.workerRoutes(zoneId: zone.id)) {
                     SettingsLabel(title: .domainsRoutesTitle, systemImage: "arrow.triangle.branch", color: .purple)
                 }
             }

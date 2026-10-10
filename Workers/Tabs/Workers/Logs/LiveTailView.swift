@@ -26,9 +26,7 @@ struct LiveTailView: View {
                 }
             }
             ForEach(events) { event in
-                NavigationLink {
-                    TailEventDetailView(event: event)
-                } label: {
+                NavigationLink(value: WorkersDestination.tailEvent(event)) {
                     LogRow(
                         severity: LogSeverity(isError: event.isError, statusCode: event.responseStatus),
                         title: event.title,

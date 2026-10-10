@@ -64,6 +64,12 @@ struct WorkersListView: View {
                         scripts.update { $0.removeAll { $0.id == selection.id } }
                         self.selection = nil
                     }
+                    .navigationDestination(for: WorkersDestination.self) { destination in
+                        destination.view(client: client, accountId: accountId)
+                    }
+                    .navigationDestination(for: StorageDestination.self) { destination in
+                        destination.view(client: client, accountId: accountId)
+                    }
                 }
                 .id(selection.id)
             } else {

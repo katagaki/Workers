@@ -62,6 +62,9 @@ struct ZonesListView: View {
                             self.selection = updated
                         }
                     }
+                    .navigationDestination(for: DomainsDestination.self) { destination in
+                        destination.view(client: client)
+                    }
                 }
                 .id(selection.id)
             } else {

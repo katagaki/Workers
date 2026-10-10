@@ -73,27 +73,19 @@ struct WorkerDetailView: View {
             }
 
             Section(.workersDetailActivity) {
-                NavigationLink {
-                    WorkerLogsView(client: client, accountId: accountId, scriptName: script.name)
-                } label: {
+                NavigationLink(value: WorkersDestination.logs(scriptName: script.name)) {
                     SettingsLabel(title: .logsTitle, systemImage: "text.alignleft", color: .blue)
                 }
-                NavigationLink {
-                    WorkerDeploymentsView(client: client, accountId: accountId, scriptName: script.name)
-                } label: {
+                NavigationLink(value: WorkersDestination.deployments(scriptName: script.name)) {
                     SettingsLabel(title: .workersDeploymentsTitle, systemImage: "arrow.up", color: .green)
                 }
-                NavigationLink {
-                    WorkerVersionsView(client: client, accountId: accountId, scriptName: script.name)
-                } label: {
+                NavigationLink(value: WorkersDestination.versions(scriptName: script.name)) {
                     SettingsLabel(title: .workersVersionsTitle, systemImage: "clock.arrow.circlepath", color: .indigo)
                 }
             }
 
             Section(.workersDetailConfiguration) {
-                NavigationLink {
-                    WorkerBindingsView(client: client, accountId: accountId, settings: settings)
-                } label: {
+                NavigationLink(value: WorkersDestination.bindings(scriptName: script.name)) {
                     LabeledContent {
                         if let count = settings.value?.bindings?.count {
                             Text(count, format: .number)
@@ -102,9 +94,7 @@ struct WorkerDetailView: View {
                         SettingsLabel(title: .workersBindingsTitle, systemImage: "link", color: .teal)
                     }
                 }
-                NavigationLink {
-                    WorkerTriggersView(client: client, accountId: accountId, scriptName: script.name)
-                } label: {
+                NavigationLink(value: WorkersDestination.triggers(scriptName: script.name)) {
                     SettingsLabel(title: .workersTriggersTitle, systemImage: "bolt.fill", color: .orange)
                 }
             }
