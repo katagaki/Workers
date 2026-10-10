@@ -4,6 +4,7 @@ import SwiftUI
 struct MainTabView: View {
     @Environment(CloudflareSession.self) private var session
     @SceneStorage("SelectedTab") private var selectedTab: AppTab = .workers
+    private let navigator = AppNavigator.shared
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -32,6 +33,11 @@ struct MainTabView: View {
             }
         }
         .tabViewStyle(.sidebarAdaptable)
+        .onChange(of: navigator.pendingRequest, initial: true) { _, request in
+            guard let request else { return }
+            session.selectedAccountId = request.accountId
+            selectedTab = request.destination.tab
+        }
         .demoModeAccessory(isEnabled: session.isDemo)
     }
 

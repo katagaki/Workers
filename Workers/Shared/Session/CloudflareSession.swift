@@ -4,9 +4,9 @@ import Observation
 
 @Observable
 final class CloudflareSession {
-    private static let tokenKey = "APIToken"
-    private static let selectedAccountKey = "SelectedAccountID"
-    private static let demoModeKey = "DemoMode"
+    nonisolated private static let tokenKey = "APIToken"
+    nonisolated private static let selectedAccountKey = "SelectedAccountID"
+    nonisolated private static let demoModeKey = "DemoMode"
 
     private(set) var client: CloudflareClient?
     private(set) var accounts = CachedResource<[Account]>(key: "accounts")
@@ -18,12 +18,21 @@ final class CloudflareSession {
     }
 
     init() {
-        if UserDefaults.standard.bool(forKey: Self.demoModeKey) {
-            client = .demo()
-        } else if let token = KeychainStore.read(Self.tokenKey) {
-            client = CloudflareClient(token: token)
+        client = Self.storedClient()
+        selectedAccountId = Self.storedSelectedAccountId()
+    }
+
+    nonisolated static func storedClient() -> CloudflareClient? {
+        if UserDefaults.standard.bool(forKey: demoModeKey) {
+            return .demo()
+        } else if let token = KeychainStore.read(tokenKey) {
+            return CloudflareClient(token: token)
         }
-        selectedAccountId = UserDefaults.standard.string(forKey: Self.selectedAccountKey)
+        return nil
+    }
+
+    nonisolated static func storedSelectedAccountId() -> String? {
+        UserDefaults.standard.string(forKey: selectedAccountKey)
     }
 
     var isSignedIn: Bool {

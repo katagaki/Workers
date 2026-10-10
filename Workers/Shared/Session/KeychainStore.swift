@@ -1,7 +1,7 @@
 import Foundation
 import Security
 
-enum KeychainStore {
+nonisolated enum KeychainStore {
     private static let service = "com.tsubuzaki.Workers"
 
     static func read(_ account: String) -> String? {

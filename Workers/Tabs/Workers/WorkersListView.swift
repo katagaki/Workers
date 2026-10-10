@@ -8,6 +8,8 @@ struct WorkersListView: View {
     @State private var scripts: CachedResource<[WorkerScript]>
     @State private var analytics: CachedResource<[WorkerAnalyticsPoint]>
     @State private var searchText = ""
+    @State private var path: [WorkerScript] = []
+    private let navigator = AppNavigator.shared
 
     init(client: CloudflareClient, accountId: String) {
         self.client = client
@@ -31,7 +33,7 @@ struct WorkersListView: View {
     }
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             List {
                 RefreshErrorSection(resource: scripts)
                 ForEach(filteredScripts) { script in
@@ -53,6 +55,12 @@ struct WorkersListView: View {
                 WorkerDetailView(client: client, accountId: accountId, script: script) {
                     scripts.update { $0.removeAll { $0.id == script.id } }
                 }
+            }
+            .onChange(of: navigator.pendingRequest, initial: true) { _, request in
+                guard let request, request.accountId == accountId,
+                      case .worker(let script) = request.destination else { return }
+                path = [script]
+                navigator.pendingRequest = nil
             }
             .task { await reload() }
             .refreshable { await reload() }

@@ -7,6 +7,8 @@ struct ZonesListView: View {
 
     @State private var zones: CachedResource<[Zone]>
     @State private var searchText = ""
+    @State private var path: [Zone] = []
+    private let navigator = AppNavigator.shared
 
     init(client: CloudflareClient, accountId: String) {
         self.client = client
@@ -21,7 +23,7 @@ struct ZonesListView: View {
     }
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             List {
                 RefreshErrorSection(resource: zones)
                 ForEach(filteredZones) { zone in
@@ -47,6 +49,12 @@ struct ZonesListView: View {
                         }
                     }
                 }
+            }
+            .onChange(of: navigator.pendingRequest, initial: true) { _, request in
+                guard let request, request.accountId == accountId,
+                      case .zone(let zone) = request.destination else { return }
+                path = [zone]
+                navigator.pendingRequest = nil
             }
             .task { await reload() }
             .refreshable { await reload() }
