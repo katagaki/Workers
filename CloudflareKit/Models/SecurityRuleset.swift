@@ -8,6 +8,16 @@ public struct SecurityRuleset: Codable, Sendable {
         self.id = id
         self.rules = rules
     }
+
+    private enum CodingKeys: String, CodingKey {
+        case id, rules
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decodeIfPresent(String.self, forKey: .id)
+        rules = try container.decodeIfPresent([SecurityRule].self, forKey: .rules) ?? []
+    }
 }
 
 public struct SecurityRule: Codable, Identifiable, Sendable {

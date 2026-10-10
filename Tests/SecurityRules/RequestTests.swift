@@ -67,6 +67,10 @@ struct RequestTests {
         let empty = try await client.securityRuleset(zoneId: "zone")
         require(empty.id == nil && empty.rules.isEmpty, "404 must represent an absent entry point")
 
+        fixtures.enqueue(json: #"{"success":true,"result":{"id":"empty-ruleset"}}"#)
+        let existingEmpty = try await client.securityRuleset(zoneId: "zone")
+        require(existingEmpty.id == "empty-ruleset" && existingEmpty.rules.isEmpty, "An empty ruleset can omit its rules array")
+
         fixtures.enqueue(status: 403, json: #"{"success":false,"errors":[{"message":"Forbidden"}]}"#)
         do {
             _ = try await client.securityRuleset(zoneId: "zone")
