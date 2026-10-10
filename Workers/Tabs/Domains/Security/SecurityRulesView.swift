@@ -107,7 +107,9 @@ struct SecurityRulesView: View {
                 if isWorking || ruleset.isLoading { ProgressView() }
             }
             ToolbarItem(placement: .topBarTrailing) {
-                EditButton().disabled(!canModify || (ruleset.value?.rules.isEmpty ?? true))
+                EditButton()
+                    .environment(\.editMode, $editMode)
+                    .disabled(!canModify || (ruleset.value?.rules.isEmpty ?? true))
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Button { editorMode = .create } label: {
