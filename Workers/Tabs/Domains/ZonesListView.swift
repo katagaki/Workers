@@ -23,7 +23,7 @@ struct ZonesListView: View {
                     }
                 }
             }
-            .listStyle(.plain)
+            .listStyle(.insetGrouped)
             .navigationTitle(.tabsDomains)
             .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text(.domainsSearch))
             .resourceStatus(

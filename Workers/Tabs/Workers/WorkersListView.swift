@@ -29,7 +29,7 @@ struct WorkersListView: View {
                     }
                 }
             }
-            .listStyle(.plain)
+            .listStyle(.insetGrouped)
             .navigationTitle(.tabsWorkers)
             .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text(.workersSearch))
             .resourceStatus(
