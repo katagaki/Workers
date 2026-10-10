@@ -4,12 +4,12 @@ enum DemoRouter {
     static func rawResponse(method: String, url: URL) -> Data? {
         let prefix = CloudflareClient.apiBaseURL.path()
         let path = String(url.path().dropFirst(prefix.count)).trimmingCharacters(in: CharacterSet(charactersIn: "/"))
-        let parts = path.split(separator: "/", maxSplits: 6).map { String($0).removingPercentEncoding ?? String($0) }
-        guard method == "GET", parts.count == 7, parts[0] == "accounts" else { return nil }
-        if parts[2] == "storage", parts[5] == "values" {
-            return DemoStorage.kvValue(namespaceId: parts[4], key: parts[6])
+        let parts = path.split(separator: "/").map { String($0).removingPercentEncoding ?? String($0) }
+        guard method == "GET", parts.first == "accounts" else { return nil }
+        if parts.count == 8, parts[2] == "storage", parts[6] == "values" {
+            return DemoStorage.kvValue(namespaceId: parts[5], key: parts[7])
         }
-        if parts[2] == "r2", parts[5] == "objects" {
+        if parts.count == 7, parts[2] == "r2", parts[5] == "objects" {
             return DemoStorage.r2ObjectData(key: parts[6])
         }
         return nil

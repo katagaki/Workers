@@ -2,7 +2,7 @@ import SwiftUI
 
 enum AppTab: String {
     case workers
-    case durableObjects
+    case storage
     case domains
     case analytics
     case more

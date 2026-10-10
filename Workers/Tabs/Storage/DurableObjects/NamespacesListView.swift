@@ -34,33 +34,31 @@ struct NamespacesListView: View {
     }
 
     var body: some View {
-        NavigationStack {
-            List {
-                RefreshErrorSection(resource: namespaces)
-                ForEach(groupedNamespaces, id: \.0) { scriptName, items in
-                    Section(scriptName) {
-                        ForEach(items) { namespace in
-                            NavigationLink(value: namespace) {
-                                NamespaceRow(namespace: namespace, requests: requestCounts[namespace.id])
-                            }
+        List {
+            RefreshErrorSection(resource: namespaces)
+            ForEach(groupedNamespaces, id: \.0) { scriptName, items in
+                Section(scriptName) {
+                    ForEach(items) { namespace in
+                        NavigationLink(value: namespace) {
+                            NamespaceRow(namespace: namespace, requests: requestCounts[namespace.id])
                         }
                     }
                 }
             }
-            .navigationTitle(.tabsDurableObjects)
-            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text(.durableObjectsSearch))
-            .resourceStatus(
-                namespaces,
-                emptyTitle: .durableObjectsEmptyTitle,
-                emptySystemImage: "shippingbox",
-                emptyDescription: .durableObjectsEmptyMessage
-            )
-            .navigationDestination(for: DurableObjectNamespace.self) { namespace in
-                NamespaceDetailView(client: client, accountId: accountId, namespace: namespace)
-            }
-            .task { await reload() }
-            .refreshable { await reload() }
         }
+        .navigationTitle(.tabsDurableObjects)
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text(.durableObjectsSearch))
+        .resourceStatus(
+            namespaces,
+            emptyTitle: .durableObjectsEmptyTitle,
+            emptySystemImage: "shippingbox",
+            emptyDescription: .durableObjectsEmptyMessage
+        )
+        .navigationDestination(for: DurableObjectNamespace.self) { namespace in
+            NamespaceDetailView(client: client, accountId: accountId, namespace: namespace)
+        }
+        .task { await reload() }
+        .refreshable { await reload() }
     }
 
     private func reload() async {

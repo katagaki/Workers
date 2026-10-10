@@ -92,7 +92,7 @@ struct WorkerDetailView: View {
 
             Section(.workersDetailConfiguration) {
                 NavigationLink {
-                    WorkerBindingsView(settings: settings)
+                    WorkerBindingsView(client: client, accountId: accountId, settings: settings)
                 } label: {
                     LabeledContent {
                         if let count = settings.value?.bindings?.count {

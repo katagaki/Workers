@@ -13,9 +13,9 @@ struct MainTabView: View {
                     WorkersListView(client: client, accountId: accountId)
                 }
             }
-            Tab(.tabsDurableObjects, systemImage: "shippingbox", value: AppTab.durableObjects) {
+            Tab(.tabsStorage, systemImage: "externaldrive", value: AppTab.storage) {
                 accountScoped { client, accountId in
-                    NamespacesListView(client: client, accountId: accountId)
+                    StorageView(client: client, accountId: accountId)
                 }
             }
             Tab(.tabsDomains, systemImage: "globe", value: AppTab.domains) {
