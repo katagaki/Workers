@@ -7,7 +7,7 @@ struct ZonesListView: View {
 
     @State private var zones: CachedResource<[Zone]>
     @State private var searchText = ""
-    @State private var path: [Zone] = []
+    @State private var selection: Zone?
     private let navigator = AppNavigator.shared
 
     init(client: CloudflareClient, accountId: String) {
@@ -23,8 +23,8 @@ struct ZonesListView: View {
     }
 
     var body: some View {
-        NavigationStack(path: $path) {
-            List {
+        NavigationSplitView {
+            List(selection: $selection) {
                 RefreshErrorSection(resource: zones)
                 ForEach(filteredZones) { zone in
                     NavigationLink(value: zone) {
@@ -41,23 +41,32 @@ struct ZonesListView: View {
                 emptySystemImage: "globe",
                 emptyDescription: .domainsEmptyMessage
             )
-            .navigationDestination(for: Zone.self) { zone in
-                ZoneDetailView(client: client, accountId: accountId, zone: zone) { updated in
-                    zones.update { list in
-                        if let index = list.firstIndex(where: { $0.id == updated.id }) {
-                            list[index] = updated
-                        }
-                    }
-                }
-            }
             .onChange(of: navigator.pendingRequest, initial: true) { _, request in
                 guard let request, request.accountId == accountId,
                       case .zone(let zone) = request.destination else { return }
-                path = [zone]
+                selection = zone
                 navigator.pendingRequest = nil
             }
             .task { await reload() }
             .refreshable { await reload() }
+        } detail: {
+            if let selection {
+                NavigationStack {
+                    ZoneDetailView(client: client, accountId: accountId, zone: selection) { updated in
+                        zones.update { list in
+                            if let index = list.firstIndex(where: { $0.id == updated.id }) {
+                                list[index] = updated
+                            }
+                        }
+                        if self.selection?.id == updated.id {
+                            self.selection = updated
+                        }
+                    }
+                }
+                .id(selection.id)
+            } else {
+                ContentUnavailableView(.domainsNoSelection, systemImage: "globe")
+            }
         }
     }
 

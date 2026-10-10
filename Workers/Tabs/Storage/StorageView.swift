@@ -9,6 +9,7 @@ struct StorageView: View {
     @State private var kvNamespaces: CachedResource<[KVNamespace]>
     @State private var buckets: CachedResource<[R2Bucket]>
     @State private var databases: CachedResource<[D1Database]>
+    @State private var selection: StorageCategory?
 
     init(client: CloudflareClient, accountId: String) {
         self.client = client
@@ -20,32 +21,47 @@ struct StorageView: View {
     }
 
     var body: some View {
-        NavigationStack {
-            List {
-                NavigationLink {
-                    D1DatabasesListView(client: client, accountId: accountId, databases: databases)
-                } label: {
+        NavigationSplitView {
+            List(selection: $selection) {
+                NavigationLink(value: StorageCategory.d1) {
                     row(title: .storageD1Title, systemImage: "cylinder.fill", color: .green, count: databases.value?.count)
                 }
-                NavigationLink {
-                    NamespacesListView(client: client, accountId: accountId)
-                } label: {
+                NavigationLink(value: StorageCategory.durableObjects) {
                     row(title: .tabsDurableObjects, systemImage: "shippingbox.fill", color: .orange, count: durableObjectNamespaces.value?.count)
                 }
-                NavigationLink {
-                    KVNamespacesListView(client: client, accountId: accountId, namespaces: kvNamespaces)
-                } label: {
+                NavigationLink(value: StorageCategory.kv) {
                     row(title: .storageKvTitle, systemImage: "key.fill", color: .blue, count: kvNamespaces.value?.count)
                 }
-                NavigationLink {
-                    R2BucketsListView(client: client, accountId: accountId, buckets: buckets)
-                } label: {
+                NavigationLink(value: StorageCategory.r2) {
                     row(title: .storageR2Title, systemImage: "archivebox.fill", color: .purple, count: buckets.value?.count)
                 }
             }
             .navigationTitle(.tabsStorage)
             .task { await reload() }
             .refreshable { await reload() }
+        } detail: {
+            if let selection {
+                NavigationStack {
+                    detail(for: selection)
+                }
+                .id(selection)
+            } else {
+                ContentUnavailableView(.storageNoSelection, systemImage: "externaldrive")
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func detail(for category: StorageCategory) -> some View {
+        switch category {
+        case .d1:
+            D1DatabasesListView(client: client, accountId: accountId, databases: databases)
+        case .durableObjects:
+            NamespacesListView(client: client, accountId: accountId)
+        case .kv:
+            KVNamespacesListView(client: client, accountId: accountId, namespaces: kvNamespaces)
+        case .r2:
+            R2BucketsListView(client: client, accountId: accountId, buckets: buckets)
         }
     }
 

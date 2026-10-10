@@ -8,7 +8,7 @@ struct WorkersListView: View {
     @State private var scripts: CachedResource<[WorkerScript]>
     @State private var analytics: CachedResource<[WorkerAnalyticsPoint]>
     @State private var searchText = ""
-    @State private var path: [WorkerScript] = []
+    @State private var selection: WorkerScript?
     private let navigator = AppNavigator.shared
 
     init(client: CloudflareClient, accountId: String) {
@@ -31,8 +31,8 @@ struct WorkersListView: View {
     }
 
     var body: some View {
-        NavigationStack(path: $path) {
-            List {
+        NavigationSplitView {
+            List(selection: $selection) {
                 RefreshErrorSection(resource: scripts)
                 ForEach(filteredScripts) { script in
                     NavigationLink(value: script) {
@@ -49,19 +49,26 @@ struct WorkersListView: View {
                 emptySystemImage: "hammer",
                 emptyDescription: .workersEmptyMessage
             )
-            .navigationDestination(for: WorkerScript.self) { script in
-                WorkerDetailView(client: client, accountId: accountId, script: script) {
-                    scripts.update { $0.removeAll { $0.id == script.id } }
-                }
-            }
             .onChange(of: navigator.pendingRequest, initial: true) { _, request in
                 guard let request, request.accountId == accountId,
                       case .worker(let script) = request.destination else { return }
-                path = [script]
+                selection = script
                 navigator.pendingRequest = nil
             }
             .task { await reload() }
             .refreshable { await reload() }
+        } detail: {
+            if let selection {
+                NavigationStack {
+                    WorkerDetailView(client: client, accountId: accountId, script: selection) {
+                        scripts.update { $0.removeAll { $0.id == selection.id } }
+                        self.selection = nil
+                    }
+                }
+                .id(selection.id)
+            } else {
+                ContentUnavailableView(.workersNoSelection, systemImage: "hammer")
+            }
         }
     }
 
