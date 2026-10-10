@@ -36,9 +36,7 @@ struct R2BucketView: View {
             if let folders = firstPage.value?.folders, !folders.isEmpty {
                 Section(.storageR2Folders) {
                     ForEach(folders, id: \.self) { folder in
-                        NavigationLink {
-                            R2BucketView(client: client, accountId: accountId, bucketName: bucketName, prefix: folder)
-                        } label: {
+                        NavigationLink(value: StorageDestination.r2Bucket(bucketName: bucketName, prefix: folder)) {
                             Label {
                                 Text(folder.dropFirst(prefix.count).dropLast())
                                     .lineLimit(1)
@@ -53,9 +51,7 @@ struct R2BucketView: View {
             if !objects.isEmpty {
                 Section {
                     ForEach(objects) { object in
-                        NavigationLink {
-                            R2ObjectView(client: client, accountId: accountId, bucketName: bucketName, object: object)
-                        } label: {
+                        NavigationLink(value: StorageDestination.r2Object(bucketName: bucketName, object: object)) {
                             R2ObjectRow(object: object, prefix: prefix)
                         }
                     }

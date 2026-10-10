@@ -18,9 +18,7 @@ struct KVNamespacesListView: View {
         List {
             RefreshErrorSection(resource: namespaces)
             ForEach(filteredNamespaces) { namespace in
-                NavigationLink {
-                    KVNamespaceView(client: client, accountId: accountId, namespaceId: namespace.id, title: namespace.title)
-                } label: {
+                NavigationLink(value: StorageDestination.kvNamespace(namespace)) {
                     Text(namespace.title)
                         .lineLimit(1)
                 }

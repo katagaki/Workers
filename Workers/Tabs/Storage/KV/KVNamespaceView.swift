@@ -34,9 +34,7 @@ struct KVNamespaceView: View {
             RefreshErrorSection(resource: firstPage)
             Section {
                 ForEach(keys) { key in
-                    NavigationLink {
-                        KVValueView(client: client, accountId: accountId, namespaceId: namespaceId, key: key)
-                    } label: {
+                    NavigationLink(value: StorageDestination.kvValue(namespaceId: namespaceId, key: key)) {
                         KVKeyRow(key: key)
                     }
                 }

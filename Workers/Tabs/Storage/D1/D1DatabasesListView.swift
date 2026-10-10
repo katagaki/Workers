@@ -18,9 +18,7 @@ struct D1DatabasesListView: View {
         List {
             RefreshErrorSection(resource: databases)
             ForEach(filteredDatabases) { database in
-                NavigationLink {
-                    D1DatabaseView(client: client, accountId: accountId, databaseId: database.uuid, name: database.name, database: database)
-                } label: {
+                NavigationLink(value: StorageDestination.d1Database(database)) {
                     LabeledContent {
                         if let fileSize = database.fileSize {
                             Text(fileSize.byteFormatted)

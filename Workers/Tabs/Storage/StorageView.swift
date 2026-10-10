@@ -10,6 +10,7 @@ struct StorageView: View {
     @State private var buckets: CachedResource<[R2Bucket]>
     @State private var databases: CachedResource<[D1Database]>
     @State private var selection: StorageCategory?
+    @State private var path: [StorageDestination] = []
 
     init(client: CloudflareClient, accountId: String) {
         self.client = client
@@ -39,10 +40,16 @@ struct StorageView: View {
             .navigationTitle(.tabsStorage)
             .task { await reload() }
             .refreshable { await reload() }
+            .onChange(of: selection) {
+                path = []
+            }
         } detail: {
             if let selection {
-                NavigationStack {
+                NavigationStack(path: $path) {
                     detail(for: selection)
+                        .navigationDestination(for: StorageDestination.self) { destination in
+                            destination.view(client: client, accountId: accountId)
+                        }
                 }
                 .id(selection)
             } else {

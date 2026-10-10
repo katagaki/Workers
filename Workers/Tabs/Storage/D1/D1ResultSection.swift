@@ -8,9 +8,7 @@ struct D1ResultSection: View {
     var body: some View {
         Section {
             ForEach(Array(result.rows.enumerated()), id: \.offset) { index, row in
-                NavigationLink {
-                    D1RowView(columns: result.columns, row: row, index: index)
-                } label: {
+                NavigationLink(value: StorageDestination.d1Row(columns: result.columns, row: row, index: index)) {
                     D1RowSummary(columns: result.columns, row: row)
                 }
             }

@@ -39,7 +39,7 @@ struct NamespacesListView: View {
             ForEach(groupedNamespaces, id: \.0) { scriptName, items in
                 Section(scriptName) {
                     ForEach(items) { namespace in
-                        NavigationLink(value: namespace) {
+                        NavigationLink(value: StorageDestination.durableObjectNamespace(namespace)) {
                             NamespaceRow(namespace: namespace, requests: requestCounts[namespace.id])
                         }
                     }
@@ -54,9 +54,6 @@ struct NamespacesListView: View {
             emptySystemImage: "shippingbox",
             emptyDescription: .durableObjectsEmptyMessage
         )
-        .navigationDestination(for: DurableObjectNamespace.self) { namespace in
-            NamespaceDetailView(client: client, accountId: accountId, namespace: namespace)
-        }
         .task { await reload() }
         .refreshable { await reload() }
     }

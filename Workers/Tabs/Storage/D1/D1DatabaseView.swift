@@ -37,9 +37,7 @@ struct D1DatabaseView: View {
             }
 
             Section {
-                NavigationLink {
-                    D1QueryView(client: client, accountId: accountId, databaseId: databaseId)
-                } label: {
+                NavigationLink(value: StorageDestination.d1Query(databaseId: databaseId)) {
                     SettingsLabel(title: .storageD1RunQuery, systemImage: "terminal.fill", color: .gray)
                 }
             }
@@ -56,9 +54,7 @@ struct D1DatabaseView: View {
                         .foregroundStyle(.secondary)
                 }
                 ForEach(tables.value ?? [], id: \.self) { table in
-                    NavigationLink {
-                        D1TableView(client: client, accountId: accountId, databaseId: databaseId, table: table)
-                    } label: {
+                    NavigationLink(value: StorageDestination.d1Table(databaseId: databaseId, table: table)) {
                         Label(table, systemImage: "tablecells")
                     }
                 }

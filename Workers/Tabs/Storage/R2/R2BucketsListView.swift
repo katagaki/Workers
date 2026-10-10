@@ -18,9 +18,7 @@ struct R2BucketsListView: View {
         List {
             RefreshErrorSection(resource: buckets)
             ForEach(filteredBuckets) { bucket in
-                NavigationLink {
-                    R2BucketView(client: client, accountId: accountId, bucketName: bucket.name)
-                } label: {
+                NavigationLink(value: StorageDestination.r2Bucket(bucketName: bucket.name, prefix: "")) {
                     VStack(alignment: .leading, spacing: 3) {
                         Text(bucket.name)
                             .lineLimit(1)
