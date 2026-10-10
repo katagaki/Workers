@@ -107,10 +107,21 @@
         }
       ],
       "specular" : "inside",
-      "translucency" : {
-        "enabled" : true,
-        "value" : 0.75
-      }
+      "translucency-specializations" : [
+        {
+          "value" : {
+            "enabled" : true,
+            "value" : 0.75
+          }
+        },
+        {
+          "appearance" : "dark",
+          "value" : {
+            "enabled" : true,
+            "value" : 0.3
+          }
+        }
+      ]
     },
     {
       "layers" : [
