@@ -38,7 +38,7 @@ struct MainTabView: View {
             session.selectAccount(id: request.accountId)
             selectedTab = request.destination.tab
         }
-        .demoModeAccessory(isEnabled: session.isDemo)
+        .demoModeAccessory(isEnabled: session.isDemo && !UserDefaults.standard.bool(forKey: "ScreenshotMode"))
     }
 
     @ViewBuilder

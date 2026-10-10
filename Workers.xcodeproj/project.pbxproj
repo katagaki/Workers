@@ -19,6 +19,13 @@
 			remoteGlobalIDString = 28214431C39A7FEDA7C471CE;
 			remoteInfo = CloudflareKit;
 		};
+		C1A7E2B3D4F5061728394A5B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70B39767A835875339F01AEE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 45C11901E557F4EEEF8DCA30;
+			remoteInfo = Workers;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,6 +43,7 @@
 /* Begin PBXFileReference section */
 		65DE96C58ABE589B7DE394C0 /* CloudflareKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CloudflareKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A366610383BC30453D1BE967 /* Workers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Workers.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1A7E2B3D4F5061728394A5C /* WorkersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorkersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -49,6 +57,11 @@
 			path = Workers;
 			sourceTree = "<group>";
 		};
+		C1A7E2B3D4F5061728394A5D /* WorkersUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = WorkersUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +69,11 @@
 			isa = PBXFrameworksBuildPhase;
 			files = (
 				3E7CACA773E20C8794244952 /* CloudflareKit.framework in Frameworks */,
+			);
+		};
+		C1A7E2B3D4F5061728394A5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
 			);
 		};
 /* End PBXFrameworksBuildPhase section */
@@ -66,6 +84,7 @@
 			children = (
 				378A26843B6AC492F975212E /* CloudflareKit */,
 				74EBB2B862994B4DE47C3F0B /* Workers */,
+				C1A7E2B3D4F5061728394A5D /* WorkersUITests */,
 				ABE5709691767023C0004266 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -75,6 +94,7 @@
 			children = (
 				65DE96C58ABE589B7DE394C0 /* CloudflareKit.framework */,
 				A366610383BC30453D1BE967 /* Workers.app */,
+				C1A7E2B3D4F5061728394A5C /* WorkersUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -121,6 +141,27 @@
 			productReference = A366610383BC30453D1BE967 /* Workers.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C1A7E2B3D4F5061728394A5F /* WorkersUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1A7E2B3D4F5061728394A60 /* Build configuration list for PBXNativeTarget "WorkersUITests" */;
+			buildPhases = (
+				C1A7E2B3D4F5061728394A61 /* Sources */,
+				C1A7E2B3D4F5061728394A5E /* Frameworks */,
+				C1A7E2B3D4F5061728394A62 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C1A7E2B3D4F5061728394A63 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				C1A7E2B3D4F5061728394A5D /* WorkersUITests */,
+			);
+			name = WorkersUITests;
+			productName = WorkersUITests;
+			productReference = C1A7E2B3D4F5061728394A5C /* WorkersUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -136,6 +177,10 @@
 					};
 					45C11901E557F4EEEF8DCA30 = {
 						ProvisioningStyle = Automatic;
+					};
+					C1A7E2B3D4F5061728394A5F = {
+						ProvisioningStyle = Automatic;
+						TestTargetID = 45C11901E557F4EEEF8DCA30;
 					};
 				};
 			};
@@ -159,6 +204,7 @@
 			targets = (
 				45C11901E557F4EEEF8DCA30 /* Workers */,
 				28214431C39A7FEDA7C471CE /* CloudflareKit */,
+				C1A7E2B3D4F5061728394A5F /* WorkersUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -170,6 +216,11 @@
 			);
 		};
 		53CFC95606B76ED693E65A77 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		C1A7E2B3D4F5061728394A62 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
 			);
@@ -187,6 +238,11 @@
 			files = (
 			);
 		};
+		C1A7E2B3D4F5061728394A61 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -194,6 +250,11 @@
 			isa = PBXTargetDependency;
 			target = 28214431C39A7FEDA7C471CE /* CloudflareKit */;
 			targetProxy = 66B98AFF765CC0C72EDF8F30 /* PBXContainerItemProxy */;
+		};
+		C1A7E2B3D4F5061728394A63 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 45C11901E557F4EEEF8DCA30 /* Workers */;
+			targetProxy = C1A7E2B3D4F5061728394A5B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -359,6 +420,42 @@
 			};
 			name = Debug;
 		};
+		C1A7E2B3D4F5061728394A64 /* Debug configuration for PBXNativeTarget "WorkersUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YYM4Z6MU8F;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsubuzaki.WorkersUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Workers;
+			};
+			name = Debug;
+		};
+		C1A7E2B3D4F5061728394A65 /* Release configuration for PBXNativeTarget "WorkersUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YYM4Z6MU8F;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsubuzaki.WorkersUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Workers;
+			};
+			name = Release;
+		};
 		DB951D374073F34166AC6BAD /* Debug configuration for PBXNativeTarget "Workers" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -481,6 +578,14 @@
 			buildConfigurations = (
 				DB951D374073F34166AC6BAD /* Debug configuration for PBXNativeTarget "Workers" */,
 				1A34B6C5D9A31A2E4CFAA6B6 /* Release configuration for PBXNativeTarget "Workers" */,
+			);
+			defaultConfigurationName = Debug;
+		};
+		C1A7E2B3D4F5061728394A60 /* Build configuration list for PBXNativeTarget "WorkersUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1A7E2B3D4F5061728394A64 /* Debug configuration for PBXNativeTarget "WorkersUITests" */,
+				C1A7E2B3D4F5061728394A65 /* Release configuration for PBXNativeTarget "WorkersUITests" */,
 			);
 			defaultConfigurationName = Debug;
 		};
