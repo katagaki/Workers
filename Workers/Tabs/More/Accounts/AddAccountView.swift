@@ -27,13 +27,22 @@ struct AddAccountView: View {
                 }
 
                 Section {
+                    Link(destination: TokenTemplate.url) {
+                        HStack {
+                            Spacer()
+                            Text(.signInGettingTokenCreateToken)
+                            Spacer()
+                        }
+                    }
+                } footer: {
+                    Text(.securityTokenOnboarding)
+                }
+
+                Section {
                     SecureField(.signInTokenPlaceholder, text: $token)
                         .textContentType(.password)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
-                    Link(destination: TokenTemplate.url) {
-                        Label(.signInGettingTokenCreateToken, systemImage: "safari")
-                    }
                 } header: {
                     Text(.signInTokenHeader)
                 } footer: {
