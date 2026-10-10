@@ -10,6 +10,7 @@ final class CloudflareSession {
 
     private(set) var client: CloudflareClient?
     private(set) var accounts = CachedResource<[Account]>(key: "accounts")
+    var isTokenSaveFailed = false
 
     var selectedAccountId: String? {
         didSet {
@@ -51,7 +52,7 @@ final class CloudflareSession {
         let trimmedToken = token.trimmingCharacters(in: .whitespacesAndNewlines)
         let candidate = CloudflareClient(token: trimmedToken)
         let fetchedAccounts = try await candidate.accounts()
-        KeychainStore.save(trimmedToken, for: Self.tokenKey)
+        isTokenSaveFailed = !KeychainStore.save(trimmedToken, for: Self.tokenKey)
         client = candidate
         await accounts.refresh { fetchedAccounts }
         if selectedAccountId == nil || !fetchedAccounts.contains(where: { $0.id == selectedAccountId }) {

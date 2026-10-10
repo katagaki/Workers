@@ -6966,6 +6966,76 @@
         }
       }
     },
+    "SignIn.SaveFailed.Message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your API token couldn't be saved to the keychain. You'll be signed out the next time you open the app."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "API トークンをキーチェーンに保存できませんでした。次回アプリを開いたときにサインアウトされます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "API 토큰을 키체인에 저장할 수 없습니다. 다음에 앱을 열 때 로그아웃됩니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法将 API 令牌保存到钥匙串。下次打开 App 时你将被退出登录。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法將 API 權杖儲存到鑰匙圈。下次打開 App 時你將被登出。"
+          }
+        }
+      }
+    },
+    "SignIn.SaveFailed.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't Save Token"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "トークンを保存できませんでした"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "토큰을 저장할 수 없음"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法保存令牌"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法儲存權杖"
+          }
+        }
+      }
+    },
     "SignIn.Title" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -18,7 +18,8 @@ nonisolated enum KeychainStore {
         return String(data: data, encoding: .utf8)
     }
 
-    static func save(_ value: String, for account: String) {
+    @discardableResult
+    static func save(_ value: String, for account: String) -> Bool {
         delete(account)
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -27,7 +28,7 @@ nonisolated enum KeychainStore {
             kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly,
             kSecValueData as String: Data(value.utf8)
         ]
-        SecItemAdd(query as CFDictionary, nil)
+        return SecItemAdd(query as CFDictionary, nil) == errSecSuccess
     }
 
     static func delete(_ account: String) {
