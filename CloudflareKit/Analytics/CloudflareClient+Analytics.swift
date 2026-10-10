@@ -197,14 +197,14 @@ extension CloudflareClient {
         return result
     }
 
-    private func literal(_ value: String) -> String {
+    func literal(_ value: String) -> String {
         let escaped = value
             .replacingOccurrences(of: "\\", with: "\\\\")
             .replacingOccurrences(of: "\"", with: "\\\"")
         return "\"\(escaped)\""
     }
 
-    private func timestamp(_ date: Date) -> String {
+    func timestamp(_ date: Date) -> String {
         date.formatted(.iso8601)
     }
 

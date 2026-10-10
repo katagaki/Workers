@@ -1,6 +1,7 @@
 enum AppTab: Hashable {
     case workers
     case storage
+    case workersAI
     case domains
     case analytics
     case worker(name: String)
@@ -24,6 +25,7 @@ extension AppTab: RawRepresentable {
         switch (parts.first, parts.count == 2 ? parts[1] : nil) {
         case ("workers", nil): self = .workers
         case ("storage", nil): self = .storage
+        case ("workersAI", nil): self = .workersAI
         case ("domains", nil): self = .domains
         case ("analytics", nil): self = .analytics
         case ("more", nil): self = .workers
@@ -40,6 +42,7 @@ extension AppTab: RawRepresentable {
         switch self {
         case .workers: "workers"
         case .storage: "storage"
+        case .workersAI: "workersAI"
         case .domains: "domains"
         case .analytics: "analytics"
         case .worker(let name): "worker:\(name)"

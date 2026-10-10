@@ -23,7 +23,6 @@ struct MainTabView: View {
             if usesSidebar {
                 workersSection
                 storageSection
-                domainsSection
             } else {
                 Tab(.tabsWorkers, systemImage: "hammer", value: AppTab.workers) {
                     accountScoped { resources in
@@ -35,6 +34,15 @@ struct MainTabView: View {
                         StorageView(resources: resources)
                     }
                 }
+            }
+            Tab(.tabsWorkersAI, systemImage: "brain", value: AppTab.workersAI) {
+                accountScoped { resources in
+                    WorkersAIView(resources: resources)
+                }
+            }
+            if usesSidebar {
+                domainsSection
+            } else {
                 Tab(.tabsDomains, systemImage: "globe", value: AppTab.domains) {
                     accountScoped { resources in
                         ZonesListView(resources: resources)

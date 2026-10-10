@@ -6,6 +6,10 @@ enum DemoAnalytics {
         let buckets = timeBuckets(start: startDate(in: query), hourly: isHourly)
         let bucketScale = isHourly ? 1.0 : 24.0
 
+        if query.contains("aiInferenceAdaptiveGroups") {
+            return aiResponse(query: query, buckets: buckets, hourly: isHourly)
+        }
+
         if query.contains("workersInvocationsAdaptive") {
             let filterName = value(after: "scriptName: ", in: query)
             let scripts = DemoData.scripts.filter { filterName == nil || $0.name == filterName }
@@ -120,7 +124,7 @@ enum DemoAnalytics {
         return .now.addingTimeInterval(-24 * 3600)
     }
 
-    private static func value(after marker: String, in query: String) -> String? {
+    static func value(after marker: String, in query: String) -> String? {
         guard let range = query.range(of: marker + "\"") else { return nil }
         let rest = query[range.upperBound...]
         guard let end = rest.firstIndex(of: "\"") else { return nil }
