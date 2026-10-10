@@ -35,7 +35,7 @@ struct MainTabView: View {
         .tabViewStyle(.sidebarAdaptable)
         .onChange(of: navigator.pendingRequest, initial: true) { _, request in
             guard let request else { return }
-            session.selectedAccountId = request.accountId
+            session.selectAccount(id: request.accountId)
             selectedTab = request.destination.tab
         }
         .demoModeAccessory(isEnabled: session.isDemo)
@@ -47,7 +47,7 @@ struct MainTabView: View {
     ) -> some View {
         if let client = session.client, let account = session.selectedAccount {
             content(client, account.id)
-                .id(account.id)
+                .id("\(session.selectedTokenId?.uuidString ?? "")-\(account.id)")
         } else if session.accounts.isLoading {
             ProgressView()
         } else {

@@ -5,24 +5,19 @@ struct MoreView: View {
     @Environment(CloudflareSession.self) private var session
     @State private var isConfirmingSignOut = false
     @State private var isConfirmingClearCache = false
+    @State private var isManagingAccounts = false
+    @State private var isShowingDemoAccountsAlert = false
 
     var body: some View {
-        @Bindable var session = session
         NavigationStack {
             List {
-                if let accounts = session.accounts.value, !accounts.isEmpty {
-                    Section(.moreAccount) {
-                        Picker(.moreAccount, selection: Binding(
-                            get: { session.selectedAccount?.id ?? "" },
-                            set: { session.selectedAccountId = $0 }
-                        )) {
-                            ForEach(accounts) { account in
-                                Text(account.name).tag(account.id)
-                            }
-                        }
-                        .pickerStyle(.inline)
-                        .labelsHidden()
-                    }
+                if let client = session.client, let account = session.selectedAccount {
+                    AccountUsageSection(
+                        client: client,
+                        account: account,
+                        tokenName: session.savedTokens.first { $0.id == session.selectedTokenId }?.name
+                    )
+                    .id("\(session.selectedTokenId?.uuidString ?? "")-\(account.id)")
                 }
 
                 Section(.moreCloudflare) {
@@ -67,6 +62,22 @@ struct MoreView: View {
                 }
             }
             .navigationTitle(.tabsMore)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    AccountSwitcherMenu(
+                        isManagingAccounts: $isManagingAccounts,
+                        isShowingDemoAlert: $isShowingDemoAccountsAlert
+                    )
+                }
+            }
+            .sheet(isPresented: $isManagingAccounts) {
+                ManageAccountsView()
+            }
+            .alert(Text(.accountsDemoUnavailableTitle), isPresented: $isShowingDemoAccountsAlert) {
+                Button(.sharedOk, role: .cancel) {}
+            } message: {
+                Text(.accountsDemoUnavailableMessage)
+            }
             .refreshable {
                 await session.refreshAccounts()
             }

@@ -37,6 +37,11 @@ final class DiskCache {
         }
     }
 
+    func remove(for key: String) {
+        memory[key] = nil
+        try? FileManager.default.removeItem(at: fileURL(for: key))
+    }
+
     func clear() {
         memory.removeAll()
         try? FileManager.default.removeItem(at: directory)
