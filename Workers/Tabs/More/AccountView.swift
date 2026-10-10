@@ -12,12 +12,10 @@ struct AccountView: View {
     var body: some View {
         NavigationStack {
             List {
-                Section {
-                    AccountSwitcherMenu(
-                        isManagingAccounts: $isManagingAccounts,
-                        isShowingDemoAlert: $isShowingDemoAccountsAlert
-                    )
-                }
+                AccountSelectionSection(
+                    isManagingAccounts: $isManagingAccounts,
+                    isShowingDemoAlert: $isShowingDemoAccountsAlert
+                )
 
                 Section(.moreCloudflare) {
                     Link(destination: URL(string: "https://dash.cloudflare.com")!) {

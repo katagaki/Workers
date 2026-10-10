@@ -25,7 +25,8 @@ final class AccountSheetTests: XCTestCase {
 
             let accountNavigationBar = app.navigationBars["Account"]
             XCTAssertTrue(accountNavigationBar.waitForExistence(timeout: 5))
-            XCTAssertTrue(app.buttons["Switch Account"].exists)
+            XCTAssertTrue(app.staticTexts["Kivotos Cloud"].exists)
+            XCTAssertTrue(app.buttons["Manage Accounts..."].exists)
             let doneButton = accountNavigationBar.buttons["Done"]
             XCTAssertTrue(doneButton.exists)
             doneButton.tap()
