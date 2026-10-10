@@ -70,6 +70,7 @@ struct DNSRecordsView: View {
                 }
             }
         }
+        .listStyle(.plain)
         .navigationTitle(.dnsTitle)
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text(.dnsSearch))
         .resourceStatus(
