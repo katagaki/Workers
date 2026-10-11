@@ -7,6 +7,7 @@ struct WorkerDeploymentsView: View {
     let scriptName: String
 
     @State private var deployments: CachedResource<[WorkerDeployment]>
+    @State private var pendingAction: WorkerDeploymentAction?
 
     init(client: CloudflareClient, accountId: String, scriptName: String) {
         self.client = client
@@ -24,12 +25,21 @@ struct WorkerDeploymentsView: View {
             RefreshErrorSection(resource: deployments)
             ForEach(Array(sortedDeployments.enumerated()), id: \.element.id) { index, deployment in
                 DeploymentRow(deployment: deployment, isActive: index == 0)
+                if index > 0, !deployment.versions.isEmpty {
+                    Button(.workersDeploymentRollback) {
+                        pendingAction = WorkerDeploymentAction(deployment: deployment)
+                    }
+                }
             }
         }
         .navigationTitle(.workersDeploymentsTitle)
         .resourceStatus(deployments, emptyTitle: .workersDeploymentsEmpty, emptySystemImage: "arrow.up.circle")
         .task { await reload() }
         .refreshable { await reload() }
+        .sheet(item: $pendingAction) { action in
+            WorkerDeploymentConfirmation(client: client, accountId: accountId, scriptName: scriptName,
+                action: action, onDeployed: reload)
+        }
     }
 
     private func reload() async {

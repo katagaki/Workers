@@ -1,6 +1,50 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Workers.Deployment.Rollback" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Roll Back to This Deployment"
+          }
+        }
+      }
+    },
+    "Workers.Deployment.Redeploy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deploy This Version"
+          }
+        }
+      }
+    },
+    "Workers.Deployment.Confirm.Message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This immediately replaces the active deployment and changes traffic across its routes and domains. Database contents are not restored. Cloudflare may block incompatible versions or changed secrets."
+          }
+        }
+      }
+    },
+    "Workers.Deployment.Permission" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Requires Workers Scripts Edit or the Workers Editor role. Existing read-only tokens need updated permissions."
+          }
+        }
+      }
+    },
     "Accounts.DemoSwitchUnavailable.Message" : {
       "extractionState": "manual",
       "localizations": {

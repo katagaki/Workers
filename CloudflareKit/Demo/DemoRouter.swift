@@ -106,19 +106,19 @@ enum DemoRouter {
         case ("POST", let path) where path.count == 4 && path[0] == "d1" && path[3] == "raw":
             return DemoStorage.d1Query(sql: body?["sql"] as? String ?? "")
         case (_, let path) where path.count >= 3 && path[0] == "workers" && path[1] == "scripts":
-            return scriptRoute(method: method, scriptName: path[2], parts: Array(path.dropFirst(3)))
+            return scriptRoute(method: method, scriptName: path[2], parts: Array(path.dropFirst(3)), body: body)
         default:
             return nil
         }
     }
 
-    private static func scriptRoute(method: String, scriptName: String, parts: [String]) -> [String: Any]? {
+    private static func scriptRoute(method: String, scriptName: String, parts: [String], body: [String: Any]?) -> [String: Any]? {
         guard let script = DemoData.scripts.first(where: { $0.name == scriptName }) else { return nil }
         switch (method, parts) {
         case ("DELETE", []):
             return envelope(NSNull())
-        case ("GET", ["deployments"]):
-            return envelope(["deployments": DemoResources.deployments(for: script)])
+        case ("GET", ["deployments"]), ("POST", ["deployments"]):
+            return DemoDeployments.shared.response(method: method, script: script, body: body)
         case ("GET", ["versions"]):
             return envelope(["items": DemoResources.versions(for: script)])
         case ("GET", ["settings"]):
