@@ -61,12 +61,12 @@ struct WorkerMetricsEntryView: View {
         if let snapshot = entry.snapshot {
             VStack(alignment: .leading, spacing: 2) {
                 WorkerWidgetView(snapshot: snapshot, design: entry.configuration.design, family: family)
-                if entry.stale { Text(.widgetsStale).font(.caption2).foregroundStyle(.secondary) }
+                if entry.stale { Text(.widgetsStale).font(.body).foregroundStyle(.secondary) }
             }
         } else {
             VStack(alignment: .leading) {
                 Image(systemName: "hammer")
-                Text(entry.configuration.worker == nil ? .widgetsConfigure : .widgetsUnavailable).font(.caption)
+                Text(entry.configuration.worker == nil ? .widgetsConfigure : .widgetsUnavailable).font(.body)
             }.padding(16)
         }
     }
