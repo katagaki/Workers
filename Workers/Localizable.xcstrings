@@ -9,6 +9,30 @@
             "state" : "translated",
             "value" : "The template includes Workers Scripts Edit for deployment actions, Zone Edit for pause controls, and Zone Settings Edit for Under Attack Mode. Add Account > Workers AI > Read manually for the Playground. Existing tokens need these permissions only for the features you use."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "The template includes Workers Scripts Edit for deployment actions, Zone Edit for pause controls, and Zone Settings Edit for Under Attack Mode. Add Account > Workers AI > Read manually for the Playground. Existing tokens need these permissions only for the features you use."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "The template includes Workers Scripts Edit for deployment actions, Zone Edit for pause controls, and Zone Settings Edit for Under Attack Mode. Add Account > Workers AI > Read manually for the Playground. Existing tokens need these permissions only for the features you use."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "The template includes Workers Scripts Edit for deployment actions, Zone Edit for pause controls, and Zone Settings Edit for Under Attack Mode. Add Account > Workers AI > Read manually for the Playground. Existing tokens need these permissions only for the features you use."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "The template includes Workers Scripts Edit for deployment actions, Zone Edit for pause controls, and Zone Settings Edit for Under Attack Mode. Add Account > Workers AI > Read manually for the Playground. Existing tokens need these permissions only for the features you use."
+          }
         }
       }
     },
@@ -18,6 +42,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Home Screen and StandBy"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Home Screen and StandBy"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Home Screen and StandBy"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Home Screen and StandBy"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Home Screen and StandBy"
           }
         }
@@ -31,6 +79,30 @@
             "state" : "translated",
             "value" : "Lock Screen"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Lock Screen"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Lock Screen"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Lock Screen"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Lock Screen"
+          }
         }
       }
     },
@@ -40,6 +112,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Get Worker Error Rate"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Get Worker Error Rate"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Get Worker Error Rate"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Get Worker Error Rate"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Get Worker Error Rate"
           }
         }
@@ -53,6 +149,30 @@
             "state" : "translated",
             "value" : "%@ had a %@%% error rate over the past 24 hours."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%@ had a %@%% error rate over the past 24 hours."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%@ had a %@%% error rate over the past 24 hours."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%@ had a %@%% error rate over the past 24 hours."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%@ had a %@%% error rate over the past 24 hours."
+          }
         }
       }
     },
@@ -62,6 +182,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "%@ had no requests over the past 24 hours."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%@ had no requests over the past 24 hours."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%@ had no requests over the past 24 hours."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%@ had no requests over the past 24 hours."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "%@ had no requests over the past 24 hours."
           }
         }
@@ -75,6 +219,30 @@
             "state" : "translated",
             "value" : "Purge Cached URLs"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Purge Cached URLs"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Purge Cached URLs"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Purge Cached URLs"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Purge Cached URLs"
+          }
         }
       }
     },
@@ -84,6 +252,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "URLs"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "URLs"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "URLs"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "URLs"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "URLs"
           }
         }
@@ -97,6 +289,30 @@
             "state" : "translated",
             "value" : "Purge %lld cached URLs for %@?"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Purge %lld cached URLs for %@?"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Purge %lld cached URLs for %@?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Purge %lld cached URLs for %@?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Purge %lld cached URLs for %@?"
+          }
         }
       }
     },
@@ -106,6 +322,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Purged %lld URLs for %@."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Purged %lld URLs for %@."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Purged %lld URLs for %@."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Purged %lld URLs for %@."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Purged %lld URLs for %@."
           }
         }
@@ -119,6 +359,30 @@
             "state" : "translated",
             "value" : "Roll Back Worker"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Roll Back Worker"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Roll Back Worker"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Roll Back Worker"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Roll Back Worker"
+          }
         }
       }
     },
@@ -128,6 +392,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Deploy the previous deployment for %@? This immediately changes live traffic and does not roll back databases or other resources."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Deploy the previous deployment for %@? This immediately changes live traffic and does not roll back databases or other resources."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Deploy the previous deployment for %@? This immediately changes live traffic and does not roll back databases or other resources."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Deploy the previous deployment for %@? This immediately changes live traffic and does not roll back databases or other resources."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Deploy the previous deployment for %@? This immediately changes live traffic and does not roll back databases or other resources."
           }
         }
@@ -141,6 +429,30 @@
             "state" : "translated",
             "value" : "Rolled back %@ to its previous deployment."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Rolled back %@ to its previous deployment."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Rolled back %@ to its previous deployment."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Rolled back %@ to its previous deployment."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Rolled back %@ to its previous deployment."
+          }
         }
       }
     },
@@ -150,6 +462,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "There is no previous deployment to roll back to."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "There is no previous deployment to roll back to."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "There is no previous deployment to roll back to."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "There is no previous deployment to roll back to."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "There is no previous deployment to roll back to."
           }
         }
@@ -163,6 +499,30 @@
             "state" : "translated",
             "value" : "The active deployment changed. Check the Worker and try again."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "The active deployment changed. Check the Worker and try again."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "The active deployment changed. Check the Worker and try again."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "The active deployment changed. Check the Worker and try again."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "The active deployment changed. Check the Worker and try again."
+          }
         }
       }
     },
@@ -172,6 +532,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Unable to Open Resource"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Unable to Open Resource"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Unable to Open Resource"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Unable to Open Resource"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Unable to Open Resource"
           }
         }
@@ -185,6 +569,30 @@
             "state" : "translated",
             "value" : "Design"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Design"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Design"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Design"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Design"
+          }
         }
       }
     },
@@ -194,6 +602,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Traffic"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Traffic"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Traffic"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Traffic"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Traffic"
           }
         }
@@ -207,6 +639,30 @@
             "state" : "translated",
             "value" : "Reliability"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Reliability"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Reliability"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Reliability"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Reliability"
+          }
         }
       }
     },
@@ -216,6 +672,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Trend"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Trend"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Trend"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Trend"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Trend"
           }
         }
@@ -229,6 +709,30 @@
             "state" : "translated",
             "value" : "Overview"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Overview"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Overview"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Overview"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Overview"
+          }
         }
       }
     },
@@ -238,6 +742,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Compact"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Compact"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Compact"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Compact"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Compact"
           }
         }
@@ -251,6 +779,30 @@
             "state" : "translated",
             "value" : "Worker Metrics"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Worker Metrics"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Worker Metrics"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Worker Metrics"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Worker Metrics"
+          }
         }
       }
     },
@@ -260,6 +812,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "No traffic"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "No traffic"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "No traffic"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "No traffic"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "No traffic"
           }
         }
@@ -273,6 +849,30 @@
             "state" : "translated",
             "value" : "Requests"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Requests"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Requests"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Requests"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Requests"
+          }
         }
       }
     },
@@ -282,6 +882,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Errors"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Errors"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Errors"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Errors"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Errors"
           }
         }
@@ -295,6 +919,30 @@
             "state" : "translated",
             "value" : "Success"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Success"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Success"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Success"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Success"
+          }
         }
       }
     },
@@ -304,6 +952,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Past 24 hours"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Past 24 hours"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Past 24 hours"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Past 24 hours"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Past 24 hours"
           }
         }
@@ -317,6 +989,30 @@
             "state" : "translated",
             "value" : "%lld requests"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%lld requests"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%lld requests"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%lld requests"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%lld requests"
+          }
         }
       }
     },
@@ -326,6 +1022,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "%lld errors"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%lld errors"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%lld errors"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%lld errors"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "%lld errors"
           }
         }
@@ -339,6 +1059,30 @@
             "state" : "translated",
             "value" : "Widget Designs"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Widget Designs"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Widget Designs"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Widget Designs"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Widget Designs"
+          }
         }
       }
     },
@@ -348,6 +1092,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Sample data. Choose a Worker when adding a widget."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sample data. Choose a Worker when adding a widget."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sample data. Choose a Worker when adding a widget."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sample data. Choose a Worker when adding a widget."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Sample data. Choose a Worker when adding a widget."
           }
         }
@@ -361,6 +1129,30 @@
             "state" : "translated",
             "value" : "Requests and reliability for your Worker."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Requests and reliability for your Worker."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Requests and reliability for your Worker."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Requests and reliability for your Worker."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Requests and reliability for your Worker."
+          }
         }
       }
     },
@@ -370,6 +1162,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Choose a Worker"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Choose a Worker"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Choose a Worker"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Choose a Worker"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Choose a Worker"
           }
         }
@@ -383,6 +1199,30 @@
             "state" : "translated",
             "value" : "Open Workers to sign in or choose another Worker."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Open Workers to sign in or choose another Worker."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Open Workers to sign in or choose another Worker."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Open Workers to sign in or choose another Worker."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Open Workers to sign in or choose another Worker."
+          }
         }
       }
     },
@@ -392,6 +1232,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Cached data"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Cached data"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Cached data"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Cached data"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Cached data"
           }
         }
@@ -405,6 +1269,30 @@
             "state" : "translated",
             "value" : "Domain control"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Domain control"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Domain control"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Domain control"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Domain control"
+          }
         }
       }
     },
@@ -414,6 +1302,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Pause Domain"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pause Domain"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pause Domain"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pause Domain"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Pause Domain"
           }
         }
@@ -427,6 +1339,30 @@
             "state" : "translated",
             "value" : "Under Attack Mode"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Under Attack Mode"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Under Attack Mode"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Under Attack Mode"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Under Attack Mode"
+          }
         }
       }
     },
@@ -436,6 +1372,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Purge Domain Cache"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Purge Domain Cache"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Purge Domain Cache"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Purge Domain Cache"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Purge Domain Cache"
           }
         }
@@ -449,6 +1409,30 @@
             "state" : "translated",
             "value" : "Change Under Attack Mode for %@? Visitors may receive a security challenge."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Change Under Attack Mode for %@? Visitors may receive a security challenge."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Change Under Attack Mode for %@? Visitors may receive a security challenge."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Change Under Attack Mode for %@? Visitors may receive a security challenge."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Change Under Attack Mode for %@? Visitors may receive a security challenge."
+          }
         }
       }
     },
@@ -458,6 +1442,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Updated Under Attack Mode for %@."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Updated Under Attack Mode for %@."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Updated Under Attack Mode for %@."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Updated Under Attack Mode for %@."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Updated Under Attack Mode for %@."
           }
         }
@@ -471,6 +1479,30 @@
             "state" : "translated",
             "value" : "Set Under Attack Mode"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Set Under Attack Mode"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Set Under Attack Mode"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Set Under Attack Mode"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Set Under Attack Mode"
+          }
         }
       }
     },
@@ -480,6 +1512,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Enabled"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Enabled"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Enabled"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Enabled"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Enabled"
           }
         }
@@ -493,6 +1549,30 @@
             "state" : "translated",
             "value" : "Playground"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Playground"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Playground"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Playground"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Playground"
+          }
         }
       }
     },
@@ -502,6 +1582,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Model"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Model"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Model"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Model"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Model"
           }
         }
@@ -515,6 +1619,30 @@
             "state" : "translated",
             "value" : "Prompt"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Prompt"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Prompt"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Prompt"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Prompt"
+          }
         }
       }
     },
@@ -524,6 +1652,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Ask a question or describe something to generate"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ask a question or describe something to generate"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ask a question or describe something to generate"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ask a question or describe something to generate"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Ask a question or describe something to generate"
           }
         }
@@ -537,6 +1689,30 @@
             "state" : "translated",
             "value" : "No text generation models are available."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "No text generation models are available."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "No text generation models are available."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "No text generation models are available."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "No text generation models are available."
+          }
         }
       }
     },
@@ -546,6 +1722,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Requires Workers AI Read. If access is denied, update the permissions on your API token."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Requires Workers AI Read. If access is denied, update the permissions on your API token."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Requires Workers AI Read. If access is denied, update the permissions on your API token."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Requires Workers AI Read. If access is denied, update the permissions on your API token."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Requires Workers AI Read. If access is denied, update the permissions on your API token."
           }
         }
@@ -559,6 +1759,30 @@
             "state" : "translated",
             "value" : "Options"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Options"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Options"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Options"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Options"
+          }
         }
       }
     },
@@ -568,6 +1792,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Temperature"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Temperature"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Temperature"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Temperature"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Temperature"
           }
         }
@@ -581,6 +1829,30 @@
             "state" : "translated",
             "value" : "Maximum Output Tokens"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Maximum Output Tokens"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Maximum Output Tokens"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Maximum Output Tokens"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Maximum Output Tokens"
+          }
         }
       }
     },
@@ -590,6 +1862,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Stream Response"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Stream Response"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Stream Response"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Stream Response"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Stream Response"
           }
         }
@@ -603,6 +1899,30 @@
             "state" : "translated",
             "value" : "Generate"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Generate"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Generate"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Generate"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Generate"
+          }
         }
       }
     },
@@ -612,6 +1932,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Stop"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Stop"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Stop"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Stop"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Stop"
           }
         }
@@ -625,6 +1969,30 @@
             "state" : "translated",
             "value" : "Response"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Response"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Response"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Response"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Response"
+          }
         }
       }
     },
@@ -634,6 +2002,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "This model does not support the text inputs available in this playground."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "This model does not support the text inputs available in this playground."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "This model does not support the text inputs available in this playground."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "This model does not support the text inputs available in this playground."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "This model does not support the text inputs available in this playground."
           }
         }
@@ -647,6 +2039,30 @@
             "state" : "translated",
             "value" : "Prompts are sent to Cloudflare. Generation uses the selected account’s Workers AI quota and may incur charges."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Prompts are sent to Cloudflare. Generation uses the selected account’s Workers AI quota and may incur charges."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Prompts are sent to Cloudflare. Generation uses the selected account’s Workers AI quota and may incur charges."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Prompts are sent to Cloudflare. Generation uses the selected account’s Workers AI quota and may incur charges."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Prompts are sent to Cloudflare. Generation uses the selected account’s Workers AI quota and may incur charges."
+          }
         }
       }
     },
@@ -656,6 +2072,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Demo responses use sample data and do not consume Workers AI quota."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Demo responses use sample data and do not consume Workers AI quota."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Demo responses use sample data and do not consume Workers AI quota."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Demo responses use sample data and do not consume Workers AI quota."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Demo responses use sample data and do not consume Workers AI quota."
           }
         }
@@ -669,6 +2109,30 @@
             "state" : "translated",
             "value" : "Roll Back to This Deployment"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Roll Back to This Deployment"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Roll Back to This Deployment"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Roll Back to This Deployment"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Roll Back to This Deployment"
+          }
         }
       }
     },
@@ -678,6 +2142,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Deploy This Version"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Deploy This Version"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Deploy This Version"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Deploy This Version"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Deploy This Version"
           }
         }
@@ -691,6 +2179,30 @@
             "state" : "translated",
             "value" : "This immediately replaces the active deployment and changes traffic across its routes and domains. Database contents are not restored. Cloudflare may block incompatible versions or changed secrets."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "This immediately replaces the active deployment and changes traffic across its routes and domains. Database contents are not restored. Cloudflare may block incompatible versions or changed secrets."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "This immediately replaces the active deployment and changes traffic across its routes and domains. Database contents are not restored. Cloudflare may block incompatible versions or changed secrets."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "This immediately replaces the active deployment and changes traffic across its routes and domains. Database contents are not restored. Cloudflare may block incompatible versions or changed secrets."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "This immediately replaces the active deployment and changes traffic across its routes and domains. Database contents are not restored. Cloudflare may block incompatible versions or changed secrets."
+          }
         }
       }
     },
@@ -700,6 +2212,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Requires Workers Scripts Edit or the Workers Editor role. Existing read-only tokens need updated permissions."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Requires Workers Scripts Edit or the Workers Editor role. Existing read-only tokens need updated permissions."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Requires Workers Scripts Edit or the Workers Editor role. Existing read-only tokens need updated permissions."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Requires Workers Scripts Edit or the Workers Editor role. Existing read-only tokens need updated permissions."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Requires Workers Scripts Edit or the Workers Editor role. Existing read-only tokens need updated permissions."
           }
         }

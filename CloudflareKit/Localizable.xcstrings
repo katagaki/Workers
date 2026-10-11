@@ -9,6 +9,30 @@
             "state" : "translated",
             "value" : "This is a sample response from the Workers AI playground. In a signed-in account, your selected text model generates a response to your prompt. You can adjust output length and temperature, stream the response, and share the result."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "This is a sample response from the Workers AI playground. In a signed-in account, your selected text model generates a response to your prompt. You can adjust output length and temperature, stream the response, and share the result."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "This is a sample response from the Workers AI playground. In a signed-in account, your selected text model generates a response to your prompt. You can adjust output length and temperature, stream the response, and share the result."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "This is a sample response from the Workers AI playground. In a signed-in account, your selected text model generates a response to your prompt. You can adjust output length and temperature, stream the response, and share the result."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "This is a sample response from the Workers AI playground. In a signed-in account, your selected text model generates a response to your prompt. You can adjust output length and temperature, stream the response, and share the result."
+          }
         }
       }
     },
