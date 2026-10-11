@@ -26,17 +26,21 @@ struct WorkerWidgetView: View {
                 Text(snapshot.date, style: .time)
             }.font(.body)
         default:
-            VStack(alignment: .leading, spacing: 6) {
-                workerName
-                content.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                Text(snapshot.date, style: .time)
-                    .foregroundStyle(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                    .accessibilityLabel(Text(.widgetsPastDay))
-                    .accessibilityValue(Text(snapshot.date, style: .time))
+            VStack(alignment: .leading, spacing: 0) {
+                WorkerWidgetTitleBar(name: snapshot.worker.name)
+                VStack(alignment: .leading, spacing: 4) {
+                    content.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                    Text(snapshot.date, style: .time)
+                        .foregroundStyle(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .accessibilityLabel(Text(.widgetsPastDay))
+                        .accessibilityValue(Text(snapshot.date, style: .time))
+                }
+                .padding(.horizontal, 16)
+                .padding(.top, 8)
+                .padding(.bottom, 12)
             }
             .font(.body)
-            .padding(16)
             .background {
                 if hasChart { WorkerWidgetAreaChart(snapshot: snapshot) }
             }
