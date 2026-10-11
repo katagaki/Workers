@@ -97,6 +97,36 @@ struct OperationTests {
             streamed += chunk
         }
         precondition(streamed == "Hello world")
+        fixtures.enqueue(json: #"{"success":true,"result":{"value":"under_attack","editable":true}}"#)
+        let security = try await client.setZoneUnderAttack(zoneId: "zone", enabled: true)
+        precondition(security.isUnderAttack)
+        precondition(fixtures.lastRequest.httpMethod == "PATCH")
+        precondition(fixtures.lastRequest.url?.path == "/client/v4/zones/zone/settings/security_level")
+        fixtures.enqueue(json: #"{"success":true,"result":{"value":"high","editable":true}}"#)
+        _ = try await client.setZoneUnderAttack(zoneId: "zone", enabled: false, restoredLevel: "high")
+        let restoredBody = try JSONSerialization.jsonObject(with: fixtures.lastRequest.httpBody!) as! [String: Any]
+        precondition(restoredBody["value"] as? String == "high")
+        fixtures.enqueue(json: #"{"success":true,"result":{"id":"zone"}}"#)
+        try await client.purgeURLs(zoneId: "zone", urls: [URL(string: "https://example.com/path?key=value")!])
+        let purgeBody = try JSONSerialization.jsonObject(with: fixtures.lastRequest.httpBody!) as! [String: Any]
+        precondition(purgeBody["files"] as? [String] == ["https://example.com/path?key=value"])
+        precondition(purgeBody["purge_everything"] == nil)
+        do {
+            try await client.purgeURLs(zoneId: "zone", urls: [URL(string: "file:///tmp/test")!])
+            preconditionFailure("Non-HTTP URLs must be rejected before networking")
+        } catch CloudflareError.invalidResponse {}
+        let demo = CloudflareClient.demo()
+        let zones = try await demo.zones(accountId: "8d2c4f1e9a7b4c3d5e6f708192a3b4c5")
+        let zoneID = zones[0].id
+        _ = try await demo.setZonePaused(zoneId: zoneID, paused: true)
+        let paused = try await demo.zone(id: zoneID)
+        precondition(paused.paused == true)
+        _ = try await demo.setZoneUnderAttack(zoneId: zoneID, enabled: true)
+        let attacked = try await demo.zoneSecurityLevel(zoneId: zoneID)
+        precondition(attacked.isUnderAttack)
+        _ = try await demo.setZoneUnderAttack(zoneId: zoneID, enabled: false, restoredLevel: "high")
+        let restored = try await demo.zoneSecurityLevel(zoneId: zoneID)
+        precondition(restored.value == "high")
         print("Operation request tests passed")
     }
 }

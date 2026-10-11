@@ -31,7 +31,7 @@ struct WorkerWidgetView: View {
                 }
                 content.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                 HStack {
-                    Text(.widgetsPastDay)
+                    if family != .systemSmall { Text(.widgetsPastDay) }
                     Spacer()
                     Text(snapshot.date, style: .time)
                 }.font(.caption2).foregroundStyle(.secondary)

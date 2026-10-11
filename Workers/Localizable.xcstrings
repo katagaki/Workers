@@ -1,6 +1,28 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Widgets.HomeScreen" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Home Screen and StandBy"
+          }
+        }
+      }
+    },
+    "Widgets.LockScreen" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lock Screen"
+          }
+        }
+      }
+    },
     "Intents.ErrorRate.Title" : {
       "extractionState" : "manual",
       "localizations" : {
