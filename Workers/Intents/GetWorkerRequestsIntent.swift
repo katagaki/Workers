@@ -10,7 +10,7 @@ struct GetWorkerRequestsIntent: AppIntent {
 
     @MainActor
     func perform() async throws -> some IntentResult & ReturnsValue<Int> & ProvidesDialog {
-        let points = try await IntentContext.client().workerAnalytics(
+        let points = try await IntentContext.client(accountId: worker.accountId).workerAnalytics(
             accountId: worker.accountId,
             range: .day,
             scriptName: worker.name

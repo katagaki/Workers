@@ -2,6 +2,7 @@ import AppIntents
 import CloudflareKit
 
 struct SetZonePausedIntent: AppIntent {
+    static let authenticationPolicy: IntentAuthenticationPolicy = .requiresAuthentication
     static let title: LocalizedStringResource = "Intents.SetPaused.Title"
     static let description = IntentDescription("Intents.SetPaused.Description")
 
@@ -18,7 +19,7 @@ struct SetZonePausedIntent: AppIntent {
                 dialog: IntentDialog(.domainsPauseConfirm)
             )
         }
-        let updated = try await IntentContext.client().setZonePaused(zoneId: zone.id, paused: paused)
+        let updated = try await IntentContext.client(zone: zone).setZonePaused(zoneId: zone.id, paused: paused)
         let dialog: LocalizedStringResource = updated.paused == true
             ? .intentsSetPausedPaused(zone.name)
             : .intentsSetPausedResumed(zone.name)

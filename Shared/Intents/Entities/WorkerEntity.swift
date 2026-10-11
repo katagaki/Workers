@@ -1,7 +1,9 @@
 import AppIntents
 import CloudflareKit
+import CoreSpotlight
+import UniformTypeIdentifiers
 
-struct WorkerEntity: AppEntity {
+nonisolated struct WorkerEntity: IndexedEntity, Codable {
     static let typeDisplayRepresentation = TypeDisplayRepresentation(name: "Intents.Worker.Type")
     static let defaultQuery = WorkerEntityQuery()
 
@@ -9,6 +11,13 @@ struct WorkerEntity: AppEntity {
     let name: String
 
     var id: String { "\(accountId)/\(name)" }
+
+    var attributeSet: CSSearchableItemAttributeSet {
+        let attributes = CSSearchableItemAttributeSet(contentType: .item)
+        attributes.title = name
+        attributes.contentDescription = String(localized: .intentsWorkerType)
+        return attributes
+    }
 
     var displayRepresentation: DisplayRepresentation {
         DisplayRepresentation(title: "\(name)", image: .init(systemName: "hammer"))

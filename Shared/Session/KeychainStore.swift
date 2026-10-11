@@ -12,6 +12,13 @@ nonisolated enum KeychainStore {
             kSecReturnData as String: true,
             kSecMatchLimit as String: kSecMatchLimitOne
         ]
+        if let group = Bundle.main.object(forInfoDictionaryKey: "SharedKeychainAccessGroup") as? String {
+            var sharedQuery = query
+            sharedQuery[kSecAttrAccessGroup as String] = group
+            var sharedItem: CFTypeRef?
+            if SecItemCopyMatching(sharedQuery as CFDictionary, &sharedItem) == errSecSuccess,
+               let data = sharedItem as? Data { return String(data: data, encoding: .utf8) }
+        }
         var item: CFTypeRef?
         guard SecItemCopyMatching(query as CFDictionary, &item) == errSecSuccess,
               let data = item as? Data else { return nil }
@@ -21,14 +28,31 @@ nonisolated enum KeychainStore {
     @discardableResult
     static func save(_ value: String, for account: String) -> Bool {
         delete(account)
-        let query: [String: Any] = [
+        var query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: service,
             kSecAttrAccount as String: account,
             kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly,
             kSecValueData as String: Data(value.utf8)
         ]
+        if let group = Bundle.main.object(forInfoDictionaryKey: "SharedKeychainAccessGroup") as? String {
+            query[kSecAttrAccessGroup as String] = group
+        }
         return SecItemAdd(query as CFDictionary, nil) == errSecSuccess
+    }
+
+    static func migrate(_ account: String) {
+        guard let value = read(account),
+              let group = Bundle.main.object(forInfoDictionaryKey: "SharedKeychainAccessGroup") as? String else { return }
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrService as String: service,
+            kSecAttrAccount as String: account,
+            kSecAttrAccessGroup as String: group,
+            kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly,
+            kSecValueData as String: Data(value.utf8)
+        ]
+        _ = SecItemAdd(query as CFDictionary, nil)
     }
 
     static func delete(_ account: String) {

@@ -1,5 +1,6 @@
 import CloudflareKit
 import Observation
+import WidgetKit
 
 @Observable
 final class AccountResources {
@@ -58,11 +59,26 @@ final class AccountResources {
             try await client.workerAnalytics(accountId: accountId, range: .day)
         }
         _ = await (scriptsLoad, analyticsLoad)
+        if let scripts = scripts.value {
+            SharedAccountStore.store(scripts.map { WorkerEntity(accountId: accountId, name: $0.name) }, key: "Workers.\(accountId)")
+            if let points = workerAnalytics.value {
+                for script in scripts {
+                    let snapshot = WorkerWidgetSnapshot(worker: WorkerEntity(accountId: accountId, name: script.name), analytics: points.filter { $0.scriptName == script.name })
+                    SharedAccountStore.store(snapshot, key: snapshot.cacheKey)
+                }
+                WidgetCenter.shared.reloadAllTimelines()
+            }
+            await ResourceSearchIndex.rebuild()
+        }
     }
 
     func reloadZones() async {
         await zones.refresh {
             try await client.zones(accountId: accountId)
+        }
+        if let zones = zones.value {
+            SharedAccountStore.store(zones.map(ZoneEntity.init(zone:)), key: "Zones.\(accountId)")
+            await ResourceSearchIndex.rebuild()
         }
     }
 
@@ -84,6 +100,8 @@ final class AccountResources {
 
     func removeScript(_ script: WorkerScript) {
         scripts.update { $0.removeAll { $0.id == script.id } }
+        SharedAccountStore.store((scripts.value ?? []).map { WorkerEntity(accountId: accountId, name: $0.name) }, key: "Workers.\(accountId)")
+        Task { await ResourceSearchIndex.rebuild() }
     }
 
     func replaceZone(_ zone: Zone) {

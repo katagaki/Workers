@@ -1,6 +1,7 @@
 import CloudflareKit
 import Foundation
 import Observation
+import WidgetKit
 
 @Observable
 final class CloudflareSession {
@@ -19,21 +20,25 @@ final class CloudflareSession {
 
     var selectedAccountId: String? {
         didSet {
-            UserDefaults.standard.set(selectedAccountId, forKey: Self.selectedAccountKey)
+            SharedAccountStore.defaults.set(selectedAccountId, forKey: Self.selectedAccountKey)
         }
     }
 
     init() {
+        SharedAccountStore.prepare()
         Self.migrateLegacyToken()
         savedTokens = Self.storedTokens()
         selectedTokenId = Self.storedSelectedToken()?.id
         accountLists = Dictionary(uniqueKeysWithValues: savedTokens.map { ($0.id, Self.accountList(for: $0.id)) })
+        for token in savedTokens {
+            if let accounts = accountLists[token.id]?.value { SharedAccountStore.storeAccountIDs(accounts.map(\.id), for: token.id) }
+        }
         client = Self.storedClient()
         selectedAccountId = Self.storedSelectedAccountId()
     }
 
     nonisolated static func storedClient() -> CloudflareClient? {
-        if UserDefaults.standard.bool(forKey: demoModeKey) {
+        if SharedAccountStore.defaults.bool(forKey: demoModeKey) {
             return .demo()
         }
         if let savedToken = storedSelectedToken(), let token = KeychainStore.read(savedToken.keychainKey) {
@@ -46,17 +51,17 @@ final class CloudflareSession {
     }
 
     nonisolated static func storedSelectedAccountId() -> String? {
-        UserDefaults.standard.string(forKey: selectedAccountKey)
+        SharedAccountStore.defaults.string(forKey: selectedAccountKey)
     }
 
     nonisolated private static func storedTokens() -> [SavedToken] {
-        guard let data = UserDefaults.standard.data(forKey: savedTokensKey) else { return [] }
+        guard let data = SharedAccountStore.defaults.data(forKey: savedTokensKey) else { return [] }
         return (try? JSONDecoder().decode([SavedToken].self, from: data)) ?? []
     }
 
     nonisolated private static func storedSelectedToken() -> SavedToken? {
         let tokens = storedTokens()
-        let selectedId = UserDefaults.standard.string(forKey: selectedTokenKey).flatMap(UUID.init(uuidString:))
+        let selectedId = SharedAccountStore.defaults.string(forKey: selectedTokenKey).flatMap(UUID.init(uuidString:))
         return tokens.first { $0.id == selectedId } ?? tokens.first
     }
 
@@ -65,8 +70,8 @@ final class CloudflareSession {
         let savedToken = SavedToken(id: UUID(), name: String(localized: .accountsDefaultName))
         guard KeychainStore.save(token, for: savedToken.keychainKey) else { return }
         if let data = try? JSONEncoder().encode([savedToken]) {
-            UserDefaults.standard.set(data, forKey: savedTokensKey)
-            UserDefaults.standard.set(savedToken.id.uuidString, forKey: selectedTokenKey)
+            SharedAccountStore.defaults.set(data, forKey: savedTokensKey)
+            SharedAccountStore.defaults.set(savedToken.id.uuidString, forKey: selectedTokenKey)
         }
         KeychainStore.delete(legacyTokenKey)
     }
@@ -113,6 +118,7 @@ final class CloudflareSession {
         }
         savedTokens.append(savedToken)
         persistTokens()
+        SharedAccountStore.storeAccountIDs(fetchedAccounts.map(\.id), for: savedToken.id)
         let list = Self.accountList(for: savedToken.id)
         accountLists[savedToken.id] = list
         await list.refresh { fetchedAccounts }
@@ -127,7 +133,7 @@ final class CloudflareSession {
               let token = KeychainStore.read(savedToken.keychainKey) else { return }
         if selectedTokenId != tokenId || client == nil {
             selectedTokenId = tokenId
-            UserDefaults.standard.set(tokenId.uuidString, forKey: Self.selectedTokenKey)
+            SharedAccountStore.defaults.set(tokenId.uuidString, forKey: Self.selectedTokenKey)
             client = CloudflareClient(token: token)
         }
         selectedAccountId = accountId ?? accountLists[tokenId]?.value?.first?.id
@@ -164,6 +170,10 @@ final class CloudflareSession {
         accountLists[tokenId] = nil
         DiskCache.shared.remove(for: "accounts-\(tokenId.uuidString)")
         persistTokens()
+        SharedAccountStore.removeResources(for: tokenId)
+        Task { await ResourceSearchIndex.rebuild() }
+        WidgetCenter.shared.reloadAllTimelines()
+        ControlCenter.shared.reloadAllControls()
         guard selectedTokenId == tokenId else { return }
         if let next = savedTokens.first {
             select(tokenId: next.id, accountId: nil)
@@ -174,9 +184,13 @@ final class CloudflareSession {
 
     func startDemo() async {
         DiskCache.shared.clear()
+        SharedAccountStore.clearResources()
+        Task { await ResourceSearchIndex.rebuild() }
+        WidgetCenter.shared.reloadAllTimelines()
+        ControlCenter.shared.reloadAllControls()
         demoAccounts = CachedResource(key: "accounts-demo")
         let demoClient = CloudflareClient.demo()
-        UserDefaults.standard.set(true, forKey: Self.demoModeKey)
+        SharedAccountStore.defaults.set(true, forKey: Self.demoModeKey)
         client = demoClient
         await demoAccounts.refresh { try await demoClient.accounts() }
         selectedAccountId = demoAccounts.value?.first?.id
@@ -191,6 +205,9 @@ final class CloudflareSession {
                       let list = accountLists[savedToken.id] else { continue }
                 let tokenClient = CloudflareClient(token: token)
                 await list.refresh { try await tokenClient.accounts() }
+                if let accounts = list.value {
+                    SharedAccountStore.storeAccountIDs(accounts.map(\.id), for: savedToken.id)
+                }
             }
         }
         if selectedAccount?.id != selectedAccountId {
@@ -199,7 +216,7 @@ final class CloudflareSession {
     }
 
     func signOut() {
-        UserDefaults.standard.set(false, forKey: Self.demoModeKey)
+        SharedAccountStore.defaults.set(false, forKey: Self.demoModeKey)
         for savedToken in savedTokens {
             KeychainStore.delete(savedToken.keychainKey)
         }
@@ -208,16 +225,20 @@ final class CloudflareSession {
         accountLists = [:]
         persistTokens()
         selectedTokenId = nil
-        UserDefaults.standard.removeObject(forKey: Self.selectedTokenKey)
+        SharedAccountStore.defaults.removeObject(forKey: Self.selectedTokenKey)
         client = nil
         selectedAccountId = nil
         DiskCache.shared.clear()
+        SharedAccountStore.clearResources()
+        Task { await ResourceSearchIndex.rebuild() }
+        WidgetCenter.shared.reloadAllTimelines()
+        ControlCenter.shared.reloadAllControls()
         demoAccounts = CachedResource(key: "accounts-demo")
     }
 
     private func persistTokens() {
         if let data = try? JSONEncoder().encode(savedTokens) {
-            UserDefaults.standard.set(data, forKey: Self.savedTokensKey)
+            SharedAccountStore.defaults.set(data, forKey: Self.savedTokensKey)
         }
     }
 }

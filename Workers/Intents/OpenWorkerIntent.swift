@@ -10,7 +10,7 @@ struct OpenWorkerIntent: OpenIntent {
 
     @MainActor
     func perform() async throws -> some IntentResult {
-        let client = try IntentContext.client()
+        let client = try IntentContext.client(accountId: target.accountId)
         guard let script = try await client.workerScripts(accountId: target.accountId)
             .first(where: { $0.name == target.name }) else {
             throw IntentError.workerNotFound

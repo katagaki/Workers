@@ -10,7 +10,7 @@ struct OpenZoneIntent: OpenIntent {
 
     @MainActor
     func perform() async throws -> some IntentResult {
-        let client = try IntentContext.client()
+        let client = try IntentContext.client(zone: target)
         let zone = try await client.zone(id: target.id)
         guard let accountId = zone.account?.id ?? target.accountId else { throw IntentError.zoneNotFound }
         AppNavigator.shared.open(.zone(zone), accountId: accountId)

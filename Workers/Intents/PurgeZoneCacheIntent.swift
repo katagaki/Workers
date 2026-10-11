@@ -3,6 +3,7 @@ import CloudflareKit
 
 struct PurgeZoneCacheIntent: AppIntent {
     // App Intents metadata extraction rejects generated string symbols, so these use literal catalog keys.
+    static let authenticationPolicy: IntentAuthenticationPolicy = .requiresAuthentication
     static let title: LocalizedStringResource = "Intents.PurgeCache.Title"
     static let description = IntentDescription("Intents.PurgeCache.Description")
 
@@ -14,7 +15,7 @@ struct PurgeZoneCacheIntent: AppIntent {
             actionName: .custom(acceptLabel: .domainsPurgeEverything, acceptAlternatives: [], denyLabel: .sharedCancel, denyAlternatives: [], destructive: true),
             dialog: IntentDialog(.domainsPurgeMessage(zone.name))
         )
-        try await IntentContext.client().purgeEverything(zoneId: zone.id)
+        try await IntentContext.client(zone: zone).purgeEverything(zoneId: zone.id)
         return .result(dialog: IntentDialog(.domainsPurgeDoneMessage(zone.name)))
     }
 }

@@ -144,13 +144,14 @@ enum DemoRouter {
         if parts.first == "rulesets" {
             return DemoSecurity.shared.response(method: method, zoneId: zoneId, parts: parts, body: body)
         }
+        if parts == ["settings", "security_level"] {
+            return DemoZoneActions.shared.securityLevel(zoneId: zoneId, method: method, body: body)
+        }
         switch (method, parts) {
         case ("GET", []):
-            return envelope(DemoResources.zone(zone))
+            return DemoZoneActions.shared.zone(zone, method: method, body: body)
         case ("PATCH", []):
-            var object = DemoResources.zone(zone)
-            object["paused"] = body?["paused"] as? Bool ?? false
-            return envelope(object)
+            return DemoZoneActions.shared.zone(zone, method: method, body: body)
         case ("POST", ["purge_cache"]):
             return envelope(["id": zoneId])
         case ("GET", ["dns_records"]):
