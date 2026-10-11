@@ -49,6 +49,7 @@ struct WorkerMetricsWidget: Widget {
         }
         .configurationDisplayName(.widgetsConfiguration)
         .description(.widgetsDescription)
+        .contentMarginsDisabled()
         .supportedFamilies([.systemSmall, .systemMedium, .accessoryInline, .accessoryCircular, .accessoryRectangular])
     }
 }
@@ -66,7 +67,7 @@ struct WorkerMetricsEntryView: View {
             VStack(alignment: .leading) {
                 Image(systemName: "hammer")
                 Text(entry.configuration.worker == nil ? .widgetsConfigure : .widgetsUnavailable).font(.caption)
-            }
+            }.padding(16)
         }
     }
 }

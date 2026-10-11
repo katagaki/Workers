@@ -8,10 +8,10 @@ struct WidgetDesignDetailView: View {
         List {
             Section(.widgetsHomeScreen) {
                 WorkerWidgetView(snapshot: .sample, design: design)
-                    .padding(16).frame(height: 170)
+                    .frame(height: 170)
                     .background(.background, in: RoundedRectangle(cornerRadius: 22))
                 WorkerWidgetView(snapshot: .sample, design: design, family: .systemSmall)
-                    .padding(16).frame(width: 170, height: 170)
+                    .frame(width: 170, height: 170)
                     .background(.background, in: RoundedRectangle(cornerRadius: 22))
                     .frame(maxWidth: .infinity)
             }

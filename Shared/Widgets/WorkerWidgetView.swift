@@ -1,4 +1,3 @@
-import Charts
 import SwiftUI
 import WidgetKit
 
@@ -29,21 +28,27 @@ struct WorkerWidgetView: View {
                     Image(systemName: "hammer").foregroundStyle(.secondary)
                     Text(verbatim: snapshot.worker.name).font(.caption.weight(.semibold)).lineLimit(1)
                 }
-                content.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                content.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: hasChart ? .topLeading : .leading)
                 HStack {
                     if family != .systemSmall { Text(.widgetsPastDay) }
                     Spacer()
                     Text(snapshot.date, style: .time)
                 }.font(.caption2).foregroundStyle(.secondary)
             }
+            .padding(16)
+            .background {
+                if hasChart { WorkerWidgetAreaChart(snapshot: snapshot) }
+            }
+            .clipped()
         }
     }
+
+    private var hasChart: Bool { [.traffic, .trend, .overview].contains(design) }
 
     @ViewBuilder private var content: some View {
         switch design {
         case .traffic:
             metric(.widgetsRequests, value: snapshot.requests.formatted(.number.notation(.compactName)))
-            sparkline
         case .reliability:
             HStack(spacing: 16) {
                 Gauge(value: snapshot.successRate) { Text(.widgetsSuccess) }
@@ -57,19 +62,14 @@ struct WorkerWidgetView: View {
                 }
             }
         case .trend:
-            Text(.widgetsRequests).font(.caption).foregroundStyle(.secondary)
-            Chart(snapshot.points) { point in
-                BarMark(x: .value("", point.date), y: .value("", point.requests))
-                    .foregroundStyle(.primary.opacity(0.65))
-            }.chartXAxis(.hidden).chartYAxis(.hidden)
-            Text(.widgetsErrorsValue(snapshot.errors)).font(.caption)
+            metric(.widgetsRequests, value: snapshot.requests.formatted(.number.notation(.compactName)))
+            Text(.widgetsErrorsValue(snapshot.errors)).font(.caption).foregroundStyle(.secondary)
         case .overview:
             HStack(alignment: .top) {
                 metric(.widgetsRequests, value: snapshot.requests.formatted(.number.notation(.compactName)))
                 Spacer()
                 metric(.widgetsErrors, value: snapshot.errors.formatted(.number.notation(.compactName)))
             }
-            sparkline
         case .compact:
             LabeledContent(.widgetsRequests, value: snapshot.requests.formatted(.number.notation(.compactName)))
             Divider()
@@ -88,10 +88,4 @@ struct WorkerWidgetView: View {
         }
     }
 
-    private var sparkline: some View {
-        Chart(snapshot.points) { point in
-            LineMark(x: .value("", point.date), y: .value("", point.requests))
-                .interpolationMethod(.monotone).foregroundStyle(.primary)
-        }.chartXAxis(.hidden).chartYAxis(.hidden)
-    }
 }
