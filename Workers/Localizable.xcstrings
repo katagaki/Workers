@@ -1,6 +1,17 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "SignIn.FeaturePermissions" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The template includes Workers Scripts Edit for deployment actions, Zone Edit for pause controls, and Zone Settings Edit for Under Attack Mode. Add Account > Workers AI > Read manually for the Playground. Existing tokens need these permissions only for the features you use."
+          }
+        }
+      }
+    },
     "Widgets.HomeScreen" : {
       "extractionState" : "manual",
       "localizations" : {

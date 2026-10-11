@@ -15,7 +15,7 @@ struct WorkerWidgetView: View {
             Gauge(value: snapshot.successRate) {
                 Image(systemName: "hammer")
             } currentValueLabel: {
-                Text(snapshot.requests > 0 ? snapshot.successRate.formatted(.percent.precision(.fractionLength(0))) : String(localized: .widgetsNoTraffic))
+                Text(snapshot.requests > 0 ? snapshot.successRate.formatted(.percent.precision(.fractionLength(1))) : String(localized: .widgetsNoTraffic))
             }.gaugeStyle(.accessoryCircular)
         case .accessoryRectangular:
             VStack(alignment: .leading) {

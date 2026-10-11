@@ -43,6 +43,10 @@ struct SignInView: View {
                 }
 
                 Section {
+                    Text(.signInFeaturePermissions).font(.footnote).foregroundStyle(.secondary)
+                }
+
+                Section {
                     SecureField(.signInTokenPlaceholder, text: $token)
                         .textContentType(.password)
                         .autocorrectionDisabled()

@@ -26,6 +26,7 @@ struct SetZoneUnderAttackIntent: SetValueIntent {
 }
 
 struct SetZonePausedControlIntent: SetValueIntent {
+    static let isDiscoverable = false
     static let title: LocalizedStringResource = "Intents.SetPaused.Title"
     static let authenticationPolicy: IntentAuthenticationPolicy = .requiresAuthentication
     @Parameter(title: "Intents.Zone.Type") var zone: ZoneEntity?
@@ -44,6 +45,7 @@ struct SetZonePausedControlIntent: SetValueIntent {
 }
 
 struct PurgeZoneControlIntent: AppIntent {
+    static let isDiscoverable = false
     static let title: LocalizedStringResource = "Intents.PurgeCache.Title"
     static let authenticationPolicy: IntentAuthenticationPolicy = .requiresAuthentication
     @Parameter(title: "Intents.Zone.Type") var zone: ZoneEntity?
