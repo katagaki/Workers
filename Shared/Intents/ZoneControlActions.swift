@@ -16,6 +16,9 @@ struct SetZoneUnderAttackIntent: SetValueIntent {
         try await requestConfirmation(dialog: IntentDialog(.controlsAttackConfirm(zone.name)))
         let client = try IntentContext.client(zone: zone)
         let current = try await client.zoneSecurityLevel(zoneId: zone.id)
+        guard current.isUnderAttack != value else {
+            return .result(dialog: IntentDialog(.controlsAttackResult(zone.name)))
+        }
         let key = "SecurityLevel.\(zone.id)"
         if value && !current.isUnderAttack { SharedAccountStore.defaults.set(current.value, forKey: key) }
         let previous = SharedAccountStore.defaults.string(forKey: key) ?? "medium"
