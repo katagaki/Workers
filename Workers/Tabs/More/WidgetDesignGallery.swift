@@ -12,6 +12,7 @@ struct WidgetDesignGallery: View {
                     WorkerWidgetView(snapshot: .sample, design: design)
                         .frame(height: 170)
                         .background(.background, in: RoundedRectangle(cornerRadius: 22))
+                    .clipShape(RoundedRectangle(cornerRadius: 22))
                         .accessibilityIdentifier("WidgetPreview.\(design.rawValue)")
                     NavigationLink(design.title) { WidgetDesignDetailView(design: design) }
                         .accessibilityIdentifier("WidgetDetail.\(design.rawValue)")

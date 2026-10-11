@@ -51,6 +51,7 @@ struct DomainControlConfirmation: View {
                 }
             }
             .interactiveDismissDisabled(isRunning)
+            .onDisappear { ControlCenter.shared.reloadAllControls() }
         }
     }
 

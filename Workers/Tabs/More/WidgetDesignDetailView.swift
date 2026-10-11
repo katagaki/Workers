@@ -10,9 +10,11 @@ struct WidgetDesignDetailView: View {
                 WorkerWidgetView(snapshot: .sample, design: design)
                     .frame(height: 170)
                     .background(.background, in: RoundedRectangle(cornerRadius: 22))
+                    .clipShape(RoundedRectangle(cornerRadius: 22))
                 WorkerWidgetView(snapshot: .sample, design: design, family: .systemSmall)
                     .frame(width: 170, height: 170)
                     .background(.background, in: RoundedRectangle(cornerRadius: 22))
+                    .clipShape(RoundedRectangle(cornerRadius: 22))
                     .frame(maxWidth: .infinity)
             }
             Section {

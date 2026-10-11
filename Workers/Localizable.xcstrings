@@ -9,6 +9,30 @@
             "state" : "translated",
             "value" : "Change whether Cloudflare is paused for %@? Pausing bypasses Cloudflare protection and caching."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Change whether Cloudflare is paused for %@? Pausing bypasses Cloudflare protection and caching."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Change whether Cloudflare is paused for %@? Pausing bypasses Cloudflare protection and caching."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Change whether Cloudflare is paused for %@? Pausing bypasses Cloudflare protection and caching."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Change whether Cloudflare is paused for %@? Pausing bypasses Cloudflare protection and caching."
+          }
         }
       }
     },
@@ -18,6 +42,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "On"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "On"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "On"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "On"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "On"
           }
         }
@@ -31,6 +79,30 @@
             "state" : "translated",
             "value" : "Off"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Off"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Off"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Off"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Off"
+          }
         }
       }
     },
@@ -40,6 +112,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Pause requires Zone Edit, Under Attack Mode requires Zone Settings Edit, and purging requires Cache Purge."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pause requires Zone Edit, Under Attack Mode requires Zone Settings Edit, and purging requires Cache Purge."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pause requires Zone Edit, Under Attack Mode requires Zone Settings Edit, and purging requires Cache Purge."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pause requires Zone Edit, Under Attack Mode requires Zone Settings Edit, and purging requires Cache Purge."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "Pause requires Zone Edit, Under Attack Mode requires Zone Settings Edit, and purging requires Cache Purge."
           }
         }
