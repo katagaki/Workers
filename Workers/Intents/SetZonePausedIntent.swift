@@ -1,5 +1,6 @@
 import AppIntents
 import CloudflareKit
+import WidgetKit
 
 struct SetZonePausedIntent: AppIntent {
     static let authenticationPolicy: IntentAuthenticationPolicy = .requiresAuthentication
@@ -23,6 +24,7 @@ struct SetZonePausedIntent: AppIntent {
         let dialog: LocalizedStringResource = updated.paused == true
             ? .intentsSetPausedPaused(zone.name)
             : .intentsSetPausedResumed(zone.name)
+        ControlCenter.shared.reloadAllControls()
         return .result(dialog: IntentDialog(dialog))
     }
 }

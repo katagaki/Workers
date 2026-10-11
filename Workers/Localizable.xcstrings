@@ -1,6 +1,149 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Intents.ErrorRate.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get Worker Error Rate"
+          }
+        }
+      }
+    },
+    "Intents.ErrorRate.Result" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ had a %@%% error rate over the past 24 hours."
+          }
+        }
+      }
+    },
+    "Intents.ErrorRate.NoTraffic" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ had no requests over the past 24 hours."
+          }
+        }
+      }
+    },
+    "Intents.PurgeURLs.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purge Cached URLs"
+          }
+        }
+      }
+    },
+    "Intents.PurgeURLs.Parameter" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URLs"
+          }
+        }
+      }
+    },
+    "Intents.PurgeURLs.Confirm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purge %lld cached URLs for %@?"
+          }
+        }
+      }
+    },
+    "Intents.PurgeURLs.Result" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purged %lld URLs for %@."
+          }
+        }
+      }
+    },
+    "Intents.Rollback.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Roll Back Worker"
+          }
+        }
+      }
+    },
+    "Intents.Rollback.Confirm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deploy the previous deployment for %@? This immediately changes live traffic and does not roll back databases or other resources."
+          }
+        }
+      }
+    },
+    "Intents.Rollback.Result" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rolled back %@ to its previous deployment."
+          }
+        }
+      }
+    },
+    "Intents.Error.NoPreviousDeployment" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There is no previous deployment to roll back to."
+          }
+        }
+      }
+    },
+    "Intents.Error.DeploymentChanged" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The active deployment changed. Check the Worker and try again."
+          }
+        }
+      }
+    },
+    "Navigation.OpenFailed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unable to Open Resource"
+          }
+        }
+      }
+    },
     "Widgets.Design" : {
       "extractionState" : "manual",
       "localizations" : {

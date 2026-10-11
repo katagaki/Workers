@@ -1,5 +1,6 @@
 import AppIntents
 import CloudflareKit
+import WidgetKit
 
 struct PurgeZoneCacheIntent: AppIntent {
     // App Intents metadata extraction rejects generated string symbols, so these use literal catalog keys.
@@ -16,6 +17,7 @@ struct PurgeZoneCacheIntent: AppIntent {
             dialog: IntentDialog(.domainsPurgeMessage(zone.name))
         )
         try await IntentContext.client(zone: zone).purgeEverything(zoneId: zone.id)
+        ControlCenter.shared.reloadAllControls()
         return .result(dialog: IntentDialog(.domainsPurgeDoneMessage(zone.name)))
     }
 }

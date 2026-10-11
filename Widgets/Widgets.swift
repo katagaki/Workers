@@ -45,7 +45,7 @@ struct WorkerMetricsWidget: Widget {
     let kind = "WorkerMetrics"
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: WorkerWidgetConfiguration.self, provider: WorkerMetricsProvider()) { entry in
-            WorkerMetricsEntryView(entry: entry).containerBackground(.fill.tertiary, for: .widget)
+            WorkerMetricsEntryView(entry: entry).widgetURL(entry.snapshot?.url).containerBackground(.fill.tertiary, for: .widget)
         }
         .configurationDisplayName(.widgetsConfiguration)
         .description(.widgetsDescription)

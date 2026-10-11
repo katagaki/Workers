@@ -25,6 +25,18 @@ struct WorkersShortcuts: AppShortcutsProvider {
             systemImageName: "pause.fill"
         )
         AppShortcut(
+            intent: GetWorkerErrorRateIntent(),
+            phrases: ["Check worker errors in \(.applicationName)"],
+            shortTitle: "Intents.ErrorRate.Title",
+            systemImageName: "exclamationmark.triangle"
+        )
+        AppShortcut(
+            intent: RollbackWorkerIntent(),
+            phrases: ["Roll back a worker in \(.applicationName)"],
+            shortTitle: "Intents.Rollback.Title",
+            systemImageName: "arrow.uturn.backward"
+        )
+        AppShortcut(
             intent: OpenWorkerIntent(),
             phrases: ["Open a worker in \(.applicationName)"],
             shortTitle: "Intents.OpenWorker.ShortTitle",

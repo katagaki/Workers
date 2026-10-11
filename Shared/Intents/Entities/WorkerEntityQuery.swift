@@ -3,8 +3,11 @@ import CloudflareKit
 
 struct WorkerEntityQuery: EntityStringQuery {
     func entities(for identifiers: [WorkerEntity.ID]) async throws -> [WorkerEntity] {
-        let available = try await suggestedEntities()
-        return available.filter { identifiers.contains($0.id) }
+        let cached = SharedAccountStore.accountIDs.flatMap {
+            SharedAccountStore.value(key: "Workers.\($0)", as: [WorkerEntity].self) ?? []
+        }.filter { identifiers.contains($0.id) }
+        if Set(cached.map(\.id)) == Set(identifiers) { return cached }
+        return try await suggestedEntities().filter { identifiers.contains($0.id) }
     }
 
     func entities(matching string: String) async throws -> [WorkerEntity] {
@@ -13,6 +16,7 @@ struct WorkerEntityQuery: EntityStringQuery {
 
     func suggestedEntities() async throws -> [WorkerEntity] {
         var entities: [WorkerEntity] = []
+        var firstError: Error?
         for accountID in SharedAccountStore.accountIDs {
             let cached = SharedAccountStore.value(key: "Workers.\(accountID)", as: [WorkerEntity].self) ?? []
             do {
@@ -21,10 +25,11 @@ struct WorkerEntityQuery: EntityStringQuery {
                 SharedAccountStore.store(fetched, key: "Workers.\(accountID)")
                 entities += fetched
             } catch {
-                guard !cached.isEmpty else { throw error }
+                if firstError == nil { firstError = error }
                 entities += cached
             }
         }
+        if entities.isEmpty, let firstError { throw firstError }
         return entities.sorted { $0.name < $1.name }
     }
 }

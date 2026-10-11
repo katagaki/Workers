@@ -87,6 +87,7 @@
 			);
 			target = E4EC798E307B22A700D079A7 /* Widgets */;
 		};
+		AA0000000000000000000005 = {isa = PBXFileSystemSynchronizedBuildFileExceptionSet; membershipExceptions = (Info.plist,); target = 45C11901E557F4EEEF8DCA30; };
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -99,6 +100,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				E4EC79AA307B22D000D079A7 /* Exceptions for "Workers" folder in "Widgets" target */,
+				AA0000000000000000000005,
 			);
 			path = Workers;
 			sourceTree = "<group>";
@@ -402,6 +404,7 @@
 				DEVELOPMENT_TEAM = YYM4Z6MU8F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Workers/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Workers;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
@@ -602,6 +605,7 @@
 				DEVELOPMENT_TEAM = YYM4Z6MU8F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Workers/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Workers;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
