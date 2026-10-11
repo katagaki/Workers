@@ -8,16 +8,6 @@ nonisolated enum WorkerWidgetDesign: String, AppEnum, CaseIterable {
         .traffic: "Widgets.Design.Traffic", .reliability: "Widgets.Design.Reliability",
         .trend: "Widgets.Design.Trend", .overview: "Widgets.Design.Overview", .compact: "Widgets.Design.Compact"
     ]
-
-    var title: LocalizedStringResource {
-        switch self {
-        case .traffic: .widgetsDesignTraffic
-        case .reliability: .widgetsDesignReliability
-        case .trend: .widgetsDesignTrend
-        case .overview: .widgetsDesignOverview
-        case .compact: .widgetsDesignCompact
-        }
-    }
 }
 
 struct WorkerWidgetConfiguration: WidgetConfigurationIntent {

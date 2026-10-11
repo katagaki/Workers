@@ -17,12 +17,6 @@ struct AccountView: View {
                     isShowingDemoAlert: $isShowingDemoAccountsAlert
                 )
 
-                Section {
-                    NavigationLink { WidgetDesignGallery() } label: {
-                        SettingsLabel(title: .widgetsGallery, systemImage: "square.grid.2x2", color: .blue)
-                    }.accessibilityIdentifier("WidgetDesignGallery")
-                }
-
                 Section(.moreCloudflare) {
                     Link(destination: URL(string: "https://dash.cloudflare.com")!) {
                         safariLinkLabel(SettingsLabel(title: .moreDashboard, image: .cloudflare, color: .orange))
