@@ -71,6 +71,9 @@ enum DemoRouter {
         query: [URLQueryItem],
         body: [String: Any]?
     ) -> [String: Any]? {
+        if parts.first == "ai" {
+            return DemoAIPlayground.response(method: method, parts: parts, body: body)
+        }
         switch (method, parts) {
         case ("GET", ["workers", "scripts"]):
             return envelope(DemoData.scripts.map(DemoResources.script))

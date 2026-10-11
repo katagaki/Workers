@@ -2,6 +2,27 @@ import XCTest
 
 @MainActor
 final class WorkersAITests: XCTestCase {
+    func testPlaygroundGeneratesDemoResponse() {
+        let app = XCUIApplication()
+        app.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US", "-DemoMode", "YES", "-ScreenshotMode", "YES"]
+        app.launch()
+        let aiTab = app.tabBars.buttons["Workers AI"]
+        XCTAssertTrue(aiTab.waitForExistence(timeout: 15))
+        aiTab.tap()
+        let playground = app.buttons["OpenPlayground"]
+        if !playground.isHittable { app.swipeUp() }
+        XCTAssertTrue(playground.waitForExistence(timeout: 10))
+        playground.tap()
+        let prompt = app.textFields["PlaygroundPrompt"]
+        XCTAssertTrue(prompt.waitForExistence(timeout: 10))
+        prompt.tap()
+        prompt.typeText("Explain Workers")
+        app.buttons["PlaygroundRun"].tap()
+        let response = app.staticTexts["PlaygroundResponse"]
+        XCTAssertTrue(response.waitForExistence(timeout: 15))
+        XCTAssertTrue(response.label.contains("sample response"))
+    }
+
     func testUsageAndModelDetails() {
         let app = XCUIApplication()
         app.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US", "-DemoMode", "YES", "-ScreenshotMode", "YES"]

@@ -47,6 +47,14 @@ struct WorkersAIView: View {
                 } footer: {
                     Text(.workersAIModelsFooter)
                 }
+                Section {
+                    NavigationLink {
+                        AIPlaygroundView(client: resources.client, accountId: resources.accountId)
+                    } label: {
+                        Label(.workersAIPlaygroundTitle, systemImage: "text.bubble")
+                    }
+                    .accessibilityIdentifier("OpenPlayground")
+                }
             }
             .navigationTitle(.tabsWorkersAI)
             .accountToolbar()

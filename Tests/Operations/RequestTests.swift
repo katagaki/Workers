@@ -76,6 +76,27 @@ struct OperationTests {
             _ = try await client.deployWorkerVersions(accountId: "account", scriptName: "script", versions: [.init(versionId: "first", percentage: 100)])
             preconditionFailure("Permission errors must propagate")
         } catch CloudflareError.http(let statusCode) { precondition(statusCode == 403) }
+        fixtures.enqueue(json: #"{"success":true,"result":[{"id":"model","name":"@cf/test/text","task":{"name":"Text Generation"}}]}"#)
+        let models = try await client.aiTextModels(accountId: "account")
+        precondition(models.first?.name == "@cf/test/text")
+        let query = URLComponents(url: fixtures.lastRequest.url!, resolvingAgainstBaseURL: false)!.queryItems!
+        precondition(query.contains { $0.name == "task" && $0.value == "Text Generation" })
+        fixtures.enqueue(json: #"{"success":true,"result":{"input":{"oneOf":[{"properties":{"prompt":{"type":"string"},"stream":{"type":"boolean"}}}]},"output":{}}}"#)
+        let schema = try await client.aiModelSchema(accountId: "account", modelName: "@cf/test/text")
+        precondition(schema.supports("prompt") && schema.supports("stream"))
+        precondition(!schema.supports("messages"))
+        fixtures.enqueue(json: #"{"success":true,"result":{"response":"Generated text"}}"#)
+        let generated = try await client.runAIText(accountId: "account", modelName: "@cf/test/text", input: ["prompt": .string("Hello"), "max_tokens": .number(128)])
+        precondition(generated == "Generated text")
+        precondition(fixtures.lastRequest.url?.path == "/client/v4/accounts/account/ai/run/@cf/test/text")
+        let input = try JSONSerialization.jsonObject(with: fixtures.lastRequest.httpBody!) as! [String: Any]
+        precondition(input["prompt"] as? String == "Hello" && input["max_tokens"] as? Int == 128)
+        fixtures.enqueue(json: "data: {\"response\":\"Hello \"}\n\ndata: {\"response\":\"world\"}\n\ndata: [DONE]\n\n")
+        var streamed = ""
+        for try await chunk in client.streamAIText(accountId: "account", modelName: "@cf/test/text", input: ["prompt": .string("Hello")]) {
+            streamed += chunk
+        }
+        precondition(streamed == "Hello world")
         print("Operation request tests passed")
     }
 }
