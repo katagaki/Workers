@@ -10,6 +10,7 @@
 8. Never use a real Cloudflare API token for testing without asking the user first.
 9. Never use em-dashes anywhere, including code, comments, UI copy, docs, and commit messages.
 10. All user-facing text lives in a Localizable.xcstrings catalog under Pascal.Case.Dot.Notated keys (Workers.Delete.Title). Reference strings through the generated symbols (Text(.workersDeleteTitle)), never through literal copy in code.
+11. NEVER add back the "The template includes" disclaimer or equivalent token-template permission disclaimers. Fix the token template itself so required permissions are prefilled.
 
 # Design
 

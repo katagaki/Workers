@@ -141,41 +141,6 @@
         }
       }
     },
-    "SignIn.FeaturePermissions" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The template includes Workers Scripts Edit for deployment actions, Zone Edit for pause controls, and Zone Settings Edit for Under Attack Mode. Add Account > Workers AI > Read manually for the Playground. Existing tokens need these permissions only for the features you use."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "The template includes Workers Scripts Edit for deployment actions, Zone Edit for pause controls, and Zone Settings Edit for Under Attack Mode. Add Account > Workers AI > Read manually for the Playground. Existing tokens need these permissions only for the features you use."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "The template includes Workers Scripts Edit for deployment actions, Zone Edit for pause controls, and Zone Settings Edit for Under Attack Mode. Add Account > Workers AI > Read manually for the Playground. Existing tokens need these permissions only for the features you use."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "The template includes Workers Scripts Edit for deployment actions, Zone Edit for pause controls, and Zone Settings Edit for Under Attack Mode. Add Account > Workers AI > Read manually for the Playground. Existing tokens need these permissions only for the features you use."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "The template includes Workers Scripts Edit for deployment actions, Zone Edit for pause controls, and Zone Settings Edit for Under Attack Mode. Add Account > Workers AI > Read manually for the Playground. Existing tokens need these permissions only for the features you use."
-          }
-        }
-      }
-    },
     "Intents.ErrorRate.Title" : {
       "extractionState" : "manual",
       "localizations" : {
