@@ -454,6 +454,7 @@
 					"@executable_path/Frameworks",
 				);
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsubuzaki.Workers.CloudflareKit;
 				PRODUCT_NAME = CloudflareKit;
 				SDKROOT = iphoneos;
@@ -482,6 +483,7 @@
 					"@executable_path/Frameworks",
 				);
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsubuzaki.Workers.CloudflareKit;
 				PRODUCT_NAME = CloudflareKit;
 				SDKROOT = iphoneos;
@@ -730,6 +732,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsubuzaki.Workers.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -768,6 +771,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsubuzaki.Workers.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
