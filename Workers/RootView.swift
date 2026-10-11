@@ -3,9 +3,11 @@ import SwiftUI
 
 struct RootView: View {
     @Environment(CloudflareSession.self) private var session
+    @State private var controlNavigator = ControlActionNavigator.shared
     @State private var resourceError: String?
 
     var body: some View {
+        @Bindable var controlNavigator = controlNavigator
         Group {
             if session.isSignedIn {
                 MainTabView()
@@ -16,6 +18,9 @@ struct RootView: View {
             } else {
                 SignInView()
             }
+        }
+        .sheet(item: $controlNavigator.pendingRequest) { request in
+            DomainControlConfirmation(request: request)
         }
         .onOpenURL { url in
             guard let worker = ResourceLinkRouter.worker(from: url) else { return }

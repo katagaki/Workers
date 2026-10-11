@@ -1,6 +1,50 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Controls.Pause.Confirm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change whether Cloudflare is paused for %@? Pausing bypasses Cloudflare protection and caching."
+          }
+        }
+      }
+    },
+    "Controls.On" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "On"
+          }
+        }
+      }
+    },
+    "Controls.Off" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Off"
+          }
+        }
+      }
+    },
+    "Controls.Permissions" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pause requires Zone Edit, Under Attack Mode requires Zone Settings Edit, and purging requires Cache Purge."
+          }
+        }
+      }
+    },
     "SignIn.FeaturePermissions" : {
       "extractionState" : "manual",
       "localizations" : {

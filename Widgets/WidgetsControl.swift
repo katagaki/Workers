@@ -43,7 +43,7 @@ struct ZonePauseControl: ControlWidget {
 struct ZoneAttackControl: ControlWidget {
     var body: some ControlWidgetConfiguration {
         AppIntentControlConfiguration(kind: "ZoneAttack", provider: ZoneAttackProvider()) { value in
-            ControlWidgetToggle(isOn: value.enabled, action: SetZoneUnderAttackIntent(zone: value.zone)) {
+            ControlWidgetToggle(isOn: value.enabled, action: SetZoneUnderAttackControlIntent(zone: value.zone)) {
                 Label(.controlsAttack, systemImage: "shield.lefthalf.filled")
             }
         }.displayName(.controlsAttack)
