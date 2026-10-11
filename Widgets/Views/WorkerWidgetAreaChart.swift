@@ -8,7 +8,7 @@ struct WorkerWidgetAreaChart: View {
         Chart(snapshot.points) { point in
             AreaMark(x: .value("", point.date), y: .value("", point.requests))
                 .interpolationMethod(.monotone)
-                .foregroundStyle(Color.accentColor.opacity(0.2))
+                .foregroundStyle(Color("AccentColor").opacity(0.2))
         }
         .chartXScale(domain: (snapshot.points.first?.date ?? snapshot.date.addingTimeInterval(-86400))...(snapshot.points.last?.date ?? snapshot.date))
         .chartYScale(domain: 0...max(1, snapshot.points.map(\.requests).max() ?? 1))

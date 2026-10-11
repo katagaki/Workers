@@ -6,7 +6,7 @@ struct WorkerWidgetTitleBar: View {
     var body: some View {
         Text(verbatim: name)
             .font(.body)
-            .foregroundStyle(Color.accentColor)
+            .foregroundStyle(Color("AccentColor"))
             .lineLimit(1)
             .minimumScaleFactor(0.75)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -14,7 +14,7 @@ struct WorkerWidgetTitleBar: View {
             .padding(.vertical, 6)
             .background {
                 LinearGradient(
-                    colors: [Color.accentColor.opacity(0.25), Color.accentColor.opacity(0.08)],
+                    colors: [Color("AccentColor").opacity(0.25), Color("AccentColor").opacity(0.08)],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )
