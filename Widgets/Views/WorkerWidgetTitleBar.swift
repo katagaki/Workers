@@ -1,10 +1,18 @@
 import SwiftUI
 
 struct WorkerWidgetTitleBar: View {
-    let name: String
+    let title: Text
+
+    init(name: String) {
+        title = Text(verbatim: name)
+    }
+
+    init(_ title: LocalizedStringResource) {
+        self.title = Text(title)
+    }
 
     var body: some View {
-        Text(verbatim: name)
+        title
             .font(.subheadline.weight(.bold))
             .foregroundStyle(.white)
             .lineLimit(1)
