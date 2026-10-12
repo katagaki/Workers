@@ -9,7 +9,7 @@ struct WorkerWidgetView: View {
     var body: some View {
         switch family {
         case .accessoryInline:
-            Text("\(snapshot.worker.name): \(snapshot.requests.formatted(.number.notation(.compactName)))")
+            Text(.widgetsInlineValue(snapshot.worker.name, snapshot.requests.formatted(.number.notation(.compactName))))
         case .accessoryCircular:
             Gauge(value: snapshot.successRate) {
                 Text(.widgetsSuccess)

@@ -12,26 +12,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Change whether Cloudflare is paused for %@? Pausing bypasses Cloudflare protection and caching."
+            "state" : "translated",
+            "value" : "更改是否为 %@ 暂停 Cloudflare？暂停会绕过 Cloudflare 的保护和缓存。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Change whether Cloudflare is paused for %@? Pausing bypasses Cloudflare protection and caching."
+            "state" : "translated",
+            "value" : "%@의 Cloudflare 일시 중지 여부를 변경할까요? 일시 중지하면 Cloudflare 보호 및 캐시를 우회합니다."
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Change whether Cloudflare is paused for %@? Pausing bypasses Cloudflare protection and caching."
+            "state" : "translated",
+            "value" : "變更是否為 %@ 暫停 Cloudflare？暫停會略過 Cloudflare 的保護和快取。"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Change whether Cloudflare is paused for %@? Pausing bypasses Cloudflare protection and caching."
+            "state" : "translated",
+            "value" : "%@でCloudflareを一時停止するか変更しますか？一時停止するとCloudflareの保護とキャッシュが無効になります。"
           }
         }
       }
@@ -47,26 +47,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "On"
+            "state" : "translated",
+            "value" : "开启"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "On"
+            "state" : "translated",
+            "value" : "켜짐"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "On"
+            "state" : "translated",
+            "value" : "開啟"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "On"
+            "state" : "translated",
+            "value" : "オン"
           }
         }
       }
@@ -82,26 +82,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Off"
+            "state" : "translated",
+            "value" : "关闭"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Off"
+            "state" : "translated",
+            "value" : "꺼짐"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Off"
+            "state" : "translated",
+            "value" : "關閉"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Off"
+            "state" : "translated",
+            "value" : "オフ"
           }
         }
       }
@@ -117,26 +117,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Pause requires Zone Edit, Under Attack Mode requires Zone Settings Edit, and purging requires Cache Purge."
+            "state" : "translated",
+            "value" : "暂停需要 Zone Edit，Under Attack 模式需要 Zone Settings Edit，清除缓存需要 Cache Purge 权限。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Pause requires Zone Edit, Under Attack Mode requires Zone Settings Edit, and purging requires Cache Purge."
+            "state" : "translated",
+            "value" : "일시 중지에는 Zone Edit, Under Attack 모드에는 Zone Settings Edit, 캐시 삭제에는 Cache Purge 권한이 필요합니다."
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Pause requires Zone Edit, Under Attack Mode requires Zone Settings Edit, and purging requires Cache Purge."
+            "state" : "translated",
+            "value" : "暫停需要 Zone Edit，Under Attack 模式需要 Zone Settings Edit，清除快取需要 Cache Purge 權限。"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Pause requires Zone Edit, Under Attack Mode requires Zone Settings Edit, and purging requires Cache Purge."
+            "state" : "translated",
+            "value" : "一時停止にはZone Edit、Under AttackモードにはZone Settings Edit、キャッシュの削除にはCache Purgeが必要です。"
           }
         }
       }
@@ -152,26 +152,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Get Worker Error Rate"
+            "state" : "translated",
+            "value" : "获取 Worker 错误率"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Get Worker Error Rate"
+            "state" : "translated",
+            "value" : "取得 Worker 錯誤率"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Get Worker Error Rate"
+            "state" : "translated",
+            "value" : "Workerのエラー率を取得"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Get Worker Error Rate"
+            "state" : "translated",
+            "value" : "Worker 오류율 가져오기"
           }
         }
       }
@@ -187,26 +187,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%@ had a %@%% error rate over the past 24 hours."
+            "state" : "translated",
+            "value" : "%@ 过去24小时的错误率为 %@%%。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%@ had a %@%% error rate over the past 24 hours."
+            "state" : "translated",
+            "value" : "%@ 過去24小時的錯誤率為 %@%%。"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%@ had a %@%% error rate over the past 24 hours."
+            "state" : "translated",
+            "value" : "%@の過去24時間のエラー率は%@%%でした。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%@ had a %@%% error rate over the past 24 hours."
+            "state" : "translated",
+            "value" : "%@의 지난 24시간 오류율은 %@%%입니다."
           }
         }
       }
@@ -222,26 +222,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%@ had no requests over the past 24 hours."
+            "state" : "translated",
+            "value" : "%@ 在过去24小时内没有请求。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%@ had no requests over the past 24 hours."
+            "state" : "translated",
+            "value" : "%@ 在過去24小時內沒有請求。"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%@ had no requests over the past 24 hours."
+            "state" : "translated",
+            "value" : "%@には過去24時間のリクエストがありませんでした。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%@ had no requests over the past 24 hours."
+            "state" : "translated",
+            "value" : "%@에 지난 24시간 동안 요청이 없었습니다."
           }
         }
       }
@@ -257,26 +257,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Purge Cached URLs"
+            "state" : "translated",
+            "value" : "清除 URL 缓存"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Purge Cached URLs"
+            "state" : "translated",
+            "value" : "清除 URL 快取"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Purge Cached URLs"
+            "state" : "translated",
+            "value" : "URLのキャッシュを削除"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Purge Cached URLs"
+            "state" : "translated",
+            "value" : "URL 캐시 삭제"
           }
         }
       }
@@ -292,26 +292,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "URLs"
+            "state" : "translated",
+            "value" : "URL"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "URLs"
+            "state" : "translated",
+            "value" : "URL"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "URLs"
+            "state" : "translated",
+            "value" : "URL"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "URLs"
+            "state" : "translated",
+            "value" : "URL"
           }
         }
       }
@@ -327,26 +327,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Purge %lld cached URLs for %@?"
+            "state" : "translated",
+            "value" : "为 %2$@ 清除 %1$lld 个 URL 的缓存？"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Purge %lld cached URLs for %@?"
+            "state" : "translated",
+            "value" : "為 %2$@ 清除 %1$lld 個 URL 的快取？"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Purge %lld cached URLs for %@?"
+            "state" : "translated",
+            "value" : "%lld件のURLのキャッシュを%@から削除しますか？"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Purge %lld cached URLs for %@?"
+            "state" : "translated",
+            "value" : "캐시된 URL %lld개를 %@에서 삭제할까요?"
           }
         }
       }
@@ -362,26 +362,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Purged %lld URLs for %@."
+            "state" : "translated",
+            "value" : "已为 %2$@ 清除 %1$lld 个 URL 的缓存。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Purged %lld URLs for %@."
+            "state" : "translated",
+            "value" : "已為 %2$@ 清除 %1$lld 個 URL 的快取。"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Purged %lld URLs for %@."
+            "state" : "translated",
+            "value" : "%lld件のURLのキャッシュを%@から削除しました。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Purged %lld URLs for %@."
+            "state" : "translated",
+            "value" : "URL %lld개의 캐시를 %@에서 삭제했습니다."
           }
         }
       }
@@ -397,26 +397,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Roll Back Worker"
+            "state" : "translated",
+            "value" : "回滚 Worker"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Roll Back Worker"
+            "state" : "translated",
+            "value" : "回復 Worker 部署"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Roll Back Worker"
+            "state" : "translated",
+            "value" : "Workerをロールバック"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Roll Back Worker"
+            "state" : "translated",
+            "value" : "Worker 롤백"
           }
         }
       }
@@ -432,26 +432,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Deploy the previous deployment for %@? This immediately changes live traffic and does not roll back databases or other resources."
+            "state" : "translated",
+            "value" : "为 %@ 应用上一次部署？这会立即更改线上流量，不会回滚数据库或其他资源。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Deploy the previous deployment for %@? This immediately changes live traffic and does not roll back databases or other resources."
+            "state" : "translated",
+            "value" : "為 %@ 套用上一次部署？這會立即變更線上流量，不會還原資料庫或其他資源。"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Deploy the previous deployment for %@? This immediately changes live traffic and does not roll back databases or other resources."
+            "state" : "translated",
+            "value" : "%@の前のデプロイを適用しますか？稼働中のトラフィックはすぐに変更されます。データベースなどのリソースは復元されません。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Deploy the previous deployment for %@? This immediately changes live traffic and does not roll back databases or other resources."
+            "state" : "translated",
+            "value" : "%@의 이전 배포를 적용할까요? 실제 트래픽이 즉시 변경되며 데이터베이스나 다른 리소스는 복원되지 않습니다."
           }
         }
       }
@@ -467,26 +467,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Rolled back %@ to its previous deployment."
+            "state" : "translated",
+            "value" : "已将 %@ 回滚到上一次部署。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Rolled back %@ to its previous deployment."
+            "state" : "translated",
+            "value" : "已將 %@ 還原至上一次部署。"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Rolled back %@ to its previous deployment."
+            "state" : "translated",
+            "value" : "%@を前のデプロイに戻しました。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Rolled back %@ to its previous deployment."
+            "state" : "translated",
+            "value" : "%@을(를) 이전 배포로 롤백했습니다."
           }
         }
       }
@@ -502,26 +502,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "There is no previous deployment to roll back to."
+            "state" : "translated",
+            "value" : "没有可回滚的上一次部署。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "There is no previous deployment to roll back to."
+            "state" : "translated",
+            "value" : "沒有可還原的上一次部署。"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "There is no previous deployment to roll back to."
+            "state" : "translated",
+            "value" : "ロールバックできる前のデプロイがありません。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "There is no previous deployment to roll back to."
+            "state" : "translated",
+            "value" : "롤백할 이전 배포가 없습니다."
           }
         }
       }
@@ -537,26 +537,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "The active deployment changed. Check the Worker and try again."
+            "state" : "translated",
+            "value" : "当前部署已更改。请检查 Worker 后重试。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "The active deployment changed. Check the Worker and try again."
+            "state" : "translated",
+            "value" : "目前的部署已變更。請檢查 Worker 後再試一次。"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "The active deployment changed. Check the Worker and try again."
+            "state" : "translated",
+            "value" : "現在のデプロイが変更されました。Workerを確認してから再試行してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "The active deployment changed. Check the Worker and try again."
+            "state" : "translated",
+            "value" : "현재 배포가 변경되었습니다. Worker를 확인한 후 다시 시도하세요."
           }
         }
       }
@@ -572,61 +572,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Unable to Open Resource"
+            "state" : "translated",
+            "value" : "无法打开资源"
           }
         },
         "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Unable to Open Resource"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Unable to Open Resource"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Unable to Open Resource"
-          }
-        }
-      }
-    },
-    "Widgets.Design" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Design"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Design"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Design"
+            "value" : "無法開啟資源"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Design"
+            "state" : "translated",
+            "value" : "リソースを開けません"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Design"
+            "state" : "translated",
+            "value" : "리소스를 열 수 없음"
           }
         }
       }
@@ -642,26 +607,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Traffic"
+            "state" : "translated",
+            "value" : "流量"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Traffic"
+            "state" : "translated",
+            "value" : "流量"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Traffic"
+            "state" : "translated",
+            "value" : "トラフィック"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Traffic"
+            "state" : "translated",
+            "value" : "트래픽"
           }
         }
       }
@@ -677,26 +642,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Reliability"
+            "state" : "translated",
+            "value" : "可靠性"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Reliability"
+            "state" : "translated",
+            "value" : "可靠性"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Reliability"
+            "state" : "translated",
+            "value" : "信頼性"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Reliability"
+            "state" : "translated",
+            "value" : "안정성"
           }
         }
       }
@@ -712,26 +677,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Trend"
+            "state" : "translated",
+            "value" : "趋势"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Trend"
+            "state" : "translated",
+            "value" : "趨勢"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Trend"
+            "state" : "translated",
+            "value" : "推移"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Trend"
+            "state" : "translated",
+            "value" : "추세"
           }
         }
       }
@@ -747,26 +712,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Overview"
+            "state" : "translated",
+            "value" : "概览"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Overview"
+            "state" : "translated",
+            "value" : "概覽"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Overview"
+            "state" : "translated",
+            "value" : "概要"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Overview"
+            "state" : "translated",
+            "value" : "개요"
           }
         }
       }
@@ -782,26 +747,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Compact"
+            "state" : "translated",
+            "value" : "简洁"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Compact"
+            "state" : "translated",
+            "value" : "精簡"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Compact"
+            "state" : "translated",
+            "value" : "コンパクト"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Compact"
+            "state" : "translated",
+            "value" : "간략히"
           }
         }
       }
@@ -817,26 +782,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Worker Metrics"
+            "state" : "translated",
+            "value" : "Worker 指标"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Worker Metrics"
+            "state" : "translated",
+            "value" : "Worker 指標"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Worker Metrics"
+            "state" : "translated",
+            "value" : "Workerの指標"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Worker Metrics"
+            "state" : "translated",
+            "value" : "Worker 지표"
           }
         }
       }
@@ -852,26 +817,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "No traffic"
+            "state" : "translated",
+            "value" : "无流量"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "No traffic"
+            "state" : "translated",
+            "value" : "無流量"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "No traffic"
+            "state" : "translated",
+            "value" : "トラフィックなし"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "No traffic"
+            "state" : "translated",
+            "value" : "트래픽 없음"
           }
         }
       }
@@ -887,26 +852,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Requests"
+            "state" : "translated",
+            "value" : "请求"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Requests"
+            "state" : "translated",
+            "value" : "請求"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Requests"
+            "state" : "translated",
+            "value" : "リクエスト"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Requests"
+            "state" : "translated",
+            "value" : "요청"
           }
         }
       }
@@ -922,26 +887,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Errors"
+            "state" : "translated",
+            "value" : "错误"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Errors"
+            "state" : "translated",
+            "value" : "錯誤"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Errors"
+            "state" : "translated",
+            "value" : "エラー"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Errors"
+            "state" : "translated",
+            "value" : "오류"
           }
         }
       }
@@ -957,26 +922,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Success"
+            "state" : "translated",
+            "value" : "成功率"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Success"
+            "state" : "translated",
+            "value" : "成功率"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Success"
+            "state" : "translated",
+            "value" : "成功率"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Success"
+            "state" : "translated",
+            "value" : "성공률"
           }
         }
       }
@@ -992,26 +957,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Past 24 hours"
+            "state" : "translated",
+            "value" : "过去24小时"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Past 24 hours"
+            "state" : "translated",
+            "value" : "過去24小時"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Past 24 hours"
+            "state" : "translated",
+            "value" : "過去24時間"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Past 24 hours"
+            "state" : "translated",
+            "value" : "지난 24시간"
           }
         }
       }
@@ -1027,26 +992,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%lld requests"
+            "state" : "translated",
+            "value" : "%lld 次请求"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%lld requests"
+            "state" : "translated",
+            "value" : "%lld 次請求"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%lld requests"
+            "state" : "translated",
+            "value" : "%lld件のリクエスト"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%lld requests"
+            "state" : "translated",
+            "value" : "요청 %lld개"
           }
         }
       }
@@ -1062,26 +1027,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%lld errors"
+            "state" : "translated",
+            "value" : "%lld 次错误"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%lld errors"
+            "state" : "translated",
+            "value" : "%lld 次錯誤"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%lld errors"
+            "state" : "translated",
+            "value" : "%lld件のエラー"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%lld errors"
+            "state" : "translated",
+            "value" : "오류 %lld개"
           }
         }
       }
@@ -1097,26 +1062,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Requests and reliability for your Worker."
+            "state" : "translated",
+            "value" : "查看 Worker 的请求和可靠性。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Requests and reliability for your Worker."
+            "state" : "translated",
+            "value" : "查看 Worker 的請求和可靠性。"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Requests and reliability for your Worker."
+            "state" : "translated",
+            "value" : "Workerのリクエストと信頼性を確認します。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Requests and reliability for your Worker."
+            "state" : "translated",
+            "value" : "Worker의 요청 및 안정성을 확인하세요."
           }
         }
       }
@@ -1132,26 +1097,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Choose a Worker"
+            "state" : "translated",
+            "value" : "选择 Worker"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Choose a Worker"
+            "state" : "translated",
+            "value" : "選擇 Worker"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Choose a Worker"
+            "state" : "translated",
+            "value" : "Workerを選択"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Choose a Worker"
+            "state" : "translated",
+            "value" : "Worker 선택"
           }
         }
       }
@@ -1167,26 +1132,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Open Workers to sign in or choose another Worker."
+            "state" : "translated",
+            "value" : "打开 Workers 登录，或选择其他 Worker。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Open Workers to sign in or choose another Worker."
+            "state" : "translated",
+            "value" : "開啟 Workers 登入，或選擇其他 Worker。"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Open Workers to sign in or choose another Worker."
+            "state" : "translated",
+            "value" : "Workersを開いてサインインするか、別のWorkerを選択してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Open Workers to sign in or choose another Worker."
+            "state" : "translated",
+            "value" : "Workers를 열어 로그인하거나 다른 Worker를 선택하세요."
           }
         }
       }
@@ -1202,26 +1167,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Cached data"
+            "state" : "translated",
+            "value" : "缓存数据"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Cached data"
+            "state" : "translated",
+            "value" : "快取資料"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Cached data"
+            "state" : "translated",
+            "value" : "キャッシュデータ"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Cached data"
+            "state" : "translated",
+            "value" : "캐시된 데이터"
           }
         }
       }
@@ -1237,26 +1202,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Domain control"
+            "state" : "translated",
+            "value" : "域名控制"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Domain control"
+            "state" : "translated",
+            "value" : "網域控制"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Domain control"
+            "state" : "translated",
+            "value" : "ドメインの操作"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Domain control"
+            "state" : "translated",
+            "value" : "도메인 제어"
           }
         }
       }
@@ -1272,26 +1237,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Pause Domain"
+            "state" : "translated",
+            "value" : "暂停域名"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Pause Domain"
+            "state" : "translated",
+            "value" : "暫停網域"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Pause Domain"
+            "state" : "translated",
+            "value" : "ドメインを一時停止"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Pause Domain"
+            "state" : "translated",
+            "value" : "도메인 일시 중지"
           }
         }
       }
@@ -1307,26 +1272,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Under Attack Mode"
+            "state" : "translated",
+            "value" : "Under Attack 模式"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Under Attack Mode"
+            "state" : "translated",
+            "value" : "Under Attack 模式"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Under Attack Mode"
+            "state" : "translated",
+            "value" : "Under Attackモード"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Under Attack Mode"
+            "state" : "translated",
+            "value" : "Under Attack 모드"
           }
         }
       }
@@ -1342,26 +1307,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Purge Domain Cache"
+            "state" : "translated",
+            "value" : "清除域名缓存"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Purge Domain Cache"
+            "state" : "translated",
+            "value" : "清除網域快取"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Purge Domain Cache"
+            "state" : "translated",
+            "value" : "ドメインのキャッシュを削除"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Purge Domain Cache"
+            "state" : "translated",
+            "value" : "도메인 캐시 삭제"
           }
         }
       }
@@ -1377,26 +1342,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Change Under Attack Mode for %@? Visitors may receive a security challenge."
+            "state" : "translated",
+            "value" : "更改 %@ 的 Under Attack 模式？访客可能需要完成安全验证。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Change Under Attack Mode for %@? Visitors may receive a security challenge."
+            "state" : "translated",
+            "value" : "變更 %@ 的 Under Attack 模式？訪客可能需要完成安全驗證。"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Change Under Attack Mode for %@? Visitors may receive a security challenge."
+            "state" : "translated",
+            "value" : "%@のUnder Attackモードを変更しますか？訪問者にセキュリティチャレンジが表示される場合があります。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Change Under Attack Mode for %@? Visitors may receive a security challenge."
+            "state" : "translated",
+            "value" : "%@의 Under Attack 모드를 변경할까요? 방문자에게 보안 챌린지가 표시될 수 있습니다."
           }
         }
       }
@@ -1412,26 +1377,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Updated Under Attack Mode for %@."
+            "state" : "translated",
+            "value" : "已更新 %@ 的 Under Attack 模式。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Updated Under Attack Mode for %@."
+            "state" : "translated",
+            "value" : "已更新 %@ 的 Under Attack 模式。"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Updated Under Attack Mode for %@."
+            "state" : "translated",
+            "value" : "%@のUnder Attackモードを更新しました。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Updated Under Attack Mode for %@."
+            "state" : "translated",
+            "value" : "%@의 Under Attack 모드를 업데이트했습니다."
           }
         }
       }
@@ -1447,26 +1412,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Set Under Attack Mode"
+            "state" : "translated",
+            "value" : "设置 Under Attack 模式"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Set Under Attack Mode"
+            "state" : "translated",
+            "value" : "設定 Under Attack 模式"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Set Under Attack Mode"
+            "state" : "translated",
+            "value" : "Under Attackモードを設定"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Set Under Attack Mode"
+            "state" : "translated",
+            "value" : "Under Attack 모드 설정"
           }
         }
       }
@@ -1482,26 +1447,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Enabled"
+            "state" : "translated",
+            "value" : "已启用"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Enabled"
+            "state" : "translated",
+            "value" : "已啟用"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Enabled"
+            "state" : "translated",
+            "value" : "有効"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Enabled"
+            "state" : "translated",
+            "value" : "활성화됨"
           }
         }
       }
@@ -1517,26 +1482,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Playground"
+            "state" : "translated",
+            "value" : "试验场"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Playground"
+            "state" : "translated",
+            "value" : "試驗場"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Playground"
+            "state" : "translated",
+            "value" : "プレイグラウンド"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Playground"
+            "state" : "translated",
+            "value" : "플레이그라운드"
           }
         }
       }
@@ -1552,26 +1517,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Model"
+            "state" : "translated",
+            "value" : "模型"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Model"
+            "state" : "translated",
+            "value" : "模型"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Model"
+            "state" : "translated",
+            "value" : "モデル"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Model"
+            "state" : "translated",
+            "value" : "모델"
           }
         }
       }
@@ -1587,26 +1552,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Prompt"
+            "state" : "translated",
+            "value" : "提示词"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Prompt"
+            "state" : "translated",
+            "value" : "提示詞"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Prompt"
+            "state" : "translated",
+            "value" : "プロンプト"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Prompt"
+            "state" : "translated",
+            "value" : "프롬프트"
           }
         }
       }
@@ -1622,26 +1587,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Ask a question or describe something to generate"
+            "state" : "translated",
+            "value" : "输入问题或描述要生成的内容"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Ask a question or describe something to generate"
+            "state" : "translated",
+            "value" : "輸入問題或描述要生成的內容"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Ask a question or describe something to generate"
+            "state" : "translated",
+            "value" : "質問や生成したい内容を入力"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Ask a question or describe something to generate"
+            "state" : "translated",
+            "value" : "질문이나 생성할 내용을 입력하세요"
           }
         }
       }
@@ -1657,26 +1622,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "No text generation models are available."
+            "state" : "translated",
+            "value" : "没有可用的文本生成模型。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "No text generation models are available."
+            "state" : "translated",
+            "value" : "沒有可用的文字生成模型。"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "No text generation models are available."
+            "state" : "translated",
+            "value" : "利用できるテキスト生成モデルがありません。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "No text generation models are available."
+            "state" : "translated",
+            "value" : "사용 가능한 텍스트 생성 모델이 없습니다."
           }
         }
       }
@@ -1692,26 +1657,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Requires Workers AI Read. If access is denied, update the permissions on your API token."
+            "state" : "translated",
+            "value" : "需要 Workers AI Read 权限。如果访问被拒绝，请更新 API 令牌权限。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Requires Workers AI Read. If access is denied, update the permissions on your API token."
+            "state" : "translated",
+            "value" : "需要 Workers AI Read 權限。如果存取遭拒，請更新 API 權杖權限。"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Requires Workers AI Read. If access is denied, update the permissions on your API token."
+            "state" : "translated",
+            "value" : "Workers AI Read権限が必要です。アクセスが拒否された場合は、APIトークンの権限を更新してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Requires Workers AI Read. If access is denied, update the permissions on your API token."
+            "state" : "translated",
+            "value" : "Workers AI Read 권한이 필요합니다. 접근이 거부되면 API 토큰의 권한을 업데이트하세요."
           }
         }
       }
@@ -1727,26 +1692,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Options"
+            "state" : "translated",
+            "value" : "选项"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Options"
+            "state" : "translated",
+            "value" : "選項"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Options"
+            "state" : "translated",
+            "value" : "オプション"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Options"
+            "state" : "translated",
+            "value" : "옵션"
           }
         }
       }
@@ -1762,26 +1727,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Temperature"
+            "state" : "translated",
+            "value" : "温度"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Temperature"
+            "state" : "translated",
+            "value" : "溫度"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Temperature"
+            "state" : "translated",
+            "value" : "温度"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Temperature"
+            "state" : "translated",
+            "value" : "온도"
           }
         }
       }
@@ -1797,26 +1762,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Maximum Output Tokens"
+            "state" : "translated",
+            "value" : "最大输出令牌数"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Maximum Output Tokens"
+            "state" : "translated",
+            "value" : "最大輸出權杖數"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Maximum Output Tokens"
+            "state" : "translated",
+            "value" : "最大出力トークン数"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Maximum Output Tokens"
+            "state" : "translated",
+            "value" : "최대 출력 토큰 수"
           }
         }
       }
@@ -1832,26 +1797,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Stream Response"
+            "state" : "translated",
+            "value" : "流式响应"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Stream Response"
+            "state" : "translated",
+            "value" : "串流回應"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Stream Response"
+            "state" : "translated",
+            "value" : "応答をストリーミング"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Stream Response"
+            "state" : "translated",
+            "value" : "응답 스트리밍"
           }
         }
       }
@@ -1867,26 +1832,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Generate"
+            "state" : "translated",
+            "value" : "生成"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Generate"
+            "state" : "translated",
+            "value" : "生成"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Generate"
+            "state" : "translated",
+            "value" : "生成"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Generate"
+            "state" : "translated",
+            "value" : "생성"
           }
         }
       }
@@ -1902,26 +1867,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Stop"
+            "state" : "translated",
+            "value" : "停止"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Stop"
+            "state" : "translated",
+            "value" : "停止"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Stop"
+            "state" : "translated",
+            "value" : "停止"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Stop"
+            "state" : "translated",
+            "value" : "중지"
           }
         }
       }
@@ -1937,26 +1902,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Response"
+            "state" : "translated",
+            "value" : "响应"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Response"
+            "state" : "translated",
+            "value" : "回應"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Response"
+            "state" : "translated",
+            "value" : "応答"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Response"
+            "state" : "translated",
+            "value" : "응답"
           }
         }
       }
@@ -1972,26 +1937,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "This model does not support the text inputs available in this playground."
+            "state" : "translated",
+            "value" : "此模型不支持此试验场提供的文本输入。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "This model does not support the text inputs available in this playground."
+            "state" : "translated",
+            "value" : "此模型不支援此試驗場提供的文字輸入。"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "This model does not support the text inputs available in this playground."
+            "state" : "translated",
+            "value" : "このモデルは、このプレイグラウンドで利用できるテキスト入力に対応していません。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "This model does not support the text inputs available in this playground."
+            "state" : "translated",
+            "value" : "이 모델은 이 플레이그라운드에서 제공하는 텍스트 입력을 지원하지 않습니다."
           }
         }
       }
@@ -2007,26 +1972,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Prompts are sent to Cloudflare. Generation uses the selected account’s Workers AI quota and may incur charges."
+            "state" : "translated",
+            "value" : "提示词会发送至 Cloudflare。生成会使用所选账户的 Workers AI 配额，并可能产生费用。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Prompts are sent to Cloudflare. Generation uses the selected account’s Workers AI quota and may incur charges."
+            "state" : "translated",
+            "value" : "提示詞會傳送至 Cloudflare。生成會使用所選帳戶的 Workers AI 配額，並可能產生費用。"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Prompts are sent to Cloudflare. Generation uses the selected account’s Workers AI quota and may incur charges."
+            "state" : "translated",
+            "value" : "プロンプトはCloudflareに送信されます。生成には選択したアカウントのWorkers AI割り当てが使用され、料金が発生する場合があります。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Prompts are sent to Cloudflare. Generation uses the selected account’s Workers AI quota and may incur charges."
+            "state" : "translated",
+            "value" : "프롬프트는 Cloudflare로 전송됩니다. 생성 시 선택한 계정의 Workers AI 할당량을 사용하며 요금이 발생할 수 있습니다."
           }
         }
       }
@@ -2042,26 +2007,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Demo responses use sample data and do not consume Workers AI quota."
+            "state" : "translated",
+            "value" : "演示响应使用示例数据，不消耗 Workers AI 配额。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Demo responses use sample data and do not consume Workers AI quota."
+            "state" : "translated",
+            "value" : "示範回應使用範例資料，不消耗 Workers AI 配額。"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Demo responses use sample data and do not consume Workers AI quota."
+            "state" : "translated",
+            "value" : "デモの応答はサンプルデータを使用し、Workers AIの割り当てを消費しません。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Demo responses use sample data and do not consume Workers AI quota."
+            "state" : "translated",
+            "value" : "데모 응답은 샘플 데이터를 사용하며 Workers AI 할당량을 소비하지 않습니다."
           }
         }
       }
@@ -2077,26 +2042,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Roll Back to This Deployment"
+            "state" : "translated",
+            "value" : "回滚到此部署"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Roll Back to This Deployment"
+            "state" : "translated",
+            "value" : "還原至此部署"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Roll Back to This Deployment"
+            "state" : "translated",
+            "value" : "このデプロイに戻す"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Roll Back to This Deployment"
+            "state" : "translated",
+            "value" : "이 배포로 롤백"
           }
         }
       }
@@ -2112,26 +2077,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Deploy This Version"
+            "state" : "translated",
+            "value" : "部署此版本"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Deploy This Version"
+            "state" : "translated",
+            "value" : "部署此版本"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Deploy This Version"
+            "state" : "translated",
+            "value" : "このバージョンをデプロイ"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Deploy This Version"
+            "state" : "translated",
+            "value" : "이 버전 배포"
           }
         }
       }
@@ -2147,26 +2112,26 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "This immediately replaces the active deployment and changes traffic across its routes and domains. Database contents are not restored. Cloudflare may block incompatible versions or changed secrets."
+            "state" : "translated",
+            "value" : "这会立即替换当前部署，并更改其路由和域名的流量。数据库内容不会恢复。Cloudflare 可能会阻止不兼容的版本或密钥变更。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "This immediately replaces the active deployment and changes traffic across its routes and domains. Database contents are not restored. Cloudflare may block incompatible versions or changed secrets."
+            "state" : "translated",
+            "value" : "這會立即取代目前的部署，並變更其路由和網域的流量。資料庫內容不會還原。Cloudflare 可能會阻止不相容的版本或密鑰變更。"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "This immediately replaces the active deployment and changes traffic across its routes and domains. Database contents are not restored. Cloudflare may block incompatible versions or changed secrets."
+            "state" : "translated",
+            "value" : "現在のデプロイがすぐに置き換えられ、ルートとドメインのトラフィックが変更されます。データベースの内容は復元されません。互換性のないバージョンやシークレットの変更により、Cloudflareがデプロイを拒否する場合があります。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "This immediately replaces the active deployment and changes traffic across its routes and domains. Database contents are not restored. Cloudflare may block incompatible versions or changed secrets."
+            "state" : "translated",
+            "value" : "현재 배포가 즉시 교체되고 경로 및 도메인의 트래픽이 변경됩니다. 데이터베이스 내용은 복원되지 않습니다. 호환되지 않는 버전이나 변경된 시크릿으로 인해 Cloudflare가 배포를 차단할 수 있습니다."
           }
         }
       }
@@ -2182,621 +2147,621 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Requires Workers Scripts Edit or the Workers Editor role. Existing read-only tokens need updated permissions."
+            "state" : "translated",
+            "value" : "需要 Workers Scripts Edit 权限或 Workers Editor 角色。现有只读令牌需要更新权限。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Requires Workers Scripts Edit or the Workers Editor role. Existing read-only tokens need updated permissions."
+            "state" : "translated",
+            "value" : "需要 Workers Scripts Edit 權限或 Workers Editor 角色。現有唯讀權杖需要更新權限。"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Requires Workers Scripts Edit or the Workers Editor role. Existing read-only tokens need updated permissions."
+            "state" : "translated",
+            "value" : "Workers Scripts Edit権限またはWorkers Editorロールが必要です。既存の読み取り専用トークンは権限を更新する必要があります。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Requires Workers Scripts Edit or the Workers Editor role. Existing read-only tokens need updated permissions."
+            "state" : "translated",
+            "value" : "Workers Scripts Edit 권한 또는 Workers Editor 역할이 필요합니다. 기존 읽기 전용 토큰의 권한을 업데이트해야 합니다."
           }
         }
       }
     },
     "Accounts.DemoSwitchUnavailable.Message" : {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Switching accounts isn't available in demo mode. Exit demo mode and sign in with an API token to switch accounts."
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Switching accounts isn't available in demo mode. Exit demo mode and sign in with an API token to switch accounts."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "デモモードではアカウントを切り替えられません。アカウントを切り替えるには、デモモードを終了して API トークンでサインインしてください。"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "デモモードではアカウントを切り替えられません。アカウントを切り替えるには、デモモードを終了して API トークンでサインインしてください。"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "데모 모드에서는 계정을 전환할 수 없습니다. 계정을 전환하려면 데모 모드를 종료하고 API 토큰으로 로그인하세요."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "데모 모드에서는 계정을 전환할 수 없습니다. 계정을 전환하려면 데모 모드를 종료하고 API 토큰으로 로그인하세요."
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "演示模式下无法切换账户。请退出演示模式并使用 API 令牌登录以切换账户。"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "演示模式下无法切换账户。请退出演示模式并使用 API 令牌登录以切换账户。"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "展示模式下無法切換帳號。請結束展示模式並使用 API 權杖登入以切換帳號。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "展示模式下無法切換帳號。請結束展示模式並使用 API 權杖登入以切換帳號。"
           }
         }
       }
     },
     "Accounts.Profile" : {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Profile"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "プロフィール"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "プロフィール"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "프로필"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "프로필"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "个人资料"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "个人资料"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "個人資料"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "個人資料"
           }
         }
       }
     },
-    "WorkersAI.Models.Requests": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@ requests"
+    "WorkersAI.Models.Requests" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ requests"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@ リクエスト"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ リクエスト"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "요청 %1$@개"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "요청 %1$@개"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@ 次请求"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ 次请求"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@ 次請求"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ 次請求"
           }
         }
       }
     },
-    "WorkersAI.Usage.Today": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Neurons Today"
+    "WorkersAI.Usage.Today" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neurons Today"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "今日のニューロン使用量"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日のニューロン使用量"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "오늘의 뉴런 사용량"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오늘의 뉴런 사용량"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "今日神经元用量"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日神经元用量"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "今日神經元用量"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日神經元用量"
           }
         }
       }
     },
-    "Tabs.WorkersAI": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Workers AI"
+    "Tabs.WorkersAI" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Workers AI"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Workers AI"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Workers AI"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Workers AI"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Workers AI"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Workers AI"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Workers AI"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Workers AI"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Workers AI"
           }
         }
       }
     },
-    "WorkersAI.Models.Title": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Models"
+    "WorkersAI.Models.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Models"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "モデル"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "モデル"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "모델"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모델"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "模型"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "模型"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "模型"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "模型"
           }
         }
       }
     },
-    "WorkersAI.Models.Empty": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No models used in this period."
+    "WorkersAI.Models.Empty" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No models used in this period."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "この期間に使用されたモデルはありません。"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この期間に使用されたモデルはありません。"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "이 기간에 사용된 모델이 없습니다."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 기간에 사용된 모델이 없습니다."
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "此期间未使用任何模型。"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此期间未使用任何模型。"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "此期間未使用任何模型。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此期間未使用任何模型。"
           }
         }
       }
     },
-    "WorkersAI.Models.Footer": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Models with recorded Workers AI requests in the selected period. Counts include account activity from Workers, Pages, and the REST API."
+    "WorkersAI.Models.Footer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Models with recorded Workers AI requests in the selected period. Counts include account activity from Workers, Pages, and the REST API."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "選択期間に Workers AI リクエストが記録されたモデルです。Workers、Pages、REST API によるアカウントの使用を含みます。"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択期間に Workers AI リクエストが記録されたモデルです。Workers、Pages、REST API によるアカウントの使用を含みます。"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "선택한 기간에 Workers AI 요청이 기록된 모델입니다. Workers, Pages 및 REST API의 계정 사용량을 포함합니다."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "선택한 기간에 Workers AI 요청이 기록된 모델입니다. Workers, Pages 및 REST API의 계정 사용량을 포함합니다."
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "所选期间内有 Workers AI 请求记录的模型。包括账户中 Workers、Pages 和 REST API 的使用量。"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "所选期间内有 Workers AI 请求记录的模型。包括账户中 Workers、Pages 和 REST API 的使用量。"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "所選期間內有 Workers AI 請求記錄的模型。包含帳戶中 Workers、Pages 和 REST API 的用量。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "所選期間內有 Workers AI 請求記錄的模型。包含帳戶中 Workers、Pages 和 REST API 的用量。"
           }
         }
       }
     },
-    "WorkersAI.Usage.Title": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Neurons Usage"
+    "WorkersAI.Usage.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neurons Usage"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ニューロン使用量"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ニューロン使用量"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "뉴런 사용량"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "뉴런 사용량"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "神经元用量"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "神经元用量"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "神經元用量"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "神經元用量"
           }
         }
       }
     },
-    "WorkersAI.Usage.Used": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@ neurons used"
+    "WorkersAI.Usage.Used" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ neurons used"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@ ニューロン使用済み"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ ニューロン使用済み"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "뉴런 %1$@개 사용"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "뉴런 %1$@개 사용"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "已使用 %1$@ 个神经元"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已使用 %1$@ 个神经元"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "已使用 %1$@ 個神經元"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已使用 %1$@ 個神經元"
           }
         }
       }
     },
-    "WorkersAI.Usage.Remaining": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@ of 10,000 included neurons remaining"
+    "WorkersAI.Usage.Remaining" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ of 10,000 included neurons remaining"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "無料枠 10,000 ニューロンのうち残り %1$@"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無料枠 10,000 ニューロンのうち残り %1$@"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "기본 제공 뉴런 10,000개 중 %1$@개 남음"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기본 제공 뉴런 10,000개 중 %1$@개 남음"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "每日包含的 10,000 个神经元中剩余 %1$@ 个"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "每日包含的 10,000 个神经元中剩余 %1$@ 个"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "每日包含的 10,000 個神經元中剩餘 %1$@ 個"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "每日包含的 10,000 個神經元中剩餘 %1$@ 個"
           }
         }
       }
     },
-    "WorkersAI.Usage.Free.Footer": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Includes 10,000 neurons per day. Resets at midnight UTC. Upgrade to Workers Paid to use more."
+    "WorkersAI.Usage.Free.Footer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Includes 10,000 neurons per day. Resets at midnight UTC. Upgrade to Workers Paid to use more."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "1 日 10,000 ニューロンまで無料。UTC の午前 0 時にリセットされます。追加の使用には Workers Paid が必要です。"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 日 10,000 ニューロンまで無料。UTC の午前 0 時にリセットされます。追加の使用には Workers Paid が必要です。"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "하루에 뉴런 10,000개가 기본 제공됩니다. UTC 자정에 초기화됩니다. 추가 사용은 Workers Paid로 업그레이드하세요."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "하루에 뉴런 10,000개가 기본 제공됩니다. UTC 자정에 초기화됩니다. 추가 사용은 Workers Paid로 업그레이드하세요."
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "每天包含 10,000 个神经元，UTC 午夜重置。升级到 Workers Paid 可使用更多。"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "每天包含 10,000 个神经元，UTC 午夜重置。升级到 Workers Paid 可使用更多。"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "每天包含 10,000 個神經元，UTC 午夜重設。升級至 Workers Paid 可使用更多。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "每天包含 10,000 個神經元，UTC 午夜重設。升級至 Workers Paid 可使用更多。"
           }
         }
       }
     },
-    "WorkersAI.Usage.Paid.Footer": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Includes 10,000 neurons per day. Additional usage is billed. Resets at midnight UTC."
+    "WorkersAI.Usage.Paid.Footer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Includes 10,000 neurons per day. Additional usage is billed. Resets at midnight UTC."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "1 日 10,000 ニューロンまで無料。超過分は課金されます。UTC の午前 0 時にリセットされます。"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 日 10,000 ニューロンまで無料。超過分は課金されます。UTC の午前 0 時にリセットされます。"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "하루에 뉴런 10,000개가 기본 제공됩니다. 추가 사용량은 과금됩니다. UTC 자정에 초기화됩니다."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "하루에 뉴런 10,000개가 기본 제공됩니다. 추가 사용량은 과금됩니다. UTC 자정에 초기화됩니다."
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "每天包含 10,000 个神经元，超额用量将计费。UTC 午夜重置。"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "每天包含 10,000 个神经元，超额用量将计费。UTC 午夜重置。"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "每天包含 10,000 個神經元，超額用量將計費。UTC 午夜重設。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "每天包含 10,000 個神經元，超額用量將計費。UTC 午夜重設。"
           }
         }
       }
     },
-    "WorkersAI.Average.Inference": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Avg. Inference"
+    "WorkersAI.Average.Inference" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avg. Inference"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "平均推論時間"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "平均推論時間"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "평균 추론 시간"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "평균 추론 시간"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "平均推理时间"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "平均推理时间"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "平均推理時間"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "平均推理時間"
           }
         }
       }
     },
-    "WorkersAI.Input.Tokens": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Input Tokens"
+    "WorkersAI.Input.Tokens" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Input Tokens"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "入力トークン"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "入力トークン"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "입력 토큰"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "입력 토큰"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "输入令牌"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "输入令牌"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "輸入權杖"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輸入權杖"
           }
         }
       }
     },
-    "WorkersAI.Output.Tokens": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Output Tokens"
+    "WorkersAI.Output.Tokens" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Output Tokens"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "出力トークン"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "出力トークン"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "출력 토큰"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "출력 토큰"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "输出令牌"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "输出令牌"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "輸出權杖"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輸出權杖"
           }
         }
       }
     },
     "Workers.Usage.Title" : {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Plan and Usage"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plan and Usage"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "プランと使用量"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "プランと使用量"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "요금제 및 사용량"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "요금제 및 사용량"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "套餐和用量"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "套餐和用量"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "方案與用量"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "方案與用量"
           }
         }
       }
@@ -2850,6 +2815,24 @@
             "state" : "translated",
             "value" : "ブロック"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "차단"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "阻止"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "封鎖"
+          }
         }
       }
     },
@@ -2866,6 +2849,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "インタラクティブチャレンジ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "대화형 챌린지"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "交互式验证"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "互動式驗證"
           }
         }
       }
@@ -2884,6 +2885,24 @@
             "state" : "translated",
             "value" : "JavaScript チャレンジ"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "JavaScript 챌린지"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "JavaScript 验证"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "JavaScript 驗證"
+          }
         }
       }
     },
@@ -2900,6 +2919,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ログ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "로그"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "记录"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "記錄"
           }
         }
       }
@@ -2918,6 +2955,24 @@
             "state" : "translated",
             "value" : "マネージドチャレンジ"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "관리형 챌린지"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "托管验证"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "受管驗證"
+          }
         }
       }
     },
@@ -2934,6 +2989,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "スキップ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "건너뛰기"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "跳过"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "略過"
           }
         }
       }
@@ -2952,6 +3025,24 @@
             "state" : "translated",
             "value" : "アクション"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "동작"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "操作"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "動作"
+          }
         }
       }
     },
@@ -2968,6 +3059,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ルールを追加"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "규칙 추가"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "添加规则"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新增規則"
           }
         }
       }
@@ -2986,6 +3095,24 @@
             "state" : "translated",
             "value" : "このルールには高度なアクション設定があります。保存時に設定は保持されます。アクションやその設定は Cloudflare ダッシュボードで変更してください。"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 규칙에는 고급 동작 설정이 있습니다. 저장할 때 유지됩니다. Cloudflare 대시보드에서 동작이나 설정을 변경하세요."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此规则包含高级操作设置，保存时会保留这些设置。请在 Cloudflare 控制台中更改操作或其设置。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此規則包含進階動作設定，儲存時會保留這些設定。請在 Cloudflare 儀表板中變更動作或其設定。"
+          }
         }
       }
     },
@@ -3002,6 +3129,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "カスタムルール"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용자 지정 규칙"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自定义规则"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自訂規則"
           }
         }
       }
@@ -3020,6 +3165,24 @@
             "state" : "translated",
             "value" : "「%@」を削除しますか？このルールによるリクエストのチェックが行われなくなります。"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@”을(를) 삭제할까요? 이 규칙으로 요청을 더 이상 검사하지 않습니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "删除“%@”？请求将不再由此规则检查。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除「%@」？請求將不再由此規則檢查。"
+          }
         }
       }
     },
@@ -3036,6 +3199,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ルールを削除"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "규칙 삭제"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "删除规则"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除規則"
           }
         }
       }
@@ -3054,6 +3235,24 @@
             "state" : "translated",
             "value" : "説明（任意）"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설명 (선택 사항)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "描述（可选）"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "描述（選填）"
+          }
         }
       }
     },
@@ -3070,6 +3269,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無効"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "비활성화됨"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已禁用"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已停用"
           }
         }
       }
@@ -3088,6 +3305,24 @@
             "state" : "translated",
             "value" : "ルールを編集"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "규칙 편집"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "编辑规则"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯規則"
+          }
         }
       }
     },
@@ -3104,6 +3339,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "カスタムルールを作成して、一致するリクエストをブロックしたりチャレンジを実行できます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "일치하는 요청을 차단하거나 챌린지를 적용할 사용자 지정 규칙을 만드세요."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "创建自定义规则以阻止或验证匹配的请求。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "建立自訂規則以封鎖或驗證符合條件的請求。"
           }
         }
       }
@@ -3122,6 +3375,24 @@
             "state" : "translated",
             "value" : "セキュリティルールがありません"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보안 규칙 없음"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "没有安全规则"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "沒有安全規則"
+          }
         }
       }
     },
@@ -3138,6 +3409,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@を有効にする"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ 활성화"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "启用 %@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "啟用 %@"
           }
         }
       }
@@ -3156,6 +3445,24 @@
             "state" : "translated",
             "value" : "有効"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "활성화됨"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已启用"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已啟用"
+          }
         }
       }
     },
@@ -3172,6 +3479,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cloudflare の式を入力"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cloudflare 표현식 입력"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "输入 Cloudflare 表达式"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輸入 Cloudflare 運算式"
           }
         }
       }
@@ -3190,6 +3515,24 @@
             "state" : "translated",
             "value" : "Cloudflare のルール式を入力してください。一致するリクエストに選択したアクションが適用されます。"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cloudflare 규칙 표현식을 입력하세요. 일치하는 요청에 선택한 동작이 적용됩니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "输入 Cloudflare 规则表达式。匹配的请求将执行所选操作。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輸入 Cloudflare 規則運算式。符合條件的請求將執行所選動作。"
+          }
         }
       }
     },
@@ -3206,6 +3549,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "API トークンを管理"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "API 토큰 관리"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "管理 API 令牌"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "管理 API 權杖"
           }
         }
       }
@@ -3224,6 +3585,24 @@
             "state" : "translated",
             "value" : "リクエストの一致条件"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "요청이 일치하는 경우"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "当请求匹配时"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "當請求符合條件時"
+          }
         }
       }
     },
@@ -3240,6 +3619,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ルールはこの順序で実行されます。タップで編集し、「編集」で順序を変更できます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "규칙은 이 순서대로 실행됩니다. 규칙을 탭하여 편집하세요. 편집 버튼으로 순서를 변경할 수 있습니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "规则按此顺序执行。轻点规则进行编辑，使用“编辑”更改顺序。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "規則按此順序執行。點一下規則進行編輯，使用「編輯」變更順序。"
           }
         }
       }
@@ -3258,6 +3655,24 @@
             "state" : "translated",
             "value" : "このドメインのセキュリティルールを管理するには、API トークンに Zone > Zone WAF > Edit の権限を追加してください。"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보안 규칙을 관리하려면 이 도메인의 API 토큰에 Zone > Zone WAF > Edit 권한을 추가하세요."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要管理安全规则，请为此域名的 API 令牌添加 Zone > Zone WAF > Edit 权限。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "若要管理安全規則，請為此網域的 API 權杖新增 Zone > Zone WAF > Edit 權限。"
+          }
         }
       }
     },
@@ -3274,6 +3689,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "WAF の権限が必要です"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WAF 권한 필요"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "需要 WAF 权限"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "需要 WAF 權限"
           }
         }
       }
@@ -3292,6 +3725,24 @@
             "state" : "translated",
             "value" : "再試行"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다시 시도"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重试"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "再試一次"
+          }
         }
       }
     },
@@ -3308,6 +3759,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "編集中にこのルールが変更されました。編集画面を閉じて更新し、再度開いて最新の設定を確認してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "편집 중에 이 규칙이 변경되었습니다. 편집기를 닫고 새로 고친 후 다시 열어 최신 설정을 확인하세요."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "编辑期间此规则已更改。请关闭编辑器、刷新并重新打开，以查看最新设置。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯期間此規則已變更。請關閉編輯器、重新整理並再次開啟，以查看最新設定。"
           }
         }
       }
@@ -3326,6 +3795,24 @@
             "state" : "translated",
             "value" : "ルール"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "규칙"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "规则"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "規則"
+          }
         }
       }
     },
@@ -3343,6 +3830,24 @@
             "state" : "translated",
             "value" : "このルールは存在しません。編集画面を閉じてルールを更新してください。"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 규칙이 더 이상 존재하지 않습니다. 편집기를 닫고 규칙을 새로 고치세요."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此规则已不存在。请关闭编辑器并刷新规则。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此規則已不存在。請關閉編輯器並重新整理規則。"
+          }
         }
       }
     },
@@ -3356,6 +3861,24 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld. %@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld. %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld. %@"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld. %@"
@@ -3377,6 +3900,24 @@
             "state" : "translated",
             "value" : "テンプレートを選択"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "템플릿 선택"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选择模板"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇範本"
+          }
         }
       }
     },
@@ -3393,6 +3934,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "国をブロック"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "국가 차단"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "阻止某个国家"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "封鎖某個國家"
           }
         }
       }
@@ -3411,6 +3970,24 @@
             "state" : "translated",
             "value" : "テンプレートは式の例を入力します。保存前に値を確認してください。"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "템플릿은 예시 표현식을 채웁니다. 저장하기 전에 값을 확인하세요."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "模板会填入示例表达式。保存前请检查其中的值。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "範本會填入範例運算式。儲存前請檢查其中的值。"
+          }
         }
       }
     },
@@ -3427,6 +4004,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "パスにチャレンジを適用"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "경로에 챌린지 적용"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "验证某个路径"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "驗證某個路徑"
           }
         }
       }
@@ -3445,6 +4040,24 @@
             "state" : "translated",
             "value" : "テンプレートから開始"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "템플릿으로 시작"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "从模板开始"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "從範本開始"
+          }
         }
       }
     },
@@ -3461,6 +4074,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "セキュリティルール"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보안 규칙"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "安全规则"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "安全規則"
           }
         }
       }
@@ -3479,6 +4110,24 @@
             "state" : "translated",
             "value" : "名称未設定のルール"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제목 없는 규칙"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未命名规则"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未命名規則"
+          }
         }
       }
     },
@@ -3496,40 +4145,58 @@
             "state" : "translated",
             "value" : "ルールを更新できませんでした"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "규칙을 업데이트할 수 없음"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法更新规则"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法更新規則"
+          }
         }
       }
     },
     "Account.Title" : {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Account"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Account"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "アカウント"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アカウント"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "계정"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "계정"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "账户"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "账户"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "帳號"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "帳號"
           }
         }
       }
@@ -15885,6 +16552,146 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "版本 %lld"
+          }
+        }
+      }
+    },
+    "Widgets.Display" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Display"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "显示"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顯示"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "表示"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "표시"
+          }
+        }
+      }
+    },
+    "Widgets.Configure.Message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit the widget to select a Worker."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ウィジェットを編集してWorkerを選択してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위젯을 편집하여 Worker를 선택하세요."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "编辑小组件以选择 Worker。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯小工具以選擇 Worker。"
+          }
+        }
+      }
+    },
+    "Widgets.Unavailable.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Worker Unavailable"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Workerを利用できません"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Worker를 사용할 수 없음"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Worker 不可用"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Worker 無法使用"
+          }
+        }
+      }
+    },
+    "Widgets.Inline.Value" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@: %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@: %@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@: %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@: %@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@: %@"
           }
         }
       }

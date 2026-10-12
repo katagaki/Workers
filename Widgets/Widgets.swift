@@ -64,10 +64,7 @@ struct WorkerMetricsEntryView: View {
                 if entry.stale { Text(.widgetsStale).font(.body).foregroundStyle(.secondary) }
             }
         } else {
-            VStack(alignment: .leading) {
-                Image(systemName: "hammer")
-                Text(entry.configuration.worker == nil ? .widgetsConfigure : .widgetsUnavailable).font(.body)
-            }.padding(16)
+            WorkerWidgetEmptyView(needsConfiguration: entry.configuration.worker == nil, family: family)
         }
     }
 }
