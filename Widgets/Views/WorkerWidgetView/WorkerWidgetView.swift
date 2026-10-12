@@ -39,11 +39,12 @@ struct WorkerWidgetView: View {
                 .padding(.horizontal, 16)
                 .padding(.top, 8)
                 .padding(.bottom, 12)
+                .background {
+                    if hasChart { WorkerWidgetAreaChart(snapshot: snapshot) }
+                }
+                .clipped()
             }
             .font(.body)
-            .background {
-                if hasChart { WorkerWidgetAreaChart(snapshot: snapshot) }
-            }
             .clipped()
         }
     }
