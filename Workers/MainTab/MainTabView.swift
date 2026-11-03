@@ -11,7 +11,8 @@ struct MainTabView: View {
     private let navigator = AppNavigator.shared
 
     var usesSidebar: Bool {
-        horizontalSizeClass == .regular
+        // Unfolded iPhone Duo reports a regular width but keeps a tab bar that shows sidebar-only tabs.
+        horizontalSizeClass == .regular && UIDevice.current.userInterfaceIdiom != .phone
     }
 
     var accountKey: String {
