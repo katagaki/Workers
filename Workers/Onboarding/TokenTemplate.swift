@@ -8,6 +8,7 @@ enum TokenTemplate {
         ("workers_scripts", "edit"),
         ("workers_tail", "read"),
         ("workers_observability", "read"),
+        ("workers_observability", "edit"),
         ("ai", "read"),
         ("ai", "edit"),
         ("account_analytics", "read"),

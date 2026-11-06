@@ -21,15 +21,7 @@ struct RecentLogsView: View {
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text(.logsFilter))
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Menu {
-                    Picker(.sharedTimeRange, selection: $window) {
-                        ForEach(LogWindow.allCases) { window in
-                            Text(window.title).tag(window)
-                        }
-                    }
-                } label: {
-                    Label(.sharedTimeRange, systemImage: "calendar")
-                }
+                LogWindowMenu(window: $window)
             }
         }
     }
