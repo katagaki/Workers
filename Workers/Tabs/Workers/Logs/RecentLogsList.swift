@@ -31,10 +31,12 @@ struct RecentLogsList: View {
             rows: filteredEvents.map(\.logTableRow)
         )
         .safeAreaInset(edge: .top, spacing: 0) {
-            RefreshErrorSection(resource: events)
-                .padding()
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(.bar)
+            if events.error != nil, events.value != nil {
+                RefreshErrorSection(resource: events)
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(.bar)
+            }
         }
         .resourceStatus(
             events,
