@@ -41,36 +41,17 @@ extension R2BucketView {
         }
     }
 
+    // Bottom bar items render behind the tab bar and the demo mode accessory.
     @ToolbarContentBuilder
     var toolbarContent: some ToolbarContent {
-        ToolbarItem(placement: .topBarTrailing) {
-            Menu {
-                Button {
-                    isImportingFiles = true
-                } label: {
-                    Label(.storageR2Upload, systemImage: "square.and.arrow.up")
-                }
-                Button {
-                    promptForNewFolder()
-                } label: {
-                    Label(.storageR2NewFolder, systemImage: "folder.badge.plus")
-                }
-            } label: {
-                Label(.storageR2Add, systemImage: "plus")
-            }
-        }
-        ToolbarItem(placement: .topBarTrailing) {
-            EditButton()
-        }
         if editMode.isEditing {
-            ToolbarItemGroup(placement: .bottomBar) {
+            ToolbarItemGroup(placement: .topBarTrailing) {
                 Button {
                     Task { await save(selectedObjects) }
                 } label: {
                     Label(.storageR2SaveToFiles, systemImage: "square.and.arrow.down")
                 }
                 .disabled(selectedObjects.isEmpty || selectedObjects.count != selection.count)
-                Spacer()
                 Button(role: .destructive) {
                     pendingDeletion = selectedEntries
                 } label: {
@@ -78,6 +59,26 @@ extension R2BucketView {
                 }
                 .disabled(selection.isEmpty)
             }
+        } else {
+            ToolbarItem(placement: .topBarTrailing) {
+                Menu {
+                    Button {
+                        isImportingFiles = true
+                    } label: {
+                        Label(.storageR2Upload, systemImage: "square.and.arrow.up")
+                    }
+                    Button {
+                        promptForNewFolder()
+                    } label: {
+                        Label(.storageR2NewFolder, systemImage: "folder.badge.plus")
+                    }
+                } label: {
+                    Label(.storageR2Add, systemImage: "plus")
+                }
+            }
+        }
+        ToolbarItem(placement: .topBarTrailing) {
+            EditButton()
         }
     }
 
