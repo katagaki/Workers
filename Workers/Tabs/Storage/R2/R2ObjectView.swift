@@ -10,6 +10,12 @@ struct R2ObjectView: View {
     @State private var data: Data?
     @State private var loadError: Error?
     @State private var isLoading = false
+    @State private var runner = R2OperationRunner()
+    @State private var namePrompt: R2NamePrompt?
+    @State private var isConfirmingDelete = false
+    @State private var downloads: [R2DownloadedObject] = []
+
+    @Environment(\.dismiss) private var dismiss
 
     private static let automaticPreviewLimit = 1_000_000
 
@@ -68,10 +74,92 @@ struct R2ObjectView: View {
         }
         .navigationTitle(object.key.split(separator: "/").last.map(String.init) ?? object.key)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                actionsMenu
+            }
+        }
+        .alert(Text(.storageR2DeleteTitle), isPresented: $isConfirmingDelete) {
+            Button(role: .cancel) {}
+            Button(.sharedDelete, role: .destructive) {
+                Task { await delete() }
+            }
+        } message: {
+            Text(.storageR2DeleteObjectMessage(object.key.r2Name))
+        }
+        .r2NamePrompt($namePrompt)
+        .r2FileSaver(downloads: $downloads, runner: runner)
+        .r2Operation(runner)
         .task {
             if (object.size ?? 0) <= Self.automaticPreviewLimit {
                 await load()
             }
+        }
+    }
+
+    private var actionsMenu: some View {
+        Menu {
+            Button {
+                Task { await save() }
+            } label: {
+                Label(.storageR2SaveToFiles, systemImage: "square.and.arrow.down")
+            }
+            Button {
+                promptForRename()
+            } label: {
+                Label(.storageR2Rename, systemImage: "pencil")
+            }
+            Button(role: .destructive) {
+                isConfirmingDelete = true
+            } label: {
+                Label(.sharedDelete, systemImage: "trash")
+            }
+        } label: {
+            Label(.sharedMore, systemImage: "ellipsis")
+        }
+    }
+
+    private func promptForRename() {
+        namePrompt = R2NamePrompt(
+            title: .storageR2Rename,
+            message: .storageR2RenameObjectMessage,
+            actionTitle: .storageR2Rename,
+            initialName: object.key.r2Name
+        ) { name in
+            Task { await rename(to: name) }
+        }
+    }
+
+    private func save() async {
+        await runner.run(.storageR2ProgressDownloading) {
+            downloads = [try await client.r2DownloadObject(
+                accountId: accountId,
+                bucketName: bucketName,
+                key: object.key
+            )]
+        }
+    }
+
+    private func rename(to name: String) async {
+        let didFinish = await runner.run(.storageR2ProgressRenaming) {
+            try await client.r2RenameObject(
+                accountId: accountId,
+                bucketName: bucketName,
+                object: object,
+                newKey: object.key.r2ParentPrefix + name
+            )
+        }
+        if didFinish {
+            dismiss()
+        }
+    }
+
+    private func delete() async {
+        let didFinish = await runner.run(.storageR2ProgressDeleting) {
+            try await client.r2DeleteObject(accountId: accountId, bucketName: bucketName, key: object.key)
+        }
+        if didFinish {
+            dismiss()
         }
     }
 

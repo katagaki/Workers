@@ -22,12 +22,13 @@ public extension CloudflareClient {
         bucketName: String,
         prefix: String = "",
         cursor: String? = nil,
-        limit: Int = 100
+        limit: Int = 100,
+        delimiter: String? = "/"
     ) async throws -> R2ObjectPage {
-        var query = [
-            URLQueryItem(name: "delimiter", value: "/"),
-            URLQueryItem(name: "per_page", value: String(limit))
-        ]
+        var query = [URLQueryItem(name: "per_page", value: String(limit))]
+        if let delimiter {
+            query.append(URLQueryItem(name: "delimiter", value: delimiter))
+        }
         if !prefix.isEmpty {
             query.append(URLQueryItem(name: "prefix", value: prefix))
         }

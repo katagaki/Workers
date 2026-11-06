@@ -8,6 +8,10 @@ public enum CloudflareError: LocalizedError, Sendable {
     case http(statusCode: Int)
     case api(messages: [String])
     case graphQL(messages: [String])
+    case r2ObjectTooLarge(key: String, limit: Int)
+    case r2KeyExists(key: String)
+    case r2CustomMetadataUnsupported(key: String)
+    case r2CopyVerificationFailed(key: String)
 
     public var errorDescription: String? {
         switch self {
@@ -28,6 +32,15 @@ public enum CloudflareError: LocalizedError, Sendable {
             default:
                 return String(localized: .errorsHttpStatus(statusCode))
             }
+        case .r2ObjectTooLarge(let key, let limit):
+            let formattedLimit = limit.formatted(.byteCount(style: .binary))
+            return String(localized: .errorsR2ObjectTooLarge(key, formattedLimit))
+        case .r2KeyExists(let key):
+            return String(localized: .errorsR2KeyExists(key))
+        case .r2CustomMetadataUnsupported(let key):
+            return String(localized: .errorsR2CustomMetadataUnsupported(key))
+        case .r2CopyVerificationFailed(let key):
+            return String(localized: .errorsR2CopyVerificationFailed(key))
         case .api(let messages), .graphQL(let messages):
             let description = messages.joined(separator: "\n")
             let normalizedDescription = description.lowercased()

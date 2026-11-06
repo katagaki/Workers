@@ -10,12 +10,12 @@ enum DemoRouter {
             return DemoStorage.kvValue(namespaceId: parts[5], key: parts[7])
         }
         if parts.count == 7, parts[2] == "r2", parts[5] == "objects" {
-            return DemoStorage.r2ObjectData(key: parts[6])
+            return DemoR2Store.shared.data(bucketName: parts[4], key: parts[6])
         }
         return nil
     }
 
-    static func response(method: String, url: URL, body: Data?) -> [String: Any] {
+    static func response(method: String, url: URL, headers: [String: String], body: Data?) -> [String: Any] {
         let prefix = CloudflareClient.apiBaseURL.path()
         let path = String(url.path().dropFirst(prefix.count)).trimmingCharacters(in: CharacterSet(charactersIn: "/"))
         let parts = path.split(separator: "/").map { String($0).removingPercentEncoding ?? String($0) }
@@ -25,6 +25,9 @@ enum DemoRouter {
         if parts == ["graphql"] {
             let queryText = (bodyObject as? [String: Any])?["query"] as? String ?? ""
             return ["data": DemoAnalytics.response(for: queryText)]
+        }
+        if parts.count == 7, parts[2] == "r2", parts[5] == "objects" {
+            return DemoR2Store.shared.write(method: method, bucketName: parts[4], key: parts[6], headers: headers)
         }
         guard let result = route(method: method, parts: parts, query: query, body: bodyObject as? [String: Any]) else {
             return envelope(nil, errors: [["code": 7003, "message": "Not available in demo mode."]])
@@ -102,7 +105,8 @@ enum DemoRouter {
             return envelope(["buckets": DemoStorage.buckets])
         case ("GET", let path) where path.count == 4 && path[0] == "r2" && path[3] == "objects":
             let prefix = query.first { $0.name == "prefix" }?.value ?? ""
-            return DemoStorage.r2Objects(bucketName: path[2], prefix: prefix)
+            let delimiter = query.first { $0.name == "delimiter" }?.value
+            return DemoR2Store.shared.list(bucketName: path[2], prefix: prefix, delimiter: delimiter)
         case ("GET", ["d1", "database"]):
             let databases = DemoStorage.databases
             return envelope(databases, info: ["page": 1, "per_page": 100, "count": databases.count, "total_count": databases.count, "total_pages": 1])

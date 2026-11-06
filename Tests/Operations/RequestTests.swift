@@ -32,6 +32,8 @@ final class RequestFixtures: @unchecked Sendable {
     }
 
     var lastRequest: URLRequest { lock.withLock { requests.last! } }
+    var allRequests: [URLRequest] { lock.withLock { requests } }
+    var pendingResponseCount: Int { lock.withLock { responses.count } }
 }
 
 final class FixtureProtocol: URLProtocol {
@@ -127,6 +129,164 @@ struct OperationTests {
         _ = try await demo.setZoneUnderAttack(zoneId: zoneID, enabled: false, restoredLevel: "high")
         let restored = try await demo.zoneSecurityLevel(zoneId: zoneID)
         precondition(restored.value == "high")
+        try await testR2Requests(client: client, fixtures: fixtures)
+        try await testR2Demo(demo: demo)
         print("Operation request tests passed")
+    }
+
+    private static func r2Listing(_ objects: String = "") -> String {
+        #"{"success":true,"result":["# + objects + #"],"result_info":{"is_truncated":false,"delimited":[]}}"#
+    }
+
+    private static func r2Object(key: String, size: Int, extra: String = "") -> R2Object {
+        let json = #"{"key":"\#(key)","size":\#(size),"storage_class":"InfrequentAccess","http_metadata":{"contentType":"text/plain"}\#(extra)}"#
+        return try! CloudflareJSON.makeDecoder().decode(R2Object.self, from: Data(json.utf8))
+    }
+
+    private static func testR2Requests(client: CloudflareClient, fixtures: RequestFixtures) async throws {
+        let objectsPath = "/client/v4/accounts/account/r2/buckets/bucket/objects"
+        func deletes() -> [URLRequest] { fixtures.allRequests.filter { $0.httpMethod == "DELETE" } }
+
+        fixtures.enqueue(json: #"{"success":true,"result":null}"#)
+        try await client.r2DeleteObject(accountId: "account", bucketName: "bucket", key: "folder/a b.txt")
+        precondition(fixtures.lastRequest.httpMethod == "DELETE")
+        precondition(fixtures.lastRequest.url?.absoluteString.hasSuffix("/objects/folder%2Fa%20b.txt") == true, "Keys must stay one path component")
+
+        fixtures.enqueue(status: 404, json: #"{"success":false,"errors":[{"code":10007,"message":"not found"}]}"#)
+        try await client.r2DeleteObject(accountId: "account", bucketName: "bucket", key: "gone.txt")
+
+        fixtures.enqueue(status: 403, json: "{}")
+        do {
+            try await client.r2DeleteObject(accountId: "account", bucketName: "bucket", key: "denied.txt")
+            preconditionFailure("A read only token must surface a permission error")
+        } catch CloudflareError.http(statusCode: 403) {}
+
+        do {
+            try await client.r2DeleteFolder(accountId: "account", bucketName: "bucket", prefix: "")
+            preconditionFailure("An empty prefix must never delete a whole bucket")
+        } catch CloudflareError.invalidResponse {}
+
+        let deleteCount = deletes().count
+        fixtures.enqueue(json: #"{"success":true,"result":[{"key":"folder/"},{"key":"folder/a.txt"}],"result_info":{"is_truncated":true,"cursor":"next"}}"#)
+        fixtures.enqueue(json: #"{"success":true,"result":[{"key":"folder/deep/b.txt"}],"result_info":{"is_truncated":false}}"#)
+        for _ in 0..<3 { fixtures.enqueue(json: #"{"success":true,"result":null}"#) }
+        try await client.r2DeleteFolder(accountId: "account", bucketName: "bucket", prefix: "folder/")
+        precondition(deletes().count == deleteCount + 3, "Folder deletes must follow every listing page")
+        let listRequest = fixtures.allRequests[fixtures.allRequests.count - 5]
+        precondition(listRequest.url?.query?.contains("delimiter") == false, "Folder listings must be recursive")
+
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let fileURL = directory.appendingPathComponent("upload.txt")
+        try Data("hello".utf8).write(to: fileURL)
+        fixtures.enqueue(json: #"{"success":true,"result":{}}"#)
+        try await client.r2UploadObject(accountId: "account", bucketName: "bucket", key: "a/upload.txt", fileURL: fileURL, contentType: "text/plain")
+        precondition(fixtures.lastRequest.httpMethod == "PUT")
+        precondition(fixtures.lastRequest.value(forHTTPHeaderField: "Content-Type") == "text/plain")
+        precondition(fixtures.lastRequest.value(forHTTPHeaderField: "Content-Length") == "5")
+
+        fixtures.enqueue(json: #"{"success":true,"result":{}}"#)
+        try await client.r2CreateFolder(accountId: "account", bucketName: "bucket", prefix: "new/")
+        precondition(fixtures.lastRequest.url?.absoluteString.hasSuffix("/objects/new%2F") == true)
+
+        let source = r2Object(key: "a.txt", size: 5)
+        var deleteTotal = deletes().count
+        fixtures.enqueue(json: r2Listing())
+        fixtures.enqueue(json: "hello")
+        fixtures.enqueue(json: #"{"success":true,"result":{}}"#)
+        fixtures.enqueue(json: r2Listing(#"{"key":"b.txt","size":5}"#))
+        fixtures.enqueue(json: #"{"success":true,"result":null}"#)
+        try await client.r2RenameObject(accountId: "account", bucketName: "bucket", object: source, newKey: "b.txt")
+        let put = fixtures.allRequests.last { $0.httpMethod == "PUT" }!
+        precondition(put.url?.path == objectsPath + "/b.txt")
+        precondition(put.value(forHTTPHeaderField: "cf-r2-storage-class") == "InfrequentAccess", "Rename must keep the storage class")
+        precondition(put.value(forHTTPHeaderField: "Content-Type") == "text/plain", "Rename must keep the content type")
+        precondition(fixtures.lastRequest.httpMethod == "DELETE" && fixtures.lastRequest.url?.path == objectsPath + "/a.txt")
+        deleteTotal += 1
+        precondition(deletes().count == deleteTotal)
+
+        fixtures.enqueue(json: r2Listing(#"{"key":"b.txt","size":1}"#))
+        do {
+            try await client.r2RenameObject(accountId: "account", bucketName: "bucket", object: source, newKey: "b.txt")
+            preconditionFailure("Rename must not overwrite an existing object")
+        } catch CloudflareError.r2KeyExists {}
+
+        fixtures.enqueue(json: r2Listing())
+        fixtures.enqueue(json: "decompressed to a different size")
+        do {
+            try await client.r2RenameObject(accountId: "account", bucketName: "bucket", object: source, newKey: "b.txt")
+            preconditionFailure("A changed download must stop the rename")
+        } catch CloudflareError.r2CopyVerificationFailed {}
+
+        fixtures.enqueue(json: r2Listing())
+        fixtures.enqueue(json: "hello")
+        fixtures.enqueue(status: 500, json: #"{"success":false,"errors":[{"message":"upload failed"}]}"#)
+        do {
+            try await client.r2RenameObject(accountId: "account", bucketName: "bucket", object: source, newKey: "b.txt")
+            preconditionFailure("A failed upload must stop the rename")
+        } catch CloudflareError.api {}
+
+        fixtures.enqueue(json: r2Listing())
+        fixtures.enqueue(json: "hello")
+        fixtures.enqueue(json: #"{"success":true,"result":{}}"#)
+        fixtures.enqueue(json: r2Listing())
+        do {
+            try await client.r2RenameObject(accountId: "account", bucketName: "bucket", object: source, newKey: "b.txt")
+            preconditionFailure("An unconfirmed copy must stop the rename")
+        } catch CloudflareError.r2CopyVerificationFailed {}
+        precondition(deletes().count == deleteTotal, "A failed rename must never delete the source")
+
+        let customized = r2Object(key: "c.txt", size: 5, extra: #","custom_metadata":{"owner":"seminar"}"#)
+        do {
+            try await client.r2RenameObject(accountId: "account", bucketName: "bucket", object: customized, newKey: "d.txt")
+            preconditionFailure("Rename must not lose custom metadata")
+        } catch CloudflareError.r2CustomMetadataUnsupported {}
+
+        fixtures.enqueue(json: r2Listing())
+        fixtures.enqueue(json: r2Listing(#"{"key":"old/a.txt","size":5},{"key":"old/b.txt","size":5,"custom_metadata":{"owner":"seminar"}}"#))
+        do {
+            try await client.r2RenameFolder(accountId: "account", bucketName: "bucket", prefix: "old/", newPrefix: "new/")
+            preconditionFailure("Folder rename must check every object before moving any")
+        } catch CloudflareError.r2CustomMetadataUnsupported {}
+
+        fixtures.enqueue(json: r2Listing(#"{"key":"new/a.txt","size":5}"#))
+        do {
+            try await client.r2RenameFolder(accountId: "account", bucketName: "bucket", prefix: "old/", newPrefix: "new/")
+            preconditionFailure("Folder rename must not merge into an existing folder")
+        } catch CloudflareError.r2KeyExists {}
+        precondition(deletes().count == deleteTotal && fixtures.pendingResponseCount == 0)
+
+        fixtures.enqueue(json: "object body")
+        let download = try await client.r2DownloadObject(accountId: "account", bucketName: "bucket", key: "folder/report.txt")
+        precondition(download.fileURL.lastPathComponent == "report.txt")
+        let downloadedData = try Data(contentsOf: download.fileURL)
+        precondition(downloadedData == Data("object body".utf8))
+        download.removeTemporaryFile()
+        precondition(!FileManager.default.fileExists(atPath: download.fileURL.path))
+
+        fixtures.enqueue(status: 404, json: #"{"success":false,"errors":[{"message":"object missing"}]}"#)
+        do {
+            _ = try await client.r2DownloadObject(accountId: "account", bucketName: "bucket", key: "missing.txt")
+            preconditionFailure("A failed download must not produce a file")
+        } catch CloudflareError.api(let messages) { precondition(messages == ["object missing"]) }
+    }
+
+    private static func testR2Demo(demo: CloudflareClient) async throws {
+        let account = "demo"
+        let bucket = "originals"
+        let root = try await demo.r2Objects(accountId: account, bucketName: bucket)
+        let readme = root.objects.first { $0.key == "README.txt" }!
+        try await demo.r2RenameObject(accountId: account, bucketName: bucket, object: readme, newKey: "RENAMED.txt")
+        let renamedExists = try await demo.r2ObjectExists(accountId: account, bucketName: bucket, key: "RENAMED.txt")
+        let originalExists = try await demo.r2ObjectExists(accountId: account, bucketName: bucket, key: "README.txt")
+        precondition(renamedExists && !originalExists)
+        try await demo.r2RenameFolder(accountId: account, bucketName: bucket, prefix: "students/", newPrefix: "pupils/")
+        let pupils = try await demo.r2Objects(accountId: account, bucketName: bucket, prefix: "pupils/")
+        precondition(pupils.objects.count == 3)
+        try await demo.r2DeleteFolder(accountId: account, bucketName: bucket, prefix: "pupils/")
+        try await demo.r2CreateFolder(accountId: account, bucketName: bucket, prefix: "empty/")
+        let updated = try await demo.r2Objects(accountId: account, bucketName: bucket)
+        precondition(updated.folders.sorted() == ["empty/", "notices/"])
     }
 }
