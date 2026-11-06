@@ -18,24 +18,16 @@ struct LiveTailView: View {
     }
 
     var body: some View {
-        List {
-            if let tailError {
-                Section {
+        LogTableView(columns: TailEvent.logTableColumns, rows: events.map(\.logTableRow))
+            .safeAreaInset(edge: .top, spacing: 0) {
+                if let tailError {
                     Label(tailError, systemImage: "exclamationmark.triangle.fill")
                         .foregroundStyle(.secondary)
+                        .padding()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(.bar)
                 }
             }
-            ForEach(events) { event in
-                NavigationLink(value: WorkersDestination.tailEvent(event)) {
-                    LogRow(
-                        severity: LogSeverity(isError: event.isError, statusCode: event.responseStatus),
-                        title: event.title,
-                        subtitle: event.locationDescription,
-                        date: event.date
-                    )
-                }
-            }
-        }
         .overlay {
             if events.isEmpty && tailError == nil {
                 ContentUnavailableView {

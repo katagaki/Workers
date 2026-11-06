@@ -26,18 +26,15 @@ struct RecentLogsList: View {
     }
 
     var body: some View {
-        List {
+        LogTableView(
+            columns: ObservabilityEvent.logTableColumns,
+            rows: filteredEvents.map(\.logTableRow)
+        )
+        .safeAreaInset(edge: .top, spacing: 0) {
             RefreshErrorSection(resource: events)
-            ForEach(filteredEvents) { event in
-                NavigationLink(value: WorkersDestination.observabilityEvent(event)) {
-                    LogRow(
-                        severity: LogSeverity(isError: event.isError, statusCode: event.metadata.statusCode.map { Int($0) }),
-                        title: event.summary,
-                        subtitle: event.workers?.eventType?.capitalizedFirst,
-                        date: event.date
-                    )
-                }
-            }
+                .padding()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(.bar)
         }
         .resourceStatus(
             events,

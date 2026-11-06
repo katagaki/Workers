@@ -38,4 +38,9 @@ extension String {
     var capitalizedFirst: String {
         prefix(1).uppercased() + dropFirst()
     }
+
+    var urlPath: String {
+        guard let url = URL(string: self) else { return self }
+        return url.path().isEmpty ? "/" : url.path()
+    }
 }
