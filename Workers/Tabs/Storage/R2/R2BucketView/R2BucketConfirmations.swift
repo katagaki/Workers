@@ -3,8 +3,10 @@ import SwiftUI
 struct R2BucketConfirmations: ViewModifier {
     @Binding var pendingDeletion: [R2Entry]?
     @Binding var pendingUpload: [URL]?
+    @Binding var pendingOversizedUpload: R2OversizedUpload?
     let delete: ([R2Entry]) -> Void
     let upload: ([URL]) -> Void
+    let continueUpload: ([URL]) -> Void
 
     func body(content: Content) -> some View {
         content
@@ -37,6 +39,25 @@ struct R2BucketConfirmations: ViewModifier {
                 }
             } message: { _ in
                 Text(.storageR2ReplaceMessage)
+            }
+            .alert(
+                Text(.storageR2TooLargeTitle),
+                isPresented: Binding(
+                    get: { pendingOversizedUpload != nil },
+                    set: { if !$0 { pendingOversizedUpload = nil } }
+                ),
+                presenting: pendingOversizedUpload
+            ) { oversized in
+                if oversized.remainingURLs.isEmpty {
+                    Button(.sharedOk, role: .cancel) {}
+                } else {
+                    Button(role: .cancel) {}
+                    Button(.storageR2TooLargeUploadOthers) {
+                        continueUpload(oversized.remainingURLs)
+                    }
+                }
+            } message: { oversized in
+                Text(oversized.message)
             }
     }
 

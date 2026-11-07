@@ -186,6 +186,16 @@ struct OperationTests {
         precondition(fixtures.lastRequest.value(forHTTPHeaderField: "Content-Type") == "text/plain")
         precondition(fixtures.lastRequest.value(forHTTPHeaderField: "Content-Length") == "5")
 
+        let uploadRequest = try client.r2UploadRequest(accountId: "account", bucketName: "bucket", key: "a/big.bin", fileSize: CloudflareClient.r2UploadLimit, contentType: "video/mp4")
+        precondition(uploadRequest.httpMethod == "PUT" && uploadRequest.url?.absoluteString.hasSuffix("/objects/a%2Fbig.bin") == true)
+        precondition(uploadRequest.value(forHTTPHeaderField: "Authorization") == "Bearer fixture-only")
+        precondition(uploadRequest.value(forHTTPHeaderField: "Content-Length") == "300000000")
+        do {
+            _ = try client.r2UploadRequest(accountId: "account", bucketName: "bucket", key: "huge.bin", fileSize: CloudflareClient.r2UploadLimit + 1, contentType: nil)
+            preconditionFailure("Uploads above the limit must be refused before networking")
+        } catch CloudflareError.r2ObjectTooLarge {}
+        precondition(CloudflareError.r2ObjectTooLarge(key: "huge.bin", limit: CloudflareClient.r2UploadLimit).errorDescription?.contains("300 MB") == true)
+
         fixtures.enqueue(json: #"{"success":true,"result":{}}"#)
         try await client.r2CreateFolder(accountId: "account", bucketName: "bucket", prefix: "new/")
         precondition(fixtures.lastRequest.url?.absoluteString.hasSuffix("/objects/new%2F") == true)

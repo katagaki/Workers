@@ -1,8 +1,8 @@
 import Foundation
 
 public extension CloudflareClient {
-    // Wrangler enforces the same cap on single request uploads through this API.
-    static let r2UploadLimit = 300 * 1024 * 1024
+    // Decimal so the limit matches the sizes iOS shows in Files. Wrangler caps this API at 300 MiB.
+    static let r2UploadLimit = 300_000_000
 
     func r2ObjectExists(accountId: String, bucketName: String, key: String) async throws -> Bool {
         try await r2ExistingObject(accountId: accountId, bucketName: bucketName, key: key) != nil
@@ -12,7 +12,7 @@ public extension CloudflareClient {
         let request = try rawRequest(.get, path: r2ObjectsPath(accountId, bucketName), pathComponent: key)
         let (downloadedURL, response) = try await session.download(for: request)
         defer { try? FileManager.default.removeItem(at: downloadedURL) }
-        try validateRawResponse(response, data: (try? Data(contentsOf: downloadedURL)) ?? Data())
+        try Self.validateRawResponse(response, data: (try? Data(contentsOf: downloadedURL)) ?? Data())
         let directory = FileManager.default.temporaryDirectory
             .appendingPathComponent("R2Downloads", isDirectory: true)
             .appendingPathComponent(UUID().uuidString, isDirectory: true)
@@ -27,6 +27,20 @@ public extension CloudflareClient {
             }
         }
         return R2DownloadedObject(fileURL: fileURL, headers: headers)
+    }
+
+    func r2UploadRequest(
+        accountId: String,
+        bucketName: String,
+        key: String,
+        fileSize: Int,
+        contentType: String?
+    ) throws -> URLRequest {
+        var headers: [String: String] = [:]
+        if let contentType {
+            headers["Content-Type"] = contentType
+        }
+        return try r2PutRequest(accountId: accountId, bucketName: bucketName, key: key, fileSize: fileSize, headers: headers)
     }
 
     func r2UploadObject(
@@ -47,14 +61,14 @@ public extension CloudflareClient {
         var request = try rawRequest(.put, path: r2ObjectsPath(accountId, bucketName), pathComponent: prefix)
         request.setValue("0", forHTTPHeaderField: "Content-Length")
         let (data, response) = try await session.upload(for: request, from: Data())
-        try validateRawResponse(response, data: data)
+        try Self.validateRawResponse(response, data: data)
     }
 
     func r2DeleteObject(accountId: String, bucketName: String, key: String) async throws {
         let request = try rawRequest(.delete, path: r2ObjectsPath(accountId, bucketName), pathComponent: key)
         let (data, response) = try await session.data(for: request)
         if (response as? HTTPURLResponse)?.statusCode == 404 { return }
-        try validateRawResponse(response, data: data)
+        try Self.validateRawResponse(response, data: data)
     }
 
     func r2DeleteFolder(
@@ -163,6 +177,24 @@ private extension CloudflareClient {
         headers: [String: String]
     ) async throws {
         let fileSize = try fileURL.resourceValues(forKeys: [.fileSizeKey]).fileSize ?? 0
+        let request = try r2PutRequest(
+            accountId: accountId,
+            bucketName: bucketName,
+            key: key,
+            fileSize: fileSize,
+            headers: headers
+        )
+        let (data, response) = try await session.upload(for: request, fromFile: fileURL)
+        try Self.validateRawResponse(response, data: data)
+    }
+
+    func r2PutRequest(
+        accountId: String,
+        bucketName: String,
+        key: String,
+        fileSize: Int,
+        headers: [String: String]
+    ) throws -> URLRequest {
         guard fileSize <= Self.r2UploadLimit else {
             throw CloudflareError.r2ObjectTooLarge(key: key, limit: Self.r2UploadLimit)
         }
@@ -171,8 +203,7 @@ private extension CloudflareClient {
         for (name, value) in headers {
             request.setValue(value, forHTTPHeaderField: name)
         }
-        let (data, response) = try await session.upload(for: request, fromFile: fileURL)
-        try validateRawResponse(response, data: data)
+        return request
     }
 
     // R2 has no copy or rename here, so the source is only deleted once the listing confirms the copy.

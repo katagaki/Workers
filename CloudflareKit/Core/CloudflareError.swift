@@ -33,7 +33,7 @@ public enum CloudflareError: LocalizedError, Sendable {
                 return String(localized: .errorsHttpStatus(statusCode))
             }
         case .r2ObjectTooLarge(let key, let limit):
-            let formattedLimit = limit.formatted(.byteCount(style: .binary))
+            let formattedLimit = limit.formatted(.byteCount(style: .file))
             return String(localized: .errorsR2ObjectTooLarge(key, formattedLimit))
         case .r2KeyExists(let key):
             return String(localized: .errorsR2KeyExists(key))

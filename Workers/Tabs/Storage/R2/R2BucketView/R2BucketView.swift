@@ -7,6 +7,8 @@ struct R2BucketView: View {
     let bucketName: String
     let prefix: String
 
+    @Environment(R2UploadCenter.self) var uploads
+
     @State var firstPage: CachedResource<R2ObjectPage>
     @State var additionalObjects: [R2Object] = []
     @State var nextCursor: String?
@@ -19,6 +21,7 @@ struct R2BucketView: View {
     @State var namePrompt: R2NamePrompt?
     @State var pendingDeletion: [R2Entry]?
     @State var pendingUpload: [URL]?
+    @State var pendingOversizedUpload: R2OversizedUpload?
     @State var isImportingFiles = false
     @State var downloads: [R2DownloadedObject] = []
 
@@ -47,6 +50,9 @@ struct R2BucketView: View {
     var body: some View {
         List(selection: $selection) {
             RefreshErrorSection(resource: firstPage)
+            if !folderUploads.isEmpty {
+                R2UploadsSection(uploads: folderUploads, client: client)
+            }
             if !folders.isEmpty {
                 foldersSection
             }
@@ -59,7 +65,7 @@ struct R2BucketView: View {
         .toolbar { toolbarContent }
         .environment(\.editMode, $editMode)
         .resourceStatus(firstPage, emptyTitle: .storageR2ObjectsEmpty, emptySystemImage: "folder") { page in
-            page.folders.isEmpty && page.objects.allSatisfy { $0.key == prefix }
+            page.folders.isEmpty && page.objects.allSatisfy { $0.key == prefix } && folderUploads.isEmpty
         }
         .fileImporter(isPresented: $isImportingFiles, allowedContentTypes: [.item], allowsMultipleSelection: true) { result in
             Task { await prepareUpload(result) }
@@ -69,11 +75,14 @@ struct R2BucketView: View {
         .modifier(R2BucketConfirmations(
             pendingDeletion: $pendingDeletion,
             pendingUpload: $pendingUpload,
+            pendingOversizedUpload: $pendingOversizedUpload,
             delete: { entries in Task { await delete(entries) } },
-            upload: { urls in Task { await upload(urls) } }
+            upload: { urls in Task { await upload(urls) } },
+            continueUpload: { urls in Task { await checkConflicts(urls) } }
         ))
         .r2Operation(runner)
         .task { await reload() }
+        .task(id: uploads.completedCount) { await reloadAfterUploads() }
         .refreshable { await reload() }
     }
 

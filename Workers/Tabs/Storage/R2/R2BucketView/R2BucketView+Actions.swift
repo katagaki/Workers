@@ -108,64 +108,13 @@ extension R2BucketView {
         }
     }
 
-    func prepareUpload(_ result: Result<[URL], Error>) async {
-        let urls: [URL]
-        switch result {
-        case .success(let selectedURLs):
-            urls = selectedURLs
-        case .failure(let error):
-            runner.failureMessage = error.localizedDescription
-            return
-        }
-        var hasConflict = false
-        let didFinish = await runner.run(.storageR2ProgressUploading) {
-            for url in urls where !hasConflict {
-                hasConflict = try await client.r2ObjectExists(
-                    accountId: accountId,
-                    bucketName: bucketName,
-                    key: prefix + url.lastPathComponent
-                )
-            }
-        }
-        guard didFinish else { return }
-        if hasConflict {
-            pendingUpload = urls
-        } else {
-            await upload(urls)
-        }
-    }
-
-    func upload(_ urls: [URL]) async {
-        await runner.run(.storageR2ProgressUploading) {
-            for (index, url) in urls.enumerated() {
-                try Task.checkCancellation()
-                runner.report(completed: index, total: urls.count)
-                let isAccessing = url.startAccessingSecurityScopedResource()
-                defer {
-                    if isAccessing {
-                        url.stopAccessingSecurityScopedResource()
-                    }
-                }
-                let contentType = try? url.resourceValues(forKeys: [.contentTypeKey]).contentType?.preferredMIMEType
-                try await client.r2UploadObject(
-                    accountId: accountId,
-                    bucketName: bucketName,
-                    key: prefix + url.lastPathComponent,
-                    fileURL: url,
-                    contentType: contentType
-                )
-            }
-        }
-        await reload()
-    }
-
-    private var reportProgress: @MainActor @Sendable (Int, Int) -> Void {
+    var reportProgress: @MainActor @Sendable (Int, Int) -> Void {
         { [runner] completed, total in
             runner.report(completed: completed, total: total)
         }
     }
 
-    private func finishEditing() {
+    func finishEditing() {
         selection = []
         editMode = .inactive
     }

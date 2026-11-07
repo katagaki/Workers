@@ -122,7 +122,7 @@ public final class CloudflareClient: Sendable {
         return request
     }
 
-    func validateRawResponse(_ response: URLResponse, data: @autoclosure () -> Data) throws {
+    static func validateRawResponse(_ response: URLResponse, data: @autoclosure () -> Data) throws {
         guard let httpResponse = response as? HTTPURLResponse else {
             throw CloudflareError.invalidResponse
         }
@@ -141,7 +141,7 @@ public final class CloudflareClient: Sendable {
     func rawData(path: String, pathComponent: String) async throws -> Data {
         let request = try rawRequest(.get, path: path, pathComponent: pathComponent)
         let (data, response) = try await session.data(for: request)
-        try validateRawResponse(response, data: data)
+        try Self.validateRawResponse(response, data: data)
         return data
     }
 
