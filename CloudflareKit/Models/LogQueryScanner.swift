@@ -7,15 +7,21 @@ struct LogQueryToken: Hashable, Sendable {
     var isClosed = true
 }
 
+enum LogQueryGrouping: Hashable, Sendable {
+    case open
+    case close
+}
+
 struct LogQueryClause: Hashable, Sendable {
     let term: LogQueryToken
     var operatorToken: LogQueryToken?
     var operation: LogQueryOperator?
     var value: LogQueryToken?
+    var grouping: LogQueryGrouping?
 
     /// Only the uppercase spelling connects, so that searches like "this or that" stay plain text.
     var connector: LogQueryConnector? {
-        guard operation == nil, !term.isQuoted else { return nil }
+        guard operation == nil, grouping == nil, !term.isQuoted else { return nil }
         return LogQueryConnector(rawValue: term.text)
     }
 }
@@ -24,6 +30,7 @@ struct LogQueryScanner {
     private let characters: [Character]
     private let knownKeys: Set<String>
     private var position = 0
+    private var depth = 0
 
     static func clauses(in characters: [Character], knownKeys: Set<String>) -> [LogQueryClause] {
         var scanner = LogQueryScanner(characters: characters, knownKeys: knownKeys)
@@ -45,12 +52,24 @@ struct LogQueryScanner {
         while true {
             skipWhitespace()
             guard position < characters.count else { return clauses }
-            if Self.isQuote(characters[position]) {
+            if characters[position] == "(" {
+                clauses.append(grouping(.open))
+                depth += 1
+            } else if characters[position] == ")", depth > 0 {
+                clauses.append(grouping(.close))
+                depth -= 1
+            } else if Self.isQuote(characters[position]) {
                 clauses.append(LogQueryClause(term: readQuoted()))
             } else {
                 clauses.append(readClause())
             }
         }
+    }
+
+    private mutating func grouping(_ grouping: LogQueryGrouping) -> LogQueryClause {
+        let start = position
+        position += 1
+        return LogQueryClause(term: token(from: start), grouping: grouping)
     }
 
     private mutating func readClause() -> LogQueryClause {
@@ -76,7 +95,10 @@ struct LogQueryScanner {
               symbolicOperator(at: position) == nil {
             position += 1
         }
-        guard position == start else { return token(from: start) }
+        guard position == start else {
+            position = endBeforeClosingParentheses(from: start)
+            return token(from: start)
+        }
         return readUntilWhitespace()
     }
 
@@ -110,7 +132,24 @@ struct LogQueryScanner {
         while position < characters.count, !characters[position].isWhitespace {
             position += 1
         }
+        position = endBeforeClosingParentheses(from: start)
         return token(from: start)
+    }
+
+    /// Splits closing parentheses off the end of a word only when they close an open group,
+    /// so that values like f(x) and regex groups keep their own parentheses.
+    private func endBeforeClosingParentheses(from start: Int) -> Int {
+        var end = position
+        var balance = characters[start..<end].reduce(0) { balance, character in
+            balance + (character == "(" ? 1 : character == ")" ? -1 : 0)
+        }
+        var available = depth
+        while end > start, available > 0, balance < 0, characters[end - 1] == ")" {
+            end -= 1
+            balance += 1
+            available -= 1
+        }
+        return end
     }
 
     private mutating func readQuoted() -> LogQueryToken {

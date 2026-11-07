@@ -48,6 +48,7 @@ extension LogQueryParseError {
         case .missingCondition: .logsQueryErrorMissingCondition
         case .invalidValue: .logsQueryErrorInvalidValue
         case .unterminatedQuote: .logsQueryErrorUnterminatedQuote
+        case .unbalancedParentheses: .logsQueryErrorUnbalancedParentheses
         case .mixedSearch: .logsQueryErrorMixedSearch
         }
     }

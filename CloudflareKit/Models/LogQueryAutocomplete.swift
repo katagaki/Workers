@@ -10,6 +10,14 @@ public enum LogQueryAutocomplete {
         let builder = ContextBuilder(characters: characters, cursor: cursor)
 
         guard let last = clauses.last else { return builder.key(partial: "", start: cursor, allowsConnector: false) }
+        switch last.grouping {
+        case .open:
+            return builder.key(partial: "", start: cursor, allowsConnector: false)
+        case .close:
+            return endsWithSpace ? builder.key(partial: "", start: cursor, allowsConnector: true) : builder.none
+        case nil:
+            break
+        }
         if let operation = last.operation {
             return builder.afterOperator(last, operation: operation, endsWithSpace: endsWithSpace)
         }
@@ -25,7 +33,9 @@ public enum LogQueryAutocomplete {
         if clauses.count >= 2, isPartialOperator(last.term.text, after: clauses[clauses.count - 2], keys: keys) {
             return builder.operation(key: clauses[clauses.count - 2].term.text, partial: last.term.text, start: last.term.range.lowerBound)
         }
-        let followsCondition = clauses.count >= 2 && clauses[clauses.count - 2].connector == nil
+        let followsCondition = clauses.count >= 2
+            && clauses[clauses.count - 2].connector == nil
+            && clauses[clauses.count - 2].grouping != .open
         return builder.key(partial: last.term.text, start: last.term.range.lowerBound, allowsConnector: followsCondition)
     }
 
@@ -59,7 +69,8 @@ public enum LogQueryAutocomplete {
         let upperBound = min(suggestion.replacement.upperBound, characters.count)
         let lowerBound = min(suggestion.replacement.lowerBound, upperBound)
         let hasFollowingSpace = upperBound < characters.count && characters[upperBound].isWhitespace
-        let insertion = Array(suggestion.insertion + (hasFollowingSpace ? "" : " "))
+        let closesGroup = upperBound < characters.count && characters[upperBound] == ")"
+        let insertion = Array(suggestion.insertion + (hasFollowingSpace || closesGroup ? "" : " "))
         characters.replaceSubrange(lowerBound..<upperBound, with: insertion)
         return (String(characters), lowerBound + insertion.count + (hasFollowingSpace ? 1 : 0))
     }

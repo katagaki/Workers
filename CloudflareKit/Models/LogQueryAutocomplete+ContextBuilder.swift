@@ -60,7 +60,7 @@ extension LogQueryAutocomplete {
         private func termEnd(partial: String) -> Int {
             guard !partial.isEmpty else { return cursor }
             var end = cursor
-            while end < characters.count, !characters[end].isWhitespace, !"=<>!".contains(characters[end]) {
+            while end < characters.count, !characters[end].isWhitespace, !"=<>!)".contains(characters[end]) {
                 end += 1
             }
             return end
@@ -71,7 +71,7 @@ extension LogQueryAutocomplete {
             var end = cursor
             while end < characters.count {
                 if isQuoted, LogQueryScanner.isQuote(characters[end]) { return end + 1 }
-                if !isQuoted, characters[end].isWhitespace { return end }
+                if !isQuoted, characters[end].isWhitespace || characters[end] == ")" { return end }
                 end += 1
             }
             return end

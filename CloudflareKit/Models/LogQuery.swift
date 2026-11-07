@@ -5,7 +5,14 @@ public enum LogQueryParseError: Error, Hashable, Sendable {
     case missingCondition
     case invalidValue
     case unterminatedQuote
+    case unbalancedParentheses
     case mixedSearch
+}
+
+public indirect enum LogQueryExpression: Hashable, Sendable {
+    case filter(LogQuery.Filter)
+    case all([LogQueryExpression])
+    case any([LogQueryExpression])
 }
 
 public struct LogQuery: Hashable, Sendable {
@@ -16,76 +23,28 @@ public struct LogQuery: Hashable, Sendable {
         public let value: JSONValue?
     }
 
-    private struct Alternative {
-        var filters: [Filter] = []
-        var searchTerms: [String] = []
-
-        var searchText: String? {
-            searchTerms.isEmpty ? nil : searchTerms.joined(separator: " ")
-        }
-    }
-
-    /// Filters within an alternative must all match, and any one alternative may match.
-    public let alternatives: [[Filter]]
+    public let expression: LogQueryExpression?
     public let searchText: String?
     public let isSearchRegex: Bool
 
     public init() {
-        alternatives = []
+        expression = nil
         searchText = nil
         isSearchRegex = false
     }
 
     public init(parsing text: String, keys: [LogQueryKey] = LogQueryKey.common) throws {
         let clauses = LogQueryScanner.clauses(in: Array(text), knownKeys: Set(keys.map(\.key)))
-        var alternatives = [Alternative()]
-        var canConnect = false
-        var needsCondition = false
-        for clause in clauses {
-            guard clause.term.isClosed, clause.value?.isClosed ?? true else {
-                throw LogQueryParseError.unterminatedQuote
-            }
-            if let connector = clause.connector {
-                guard canConnect else { throw LogQueryParseError.missingCondition }
-                canConnect = false
-                needsCondition = true
-                if connector == .or { alternatives.append(Alternative()) }
-                continue
-            }
-            canConnect = true
-            needsCondition = false
-            if let operation = clause.operation {
-                alternatives[alternatives.count - 1].filters.append(try Self.filter(for: clause, operation: operation, keys: keys))
-            } else {
-                alternatives[alternatives.count - 1].searchTerms.append(clause.term.text)
-            }
-        }
-        guard !needsCondition else { throw LogQueryParseError.missingCondition }
-
-        if alternatives.count > 1, alternatives.allSatisfy({ $0.filters.isEmpty }) {
-            self.alternatives = []
-            searchText = alternatives.compactMap(\.searchText).map(Self.regexEscaped).joined(separator: "|")
-            isSearchRegex = true
-            return
-        }
-        // The API has a single search term per query, which cannot sit inside an OR group.
-        let hasSharedSearch = Set(alternatives.map(\.searchText)).count == 1
-        guard alternatives.count == 1 || (hasSharedSearch && alternatives.allSatisfy { !$0.filters.isEmpty }) else {
-            throw LogQueryParseError.mixedSearch
-        }
-        self.alternatives = alternatives.map(\.filters).filter { !$0.isEmpty }
-        searchText = alternatives[0].searchText
-        isSearchRegex = false
+        var parser = LogQueryParser(clauses: clauses, keys: keys)
+        let (search, expression) = clauses.isEmpty ? (nil, nil) : try Self.extractSearch(from: try parser.parse())
+        self.expression = expression
+        searchText = search.map { $0.plain ?? $0.regex }
+        isSearchRegex = search.map { $0.plain == nil } ?? false
     }
+}
 
-    private static func regexEscaped(_ text: String) -> String {
-        text.reduce(into: "") { escaped, character in
-            if "\\.+*?()|[]{}^$".contains(character) { escaped.append("\\") }
-            escaped.append(character)
-        }
-    }
-
-    private static func filter(for clause: LogQueryClause, operation: LogQueryOperator, keys: [LogQueryKey]) throws -> Filter {
+extension LogQuery {
+    static func filter(for clause: LogQueryClause, operation: LogQueryOperator, keys: [LogQueryKey]) throws -> Filter {
         let key = clause.term.text
         let knownTypes = keys.filter { $0.key == key }.map(\.type)
         guard operation.takesValue else {

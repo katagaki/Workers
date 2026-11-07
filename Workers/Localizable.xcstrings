@@ -9941,6 +9941,41 @@
         }
       }
     },
+    "Logs.Query.Error.UnbalancedParentheses" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close each opening parenthesis in your query."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "クエリの開き括弧をすべて閉じてください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "쿼리의 여는 괄호를 모두 닫으세요."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请闭合查询中的每个左括号。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "請閉合查詢中的每個左括號。"
+          }
+        }
+      }
+    },
     "Logs.Query.Error.UnterminatedQuote" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -9982,31 +10017,31 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Filter by field, such as $metadata.level = error, or enter text to search every field. All conditions must match unless separated by OR."
+            "value" : "Filter by field, such as $metadata.level = error, or enter text to search every field. All conditions must match unless separated by OR, and parentheses group conditions."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "$metadata.level = error のようにフィールドで絞り込むか、テキストを入力してすべてのフィールドを検索します。OR で区切らない限り、すべての条件に一致するログが表示されます。"
+            "value" : "$metadata.level = error のようにフィールドで絞り込むか、テキストを入力してすべてのフィールドを検索します。OR で区切らない限り、すべての条件に一致するログが表示されます。括弧で条件をグループ化できます。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "$metadata.level = error처럼 필드로 필터링하거나 텍스트를 입력하여 모든 필드를 검색합니다. OR로 구분하지 않으면 모든 조건과 일치하는 로그가 표시됩니다."
+            "value" : "$metadata.level = error처럼 필드로 필터링하거나 텍스트를 입력하여 모든 필드를 검색합니다. OR로 구분하지 않으면 모든 조건과 일치하는 로그가 표시되며, 괄호로 조건을 묶을 수 있습니다."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "按字段筛选（例如 $metadata.level = error），或输入文本搜索所有字段。除非用 OR 分隔，否则日志须匹配所有条件。"
+            "value" : "按字段筛选（例如 $metadata.level = error），或输入文本搜索所有字段。除非用 OR 分隔，否则日志须匹配所有条件，可用括号对条件分组。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "依欄位篩選（例如 $metadata.level = error），或輸入文字搜尋所有欄位。除非以 OR 分隔，否則記錄須符合所有條件。"
+            "value" : "依欄位篩選（例如 $metadata.level = error），或輸入文字搜尋所有欄位。除非以 OR 分隔，否則記錄須符合所有條件，可用括號將條件分組。"
           }
         }
       }

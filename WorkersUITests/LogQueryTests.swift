@@ -68,6 +68,22 @@ final class LogQueryTests: XCTestCase {
         XCTAssertTrue(otherResult.waitForExistence(timeout: 10))
     }
 
+    func testParenthesesGroupConditions() {
+        editor.typeText("(")
+        XCTAssertTrue(suggestion("$metadata.message").waitForExistence(timeout: 5))
+        editor.typeText("$metadata.level = error OR $metadata.level = log) ")
+        XCTAssertTrue(suggestion("OR").waitForExistence(timeout: 5))
+        editor.typeText("$metadata.message contains a\n")
+        XCTAssertEqual(editor.value as? String, "($metadata.level = error OR $metadata.level = log) $metadata.message contains a")
+        let result = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", "Scheduled")).firstMatch
+        XCTAssertTrue(result.waitForExistence(timeout: 10))
+    }
+
+    func testUnclosedParenthesisShowsAnError() {
+        editor.typeText("($metadata.level = error\n")
+        XCTAssertTrue(app.staticTexts["Close each opening parenthesis in your query."].waitForExistence(timeout: 5))
+    }
+
     func testDanglingOrShowsAnError() {
         editor.typeText("$metadata.level = error OR\n")
         XCTAssertTrue(app.staticTexts["Add a condition on both sides of OR and AND."].waitForExistence(timeout: 5))

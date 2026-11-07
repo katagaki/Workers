@@ -49,14 +49,19 @@ struct TelemetryQuery: Encodable {
         case group(FilterGroup)
 
         static func items(for query: LogQuery) -> [FilterItem] {
-            let alternatives = query.alternatives.map { $0.map { FilterItem.filter(Filter($0)) } }
-            guard alternatives.count > 1 else { return alternatives.first ?? [] }
-            let branches = alternatives.map { alternative in
-                alternative.count == 1
-                    ? alternative[0]
-                    : .group(FilterGroup(filterCombination: "and", filters: alternative))
+            switch query.expression {
+            case nil: []
+            case .all(let parts): parts.map { item(for: $0) }
+            case let expression?: [item(for: expression)]
             }
-            return [.group(FilterGroup(filterCombination: "or", filters: branches))]
+        }
+
+        private static func item(for expression: LogQueryExpression) -> FilterItem {
+            switch expression {
+            case .filter(let filter): .filter(Filter(filter))
+            case .all(let parts): .group(FilterGroup(filterCombination: "and", filters: parts.map { item(for: $0) }))
+            case .any(let branches): .group(FilterGroup(filterCombination: "or", filters: branches.map { item(for: $0) }))
+            }
         }
 
         func encode(to encoder: Encoder) throws {
