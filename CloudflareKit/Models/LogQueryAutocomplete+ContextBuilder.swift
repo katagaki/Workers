@@ -9,8 +9,13 @@ extension LogQueryAutocomplete {
             LogQueryCompletionContext(position: .none, partial: "", replacement: cursor..<cursor)
         }
 
-        func key(partial: String, start: Int) -> LogQueryCompletionContext {
-            LogQueryCompletionContext(position: .key, partial: partial, replacement: start..<termEnd(partial: partial))
+        func key(partial: String, start: Int, allowsConnector: Bool) -> LogQueryCompletionContext {
+            LogQueryCompletionContext(
+                position: .key,
+                partial: partial,
+                replacement: start..<termEnd(partial: partial),
+                allowsConnector: allowsConnector
+            )
         }
 
         func operation(key: String, partial: String, start: Int) -> LogQueryCompletionContext {
@@ -26,7 +31,7 @@ extension LogQueryAutocomplete {
                 if value.isQuoted && !value.isClosed {
                     return valueContext(clause, operation: operation, partial: value.text, start: value.range.lowerBound, isQuoted: true)
                 }
-                if endsWithSpace { return key(partial: "", start: cursor) }
+                if endsWithSpace { return key(partial: "", start: cursor, allowsConnector: true) }
                 guard !value.isQuoted else { return none }
                 return valueContext(clause, operation: operation, partial: value.text, start: value.range.lowerBound, isQuoted: false)
             }
@@ -34,7 +39,7 @@ extension LogQueryAutocomplete {
             if isWordOperator, !endsWithSpace, let operatorToken = clause.operatorToken {
                 return self.operation(key: clause.term.text, partial: operatorToken.text, start: operatorToken.range.lowerBound)
             }
-            guard operation.takesValue else { return key(partial: "", start: cursor) }
+            guard operation.takesValue else { return key(partial: "", start: cursor, allowsConnector: true) }
             return valueContext(clause, operation: operation, partial: "", start: cursor, isQuoted: false)
         }
 

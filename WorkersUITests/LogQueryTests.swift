@@ -55,6 +55,24 @@ final class LogQueryTests: XCTestCase {
         XCTAssertFalse(app.keyboards.firstMatch.exists)
     }
 
+    func testOrSuggestionBuildsAQueryMatchingEitherSide() {
+        editor.typeText("$metadata.level = error ")
+        XCTAssertTrue(suggestion("OR").waitForExistence(timeout: 5))
+        suggestion("OR").tap()
+        XCTAssertEqual(editor.value as? String, "$metadata.level = error OR ")
+
+        editor.typeText("$metadata.level = log\n")
+        let errorResult = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", "Error")).firstMatch
+        let otherResult = app.buttons.matching(NSPredicate(format: "NOT (label CONTAINS %@) AND label CONTAINS %@", "Error", "Scheduled")).firstMatch
+        XCTAssertTrue(errorResult.waitForExistence(timeout: 10))
+        XCTAssertTrue(otherResult.waitForExistence(timeout: 10))
+    }
+
+    func testDanglingOrShowsAnError() {
+        editor.typeText("$metadata.level = error OR\n")
+        XCTAssertTrue(app.staticTexts["Add a condition on both sides of OR and AND."].waitForExistence(timeout: 5))
+    }
+
     func testSuggestionsFollowTheCursor() {
         editor.typeText("$workers.cpuTimeMs ")
         XCTAssertTrue(suggestion(">=").waitForExistence(timeout: 5))

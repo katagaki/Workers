@@ -38,12 +38,43 @@ struct TelemetryQuery: Encodable {
         }
     }
 
+    struct FilterGroup: Encodable {
+        let kind = "group"
+        let filterCombination: String
+        let filters: [FilterItem]
+    }
+
+    enum FilterItem: Encodable {
+        case filter(Filter)
+        case group(FilterGroup)
+
+        static func items(for query: LogQuery) -> [FilterItem] {
+            let alternatives = query.alternatives.map { $0.map { FilterItem.filter(Filter($0)) } }
+            guard alternatives.count > 1 else { return alternatives.first ?? [] }
+            let branches = alternatives.map { alternative in
+                alternative.count == 1
+                    ? alternative[0]
+                    : .group(FilterGroup(filterCombination: "and", filters: alternative))
+            }
+            return [.group(FilterGroup(filterCombination: "or", filters: branches))]
+        }
+
+        func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .filter(let filter): try container.encode(filter)
+            case .group(let group): try container.encode(group)
+            }
+        }
+    }
+
     struct Needle: Encodable {
         let value: String
+        let isRegex: Bool?
     }
 
     struct Parameters: Encodable {
-        let filters: [Filter]
+        let filters: [FilterItem]
         var needle: Needle?
     }
 

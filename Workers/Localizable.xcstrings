@@ -9731,6 +9731,76 @@
         }
       }
     },
+    "Logs.Query.Connector.And" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Both Sides Match"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "両方に一致"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "양쪽 모두 일치"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "两侧都匹配"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "兩側都符合"
+          }
+        }
+      }
+    },
+    "Logs.Query.Connector.Or" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Either Side Matches"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "どちらかに一致"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "어느 한쪽 일치"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "任一侧匹配"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "任一側符合"
+          }
+        }
+      }
+    },
     "Logs.Query.Error.InvalidValue" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -9766,6 +9836,41 @@
         }
       }
     },
+    "Logs.Query.Error.MissingCondition" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add a condition on both sides of OR and AND."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OR と AND の両側に条件を入力してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OR 및 AND의 양쪽에 조건을 추가하세요."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请在 OR 和 AND 的两侧添加条件。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "請在 OR 和 AND 的兩側新增條件。"
+          }
+        }
+      }
+    },
     "Logs.Query.Error.MissingValue" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -9797,6 +9902,41 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "請在每個運算子後輸入值。"
+          }
+        }
+      }
+    },
+    "Logs.Query.Error.MixedSearch" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text search can only be combined with OR when every side uses the same text, or every side is only text."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "テキスト検索を OR と組み合わせるには、すべての側で同じテキストを使うか、すべての側をテキストのみにしてください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "텍스트 검색을 OR과 함께 사용하려면 모든 쪽에 같은 텍스트를 사용하거나 모든 쪽을 텍스트로만 입력하세요."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要将文本搜索与 OR 组合使用，每一侧须使用相同文本，或每一侧都仅为文本。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要將文字搜尋與 OR 組合使用，每一側須使用相同文字，或每一側都僅為文字。"
           }
         }
       }
@@ -9842,31 +9982,31 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Filter by field, such as $metadata.level = error, or enter text to search every field. All conditions must match."
+            "value" : "Filter by field, such as $metadata.level = error, or enter text to search every field. All conditions must match unless separated by OR."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "$metadata.level = error のようにフィールドで絞り込むか、テキストを入力してすべてのフィールドを検索します。すべての条件に一致するログが表示されます。"
+            "value" : "$metadata.level = error のようにフィールドで絞り込むか、テキストを入力してすべてのフィールドを検索します。OR で区切らない限り、すべての条件に一致するログが表示されます。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "$metadata.level = error처럼 필드로 필터링하거나 텍스트를 입력하여 모든 필드를 검색합니다. 모든 조건과 일치하는 로그가 표시됩니다."
+            "value" : "$metadata.level = error처럼 필드로 필터링하거나 텍스트를 입력하여 모든 필드를 검색합니다. OR로 구분하지 않으면 모든 조건과 일치하는 로그가 표시됩니다."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "按字段筛选（例如 $metadata.level = error），或输入文本搜索所有字段。日志须匹配所有条件。"
+            "value" : "按字段筛选（例如 $metadata.level = error），或输入文本搜索所有字段。除非用 OR 分隔，否则日志须匹配所有条件。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "依欄位篩選（例如 $metadata.level = error），或輸入文字搜尋所有欄位。記錄須符合所有條件。"
+            "value" : "依欄位篩選（例如 $metadata.level = error），或輸入文字搜尋所有欄位。除非以 OR 分隔，否則記錄須符合所有條件。"
           }
         }
       }

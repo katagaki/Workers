@@ -12,6 +12,12 @@ struct LogQueryClause: Hashable, Sendable {
     var operatorToken: LogQueryToken?
     var operation: LogQueryOperator?
     var value: LogQueryToken?
+
+    /// Only the uppercase spelling connects, so that searches like "this or that" stay plain text.
+    var connector: LogQueryConnector? {
+        guard operation == nil, !term.isQuoted else { return nil }
+        return LogQueryConnector(rawValue: term.text)
+    }
 }
 
 struct LogQueryScanner {

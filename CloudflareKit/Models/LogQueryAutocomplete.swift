@@ -9,21 +9,24 @@ public enum LogQueryAutocomplete {
         let endsWithSpace = cursor > 0 && characters[cursor - 1].isWhitespace
         let builder = ContextBuilder(characters: characters, cursor: cursor)
 
-        guard let last = clauses.last else { return builder.key(partial: "", start: cursor) }
+        guard let last = clauses.last else { return builder.key(partial: "", start: cursor, allowsConnector: false) }
         if let operation = last.operation {
             return builder.afterOperator(last, operation: operation, endsWithSpace: endsWithSpace)
         }
         if last.term.isQuoted {
-            return last.term.isClosed && endsWithSpace ? builder.key(partial: "", start: cursor) : builder.none
+            return last.term.isClosed && endsWithSpace ? builder.key(partial: "", start: cursor, allowsConnector: true) : builder.none
         }
         if endsWithSpace {
-            guard knownKeys.contains(last.term.text) else { return builder.key(partial: "", start: cursor) }
+            guard knownKeys.contains(last.term.text) else {
+                return builder.key(partial: "", start: cursor, allowsConnector: last.connector == nil)
+            }
             return builder.operation(key: last.term.text, partial: "", start: cursor)
         }
         if clauses.count >= 2, isPartialOperator(last.term.text, after: clauses[clauses.count - 2], keys: keys) {
             return builder.operation(key: clauses[clauses.count - 2].term.text, partial: last.term.text, start: last.term.range.lowerBound)
         }
-        return builder.key(partial: last.term.text, start: last.term.range.lowerBound)
+        let followsCondition = clauses.count >= 2 && clauses[clauses.count - 2].connector == nil
+        return builder.key(partial: last.term.text, start: last.term.range.lowerBound, allowsConnector: followsCondition)
     }
 
     public static func suggestions(
@@ -36,7 +39,7 @@ public enum LogQueryAutocomplete {
         case .none:
             []
         case .key:
-            Array(keySuggestions(for: context, keys: keys).prefix(limit))
+            Array((connectorSuggestions(for: context) + keySuggestions(for: context, keys: keys)).prefix(limit))
         case .operation(let key):
             operators(for: key, partial: context.partial, keys: keys).map { operation in
                 LogQuerySuggestion(
@@ -72,6 +75,21 @@ public enum LogQueryAutocomplete {
         let type = keys.first { $0.key == key }?.type
         let partial = partial.lowercased()
         return LogQueryOperator.available(for: type).filter { partial.isEmpty || $0.rawValue.hasPrefix(partial) }
+    }
+
+    private static func connectorSuggestions(for context: LogQueryCompletionContext) -> [LogQuerySuggestion] {
+        guard context.allowsConnector else { return [] }
+        let partial = context.partial.uppercased()
+        return LogQueryConnector.allCases
+            .filter { $0.rawValue.hasPrefix(partial) }
+            .map { connector in
+                LogQuerySuggestion(
+                    kind: .connector(connector),
+                    text: connector.rawValue,
+                    insertion: connector.rawValue,
+                    replacement: context.replacement
+                )
+            }
     }
 
     private static func keySuggestions(for context: LogQueryCompletionContext, keys: [LogQueryKey]) -> [LogQuerySuggestion] {

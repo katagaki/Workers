@@ -24,12 +24,17 @@ enum DemoTelemetry {
 
     static func matching(_ events: [[String: Any]], parameters: [String: Any]?) -> [[String: Any]] {
         let filters = parameters?["filters"] as? [[String: Any]] ?? []
-        let needle = (parameters?["needle"] as? [String: Any])?["value"] as? String
+        let needle = parameters?["needle"] as? [String: Any]
         return events.filter { event in
-            let passesFilters = filters.allSatisfy { matches(event, filter: $0) }
-            guard let needle else { return passesFilters }
-            return passesFilters && "\(event)".localizedCaseInsensitiveContains(needle)
+            filters.allSatisfy { matches(event, filter: $0) } && matches(event, needle: needle)
         }
+    }
+
+    private static func matches(_ event: [String: Any], needle: [String: Any]?) -> Bool {
+        guard let value = needle?["value"] as? String else { return true }
+        let isRegex = needle?["isRegex"] as? Bool ?? false
+        let options: String.CompareOptions = isRegex ? [.regularExpression, .caseInsensitive] : .caseInsensitive
+        return "\(event)".range(of: value, options: options) != nil
     }
 
     private static func lookup(_ key: String, in event: [String: Any]) -> Any? {
@@ -41,6 +46,10 @@ enum DemoTelemetry {
     }
 
     private static func matches(_ event: [String: Any], filter: [String: Any]) -> Bool {
+        if let nested = filter["filters"] as? [[String: Any]] {
+            let isAny = filter["filterCombination"] as? String == "or"
+            return isAny ? nested.contains { matches(event, filter: $0) } : nested.allSatisfy { matches(event, filter: $0) }
+        }
         guard let key = filter["key"] as? String, let operation = filter["operation"] as? String else { return true }
         let actual = lookup(key, in: event)
         if operation == "exists" { return actual != nil }

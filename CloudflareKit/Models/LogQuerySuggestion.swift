@@ -4,6 +4,7 @@ public struct LogQuerySuggestion: Hashable, Identifiable, Sendable {
     public enum Kind: Hashable, Sendable {
         case key(LogQueryValueType)
         case operation(LogQueryOperator)
+        case connector(LogQueryConnector)
         case value
     }
 
@@ -26,4 +27,5 @@ public struct LogQueryCompletionContext: Hashable, Sendable {
     public let position: Position
     public let partial: String
     let replacement: Range<Int>
+    var allowsConnector = false
 }

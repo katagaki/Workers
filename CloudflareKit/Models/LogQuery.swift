@@ -2,8 +2,10 @@ import Foundation
 
 public enum LogQueryParseError: Error, Hashable, Sendable {
     case missingValue
+    case missingCondition
     case invalidValue
     case unterminatedQuote
+    case mixedSearch
 }
 
 public struct LogQuery: Hashable, Sendable {
@@ -14,31 +16,73 @@ public struct LogQuery: Hashable, Sendable {
         public let value: JSONValue?
     }
 
-    public let filters: [Filter]
+    private struct Alternative {
+        var filters: [Filter] = []
+        var searchTerms: [String] = []
+
+        var searchText: String? {
+            searchTerms.isEmpty ? nil : searchTerms.joined(separator: " ")
+        }
+    }
+
+    /// Filters within an alternative must all match, and any one alternative may match.
+    public let alternatives: [[Filter]]
     public let searchText: String?
+    public let isSearchRegex: Bool
 
     public init() {
-        filters = []
+        alternatives = []
         searchText = nil
+        isSearchRegex = false
     }
 
     public init(parsing text: String, keys: [LogQueryKey] = LogQueryKey.common) throws {
         let clauses = LogQueryScanner.clauses(in: Array(text), knownKeys: Set(keys.map(\.key)))
-        var filters: [Filter] = []
-        var searchTerms: [String] = []
+        var alternatives = [Alternative()]
+        var canConnect = false
+        var needsCondition = false
         for clause in clauses {
             guard clause.term.isClosed, clause.value?.isClosed ?? true else {
                 throw LogQueryParseError.unterminatedQuote
             }
+            if let connector = clause.connector {
+                guard canConnect else { throw LogQueryParseError.missingCondition }
+                canConnect = false
+                needsCondition = true
+                if connector == .or { alternatives.append(Alternative()) }
+                continue
+            }
+            canConnect = true
+            needsCondition = false
             if let operation = clause.operation {
-                filters.append(try Self.filter(for: clause, operation: operation, keys: keys))
+                alternatives[alternatives.count - 1].filters.append(try Self.filter(for: clause, operation: operation, keys: keys))
             } else {
-                searchTerms.append(clause.term.text)
+                alternatives[alternatives.count - 1].searchTerms.append(clause.term.text)
             }
         }
-        self.filters = filters
-        let searchText = searchTerms.joined(separator: " ")
-        self.searchText = searchText.isEmpty ? nil : searchText
+        guard !needsCondition else { throw LogQueryParseError.missingCondition }
+
+        if alternatives.count > 1, alternatives.allSatisfy({ $0.filters.isEmpty }) {
+            self.alternatives = []
+            searchText = alternatives.compactMap(\.searchText).map(Self.regexEscaped).joined(separator: "|")
+            isSearchRegex = true
+            return
+        }
+        // The API has a single search term per query, which cannot sit inside an OR group.
+        let hasSharedSearch = Set(alternatives.map(\.searchText)).count == 1
+        guard alternatives.count == 1 || (hasSharedSearch && alternatives.allSatisfy { !$0.filters.isEmpty }) else {
+            throw LogQueryParseError.mixedSearch
+        }
+        self.alternatives = alternatives.map(\.filters).filter { !$0.isEmpty }
+        searchText = alternatives[0].searchText
+        isSearchRegex = false
+    }
+
+    private static func regexEscaped(_ text: String) -> String {
+        text.reduce(into: "") { escaped, character in
+            if "\\.+*?()|[]{}^$".contains(character) { escaped.append("\\") }
+            escaped.append(character)
+        }
     }
 
     private static func filter(for clause: LogQueryClause, operation: LogQueryOperator, keys: [LogQueryKey]) throws -> Filter {

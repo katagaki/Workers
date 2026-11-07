@@ -25,6 +25,7 @@ struct LogQuerySuggestionRow: View {
         switch suggestion.kind {
         case .key(let type): type.title
         case .operation(let operation): operation.title
+        case .connector(let connector): connector.title
         case .value: nil
         }
     }

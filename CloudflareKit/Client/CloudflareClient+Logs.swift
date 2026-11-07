@@ -15,8 +15,10 @@ public extension CloudflareClient {
             view: "events",
             limit: limit,
             parameters: TelemetryQuery.Parameters(
-                filters: [.service(scriptName)] + logQuery.filters.map(TelemetryQuery.Filter.init),
-                needle: logQuery.searchText.map(TelemetryQuery.Needle.init)
+                filters: [.filter(.service(scriptName))] + TelemetryQuery.FilterItem.items(for: logQuery),
+                needle: logQuery.searchText.map {
+                    TelemetryQuery.Needle(value: $0, isRegex: logQuery.isSearchRegex ? true : nil)
+                }
             )
         )
         let body = try JSONEncoder().encode(query)

@@ -74,6 +74,7 @@ private func parseError(_ text: String) -> LogQueryParseError? {
 struct LogQueryTests {
     static func main() async throws {
         testParsing()
+        testConnectors()
         testCompletionContexts()
         testSuggestions()
         testApplying()
@@ -83,41 +84,69 @@ struct LogQueryTests {
 
     static func testParsing() {
         let query = try! LogQuery(parsing: #"$metadata.level = error $metadata.statusCode>=500 customerId contains "acme corp" timeout reached"#, keys: keys)
-        precondition(query.filters.count == 3)
-        precondition(query.filters[0].operation == .equals && query.filters[0].value == .string("error"))
-        precondition(query.filters[1].type == .number && query.filters[1].value == .number(500))
-        precondition(query.filters[2].operation == .contains && query.filters[2].value == .string("acme corp"))
+        precondition(query.alternatives[0].count == 3)
+        precondition(query.alternatives[0][0].operation == .equals && query.alternatives[0][0].value == .string("error"))
+        precondition(query.alternatives[0][1].type == .number && query.alternatives[0][1].value == .number(500))
+        precondition(query.alternatives[0][2].operation == .contains && query.alternatives[0][2].value == .string("acme corp"))
         precondition(query.searchText == "timeout reached")
 
         let plainText = try! LogQuery(parsing: "errors in production", keys: keys)
-        precondition(plainText.filters.isEmpty && plainText.searchText == "errors in production")
+        precondition(plainText.alternatives.isEmpty && plainText.searchText == "errors in production")
 
         let existence = try! LogQuery(parsing: "$metadata.error exists retries missing", keys: keys)
-        precondition(existence.filters.map(\.operation) == [.exists, .missing])
-        precondition(existence.filters.allSatisfy { $0.value == nil })
-        precondition(existence.filters[1].type == .number)
+        precondition(existence.alternatives[0].map(\.operation) == [.exists, .missing])
+        precondition(existence.alternatives[0].allSatisfy { $0.value == nil })
+        precondition(existence.alternatives[0][1].type == .number)
 
         let typed = try! LogQuery(parsing: #"$metadata.level = 200 cached = true $metadata.statusCode in 200,404 unseen.field = 7"#, keys: keys)
-        precondition(typed.filters[0].type == .string && typed.filters[0].value == .string("200"))
-        precondition(typed.filters[1].type == .boolean && typed.filters[1].value == .bool(true))
-        precondition(typed.filters[2].type == .number && typed.filters[2].value == .string("200,404"))
-        precondition(typed.filters[3].type == .number && typed.filters[3].value == .number(7))
+        precondition(typed.alternatives[0][0].type == .string && typed.alternatives[0][0].value == .string("200"))
+        precondition(typed.alternatives[0][1].type == .boolean && typed.alternatives[0][1].value == .bool(true))
+        precondition(typed.alternatives[0][2].type == .number && typed.alternatives[0][2].value == .string("200,404"))
+        precondition(typed.alternatives[0][3].type == .number && typed.alternatives[0][3].value == .number(7))
 
         let url = try! LogQuery(parsing: "$metadata.url = https://example.com/?a=1", keys: keys)
-        precondition(url.filters[0].value == .string("https://example.com/?a=1"))
+        precondition(url.alternatives[0][0].value == .string("https://example.com/?a=1"))
 
         let regex = try! LogQuery(parsing: #"$metadata.message matches "\d+ \"ok\"""#, keys: keys)
-        precondition(regex.filters[0].value == .string(#"\d+ "ok""#))
+        precondition(regex.alternatives[0][0].value == .string(#"\d+ "ok""#))
 
         let curly = try! LogQuery(parsing: "\u{201C}hello there\u{201D}", keys: keys)
         precondition(curly.searchText == "hello there")
 
-        precondition(try! LogQuery(parsing: "   ", keys: keys).filters.isEmpty)
+        precondition(try! LogQuery(parsing: "   ", keys: keys).alternatives.isEmpty)
         precondition(parseError("$metadata.level =") == .missingValue)
         precondition(parseError("$metadata.level = \"") == .unterminatedQuote)
         precondition(parseError("\"open") == .unterminatedQuote)
         precondition(parseError("$metadata.statusCode > abc") == .invalidValue)
         precondition(parseError("cached = maybe") == .invalidValue)
+    }
+
+    static func testConnectors() {
+        let either = try! LogQuery(parsing: "$metadata.level = error OR retries > 2 cached = true", keys: keys)
+        precondition(either.alternatives.map(\.count) == [1, 2] && either.searchText == nil)
+        precondition(either.alternatives[1][0].operation == .greater)
+
+        let explicit = try! LogQuery(parsing: "$metadata.level = error AND retries > 2", keys: keys)
+        precondition(explicit.alternatives.map(\.count) == [2])
+
+        let plainWords = try! LogQuery(parsing: "this or that and more", keys: keys)
+        precondition(plainWords.alternatives.isEmpty && plainWords.searchText == "this or that and more")
+        let quoted = try! LogQuery(parsing: #""OR" $metadata.level = OR"#, keys: keys)
+        precondition(quoted.searchText == "OR" && quoted.alternatives[0][0].value == .string("OR"))
+
+        let text = try! LogQuery(parsing: "timeout reached OR a.b(c)", keys: keys)
+        precondition(text.alternatives.isEmpty && text.isSearchRegex)
+        precondition(text.searchText == #"timeout reached|a\.b\(c\)"#)
+
+        let shared = try! LogQuery(parsing: "timeout retries > 1 OR timeout cached = true", keys: keys)
+        precondition(shared.alternatives.count == 2 && shared.searchText == "timeout" && !shared.isSearchRegex)
+
+        precondition(parseError("OR retries > 1") == .missingCondition)
+        precondition(parseError("retries > 1 OR") == .missingCondition)
+        precondition(parseError("retries > 1 AND") == .missingCondition)
+        precondition(parseError("retries > 1 OR OR cached = true") == .missingCondition)
+        precondition(parseError("retries > 1 OR timeout") == .mixedSearch)
+        precondition(parseError("one retries > 1 OR two cached = true") == .mixedSearch)
     }
 
     static func testCompletionContexts() {
@@ -154,6 +183,13 @@ struct LogQueryTests {
         precondition(!suggestions("retries ").map(\.text).contains("contains"))
         precondition(suggestions("cached ").map(\.text) == ["=", "!=", "exists", "missing"])
         precondition(suggestions("$metadata.level sta").map(\.text) == ["starts"])
+        precondition(suggestions("retries > 2 ").prefix(2).map(\.text) == ["OR", "AND"])
+        precondition(suggestions("timeout ").first?.text == "OR")
+        precondition(suggestions("retries > 2 o").first?.text == "OR")
+        precondition(suggestions("retries > 2 OR ").first?.text == "$metadata.message")
+        precondition(suggestions("retries > 2 OR sta").first?.text == "$metadata.statusCode")
+        precondition(suggestions("$metadata.error exists ").first?.text == "OR")
+        precondition(suggestions(#""free text" "#).first?.text == "OR")
         let values = ["error", "warn", "log"].map {
             LogQueryValue(key: "$metadata.level", type: .string, value: .string($0))
         }
@@ -172,11 +208,14 @@ struct LogQueryTests {
         let operation = apply("$metadata.level sta")
         precondition(operation.text == "$metadata.level starts " && operation.cursor == operation.text.count)
 
+        let connector = apply("retries > 2 o")
+        precondition(connector.text == "retries > 2 OR " && connector.cursor == connector.text.count)
+
         let spaced = [LogQueryValue(key: "$metadata.message", type: .string, value: .string(#"said "hi" now"#))]
         let value = apply("$metadata.message = sa", values: spaced)
         precondition(value.text == #"$metadata.message = "said \"hi\" now" "#)
         let reparsed = try! LogQuery(parsing: value.text, keys: keys)
-        precondition(reparsed.filters[0].value == .string(#"said "hi" now"#))
+        precondition(reparsed.alternatives[0][0].value == .string(#"said "hi" now"#))
 
         let quoted = apply(#"$metadata.message = "sa"#, values: spaced)
         precondition(quoted.text == #"$metadata.message = "said \"hi\" now" "#)
@@ -213,12 +252,36 @@ struct LogQueryTests {
         precondition(filters[1]["operation"] as? String == "gte" && filters[1]["type"] as? String == "number")
         precondition(filters[1]["value"] as? Double == 500)
         precondition(filters[2]["operation"] as? String == "exists" && filters[2]["value"] == nil)
-        precondition((parameters["needle"] as? [String: Any])?["value"] as? String == "timeout")
+        let needle = parameters["needle"] as? [String: Any]
+        precondition(needle?["value"] as? String == "timeout" && needle?["isRegex"] == nil)
 
         fixtures.enqueue(json: #"{"success":true,"result":{"events":{"events":[]}}}"#)
         _ = try await client.workerEvents(accountId: "account", scriptName: "script", from: start, to: end)
         let plainBody = try JSONSerialization.jsonObject(with: fixtures.lastRequest.httpBody!) as! [String: Any]
         precondition((plainBody["parameters"] as! [String: Any])["needle"] == nil)
+
+        fixtures.enqueue(json: #"{"success":true,"result":{"events":{"events":[]}}}"#)
+        let either = try LogQuery(parsing: "$metadata.level = error OR retries > 2 cached = true", keys: keys)
+        _ = try await client.workerEvents(accountId: "account", scriptName: "script", matching: either, from: start, to: end)
+        let eitherBody = try JSONSerialization.jsonObject(with: fixtures.lastRequest.httpBody!) as! [String: Any]
+        let eitherParameters = eitherBody["parameters"] as! [String: Any]
+        let eitherFilters = eitherParameters["filters"] as! [[String: Any]]
+        precondition(eitherParameters["filterCombination"] == nil && eitherFilters.count == 2)
+        precondition(eitherFilters[0]["key"] as? String == "$metadata.service" && eitherFilters[0]["kind"] == nil)
+        precondition(eitherFilters[1]["kind"] as? String == "group" && eitherFilters[1]["filterCombination"] as? String == "or")
+        let branches = eitherFilters[1]["filters"] as! [[String: Any]]
+        precondition(branches[0]["key"] as? String == "$metadata.level")
+        precondition(branches[1]["kind"] as? String == "group" && branches[1]["filterCombination"] as? String == "and")
+        precondition((branches[1]["filters"] as! [[String: Any]]).count == 2)
+
+        fixtures.enqueue(json: #"{"success":true,"result":{"events":{"events":[]}}}"#)
+        let textOnly = try LogQuery(parsing: "timeout OR failed", keys: keys)
+        _ = try await client.workerEvents(accountId: "account", scriptName: "script", matching: textOnly, from: start, to: end)
+        let textBody = try JSONSerialization.jsonObject(with: fixtures.lastRequest.httpBody!) as! [String: Any]
+        let textParameters = textBody["parameters"] as! [String: Any]
+        precondition((textParameters["filters"] as! [[String: Any]]).count == 1)
+        let textNeedle = textParameters["needle"] as! [String: Any]
+        precondition(textNeedle["value"] as? String == "timeout|failed" && textNeedle["isRegex"] as? Bool == true)
 
         fixtures.enqueue(json: #"{"success":true,"errors":[],"messages":[],"result":[{"key":"$metadata.level","lastSeenAt":0,"type":"string"},{"key":"retries","lastSeenAt":0,"type":"number"}]}"#)
         let discovered = try await client.workerLogKeys(accountId: "account", scriptName: "script", from: start, to: end)
