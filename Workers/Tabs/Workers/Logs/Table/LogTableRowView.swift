@@ -31,7 +31,7 @@ struct LogTableRowView: View {
         case .status:
             HStack(spacing: 4) {
                 Image(systemName: row.severity.symbol)
-                    .symbolRenderingMode(.multicolor)
+                    .foregroundStyle(row.severity.color)
                     .accessibilityLabel(row.severity.accessibilityLabel)
                 Text(value)
                     .foregroundStyle(.secondary)
