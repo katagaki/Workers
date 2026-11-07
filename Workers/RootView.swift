@@ -3,6 +3,7 @@ import SwiftUI
 
 struct RootView: View {
     @Environment(CloudflareSession.self) private var session
+    @Environment(R2UploadCenter.self) private var uploads
     @State private var controlNavigator = ControlActionNavigator.shared
     @State private var resourceError: String?
 
@@ -17,6 +18,11 @@ struct RootView: View {
                     }
             } else {
                 SignInView()
+            }
+        }
+        .onChange(of: session.isSignedIn) { _, isSignedIn in
+            if !isSignedIn {
+                uploads.removeAll()
             }
         }
         .sheet(item: $controlNavigator.pendingRequest) { request in

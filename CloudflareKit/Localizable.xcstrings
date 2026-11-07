@@ -280,6 +280,146 @@
           }
         }
       }
+    },
+    "Errors.R2ObjectTooLarge" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%1$@” is too large. Objects up to %2$@ can be uploaded or renamed in this app."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「%1$@」は大きすぎます。このアプリでアップロードまたは名前変更できるオブジェクトは %2$@ までです。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%1$@”이(가) 너무 큽니다. 이 앱에서는 최대 %2$@의 객체를 업로드하거나 이름을 변경할 수 있습니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%1$@”过大。此 App 仅可上传或重命名不超过 %2$@ 的对象。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「%1$@」過大。此 App 僅可上傳或重新命名不超過 %2$@ 的物件。"
+          }
+        }
+      }
+    },
+    "Errors.R2KeyExists" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” already exists. Choose a different name."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「%@」はすでに存在します。別の名前を選択してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@”이(가) 이미 있습니다. 다른 이름을 선택하세요."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@”已存在。请选择其他名称。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「%@」已存在。請選擇其他名稱。"
+          }
+        }
+      }
+    },
+    "Errors.R2CustomMetadataUnsupported" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” has custom metadata that would be lost, so it wasn't renamed."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「%@」にはカスタムメタデータがあり、失われてしまうため、名前を変更しませんでした。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@”에 사용자 지정 메타데이터가 있어 손실될 수 있으므로 이름을 변경하지 않았습니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@”包含会丢失的自定义元数据，因此未重命名。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「%@」包含會遺失的自訂中繼資料，因此未重新命名。"
+          }
+        }
+      }
+    },
+    "Errors.R2CopyVerificationFailed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” couldn't be copied exactly, so the original was kept. Compressed objects can't be renamed in this app."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「%@」を正確にコピーできなかったため、元のオブジェクトを保持しました。圧縮されたオブジェクトはこのアプリでは名前を変更できません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@”을(를) 정확히 복사할 수 없어 원본을 유지했습니다. 압축된 객체는 이 앱에서 이름을 변경할 수 없습니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法完整复制“%@”，因此已保留原始对象。此 App 无法重命名压缩对象。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法完整複製「%@」，因此已保留原始物件。此 App 無法重新命名壓縮物件。"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

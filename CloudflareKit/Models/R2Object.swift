@@ -10,6 +10,7 @@ public struct R2Object: Codable, Hashable, Identifiable, Sendable {
     public let etag: String?
     public let lastModified: Date?
     public let httpMetadata: HTTPMetadata?
+    public let customMetadata: [String: String]?
     public let storageClass: String?
 
     public var id: String { key }
