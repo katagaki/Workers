@@ -20,10 +20,11 @@ struct LogTableView: View {
 
     var body: some View {
         let widths = columnWidths
+        let uniqueRows = Self.uniquelyIdentified(rows)
         ScrollView([.horizontal, .vertical]) {
             LazyVStack(alignment: .leading, spacing: 0, pinnedViews: [.sectionHeaders]) {
                 Section {
-                    ForEach(rows) { row in
+                    ForEach(uniqueRows, id: \.id) { row in
                         NavigationLink(value: row.destination) {
                             LogTableRowView(
                                 row: row,
@@ -44,6 +45,22 @@ struct LogTableView: View {
         }
         .scrollBounceBehavior(.basedOnSize, axes: .horizontal)
         .onGeometryChange(for: CGSize.self, of: \.size) { viewportSize = $0 }
+    }
+
+    // Cloudflare can return several events sharing one id, and duplicate ids leave blank rows in a LazyVStack
+    private static func uniquelyIdentified(_ rows: [LogTableRow]) -> [LogTableRow] {
+        var occurrences: [String: Int] = [:]
+        return rows.map { row in
+            let count = occurrences[row.id, default: 0]
+            occurrences[row.id] = count + 1
+            guard count > 0 else { return row }
+            return LogTableRow(
+                id: "\(row.id)-\(count)",
+                destination: row.destination,
+                severity: row.severity,
+                values: row.values
+            )
+        }
     }
 
     private func header(widths: [LogTableColumn: CGFloat]) -> some View {
