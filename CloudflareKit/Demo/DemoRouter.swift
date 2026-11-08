@@ -94,7 +94,14 @@ enum DemoRouter {
             let parameters = body?["parameters"] as? [String: Any]
             let filters = parameters?["filters"] as? [[String: Any]]
             let scriptName = filters?.first?["value"] as? String
-            return envelope(["events": ["events": DemoResources.events(scriptName: scriptName)]])
+            let events = DemoTelemetry.matching(DemoResources.events(scriptName: scriptName), parameters: parameters)
+            return envelope(["events": ["events": events]])
+        case ("POST", ["workers", "observability", "telemetry", "keys"]):
+            return envelope(DemoTelemetry.keys)
+        case ("POST", ["workers", "observability", "telemetry", "values"]):
+            let filters = body?["filters"] as? [[String: Any]]
+            let scriptName = filters?.first?["value"] as? String
+            return envelope(DemoTelemetry.values(body: body, scriptName: scriptName))
         case ("GET", ["storage", "kv", "namespaces"]):
             let namespaces = DemoStorage.kvNamespaces.map { ["id": $0.id, "title": $0.title] }
             return envelope(namespaces, info: ["page": 1, "per_page": 100, "count": namespaces.count, "total_count": namespaces.count, "total_pages": 1])
