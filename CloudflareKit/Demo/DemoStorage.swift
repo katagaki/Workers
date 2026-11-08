@@ -59,43 +59,6 @@ enum DemoStorage {
         ["name": "schale-backups", "creation_date": DemoData.ago(hours: 24 * 90), "location": "WEUR", "storage_class": "InfrequentAccess"]
     ] }
 
-    static func r2Objects(bucketName: String, prefix: String) -> [String: Any] {
-        let allKeys: [(String, Int, String)] = [
-            ("students/hoshino.json", 2_340, "application/json"),
-            ("students/shiroko.json", 2_112, "application/json"),
-            ("students/yuuka.json", 1_984, "application/json"),
-            ("notices/2026-10-01.txt", 820, "text/plain"),
-            ("notices/2026-10-08.txt", 1_204, "text/plain"),
-            ("README.txt", 312, "text/plain"),
-            ("\(bucketName)-manifest.json", 4_096, "application/json")
-        ]
-        var folders = Set<String>()
-        var objects: [[String: Any]] = []
-        for (index, entry) in allKeys.enumerated() where entry.0.hasPrefix(prefix) {
-            let remainder = entry.0.dropFirst(prefix.count)
-            if let slash = remainder.firstIndex(of: "/") {
-                folders.insert(prefix + remainder[...slash])
-            } else {
-                objects.append([
-                    "key": entry.0,
-                    "size": entry.1,
-                    "etag": DemoData.hex(index + 7000),
-                    "last_modified": DemoData.ago(hours: Double(index * 9 + 2)),
-                    "http_metadata": ["contentType": entry.2],
-                    "storage_class": "Standard"
-                ])
-            }
-        }
-        return DemoRouter.envelope(objects, info: ["is_truncated": false, "delimited": folders.sorted(), "per_page": 100])
-    }
-
-    static func r2ObjectData(key: String) -> Data {
-        if key.hasSuffix(".json") {
-            return kvValue(namespaceId: "", key: key)
-        }
-        return Data("Notice from the General Student Council about \(key).".utf8)
-    }
-
     static var databases: [[String: Any]] { [
         ["uuid": DemoData.hex(901), "name": "momotalk-auth-db", "version": "production", "created_at": DemoData.ago(hours: 24 * 210), "file_size": 2_457_600, "num_tables": 3],
         ["uuid": DemoData.hex(904), "name": "schale-notices", "version": "production", "created_at": DemoData.ago(hours: 24 * 60), "file_size": 409_600, "num_tables": 1]

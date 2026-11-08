@@ -109,17 +109,20 @@ public final class CloudflareClient: Sendable {
         return items
     }
 
-    func rawData(path: String, pathComponent: String) async throws -> Data {
+    func rawRequest(_ method: HTTPMethod, path: String, pathComponent: String) throws -> URLRequest {
         var allowed = CharacterSet.urlPathAllowed
         allowed.remove(charactersIn: "/?#%")
         let encodedComponent = pathComponent.addingPercentEncoding(withAllowedCharacters: allowed) ?? pathComponent
         guard let url = URL(string: Self.apiBaseURL.absoluteString + "/" + path + "/" + encodedComponent) else {
             throw CloudflareError.invalidResponse
         }
-        var request = try makeRequest(.get, path: path)
+        var request = try makeRequest(method, path: path)
         request.url = url
         request.setValue("*/*", forHTTPHeaderField: "Accept")
-        let (data, response) = try await session.data(for: request)
+        return request
+    }
+
+    static func validateRawResponse(_ response: URLResponse, data: @autoclosure () -> Data) throws {
         guard let httpResponse = response as? HTTPURLResponse else {
             throw CloudflareError.invalidResponse
         }
@@ -127,12 +130,18 @@ public final class CloudflareClient: Sendable {
             throw CloudflareError.http(statusCode: httpResponse.statusCode)
         }
         guard (200..<300).contains(httpResponse.statusCode) else {
-            if let envelope = try? CloudflareJSON.makeDecoder().decode(APIEnvelope<JSONValue>.self, from: data),
+            if let envelope = try? CloudflareJSON.makeDecoder().decode(APIEnvelope<JSONValue>.self, from: data()),
                let errors = envelope.errors, !errors.isEmpty {
                 throw CloudflareError.api(messages: errors.map(\.message))
             }
             throw CloudflareError.http(statusCode: httpResponse.statusCode)
         }
+    }
+
+    func rawData(path: String, pathComponent: String) async throws -> Data {
+        let request = try rawRequest(.get, path: path, pathComponent: pathComponent)
+        let (data, response) = try await session.data(for: request)
+        try Self.validateRawResponse(response, data: data)
         return data
     }
 

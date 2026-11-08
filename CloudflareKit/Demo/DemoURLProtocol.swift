@@ -19,6 +19,7 @@ final class DemoURLProtocol: URLProtocol {
             let payload = DemoRouter.response(
                 method: request.httpMethod ?? "GET",
                 url: url,
+                headers: request.allHTTPHeaderFields ?? [:],
                 body: body
             )
             data = (try? JSONSerialization.data(withJSONObject: payload)) ?? Data()

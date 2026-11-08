@@ -13,6 +13,7 @@ enum TokenTemplate {
         ("account_analytics", "read"),
         ("workers_kv_storage", "read"),
         ("workers_r2", "read"),
+        ("workers_r2", "edit"),
         ("d1", "read"),
         ("zone", "edit"),
         ("zone_settings", "edit"),

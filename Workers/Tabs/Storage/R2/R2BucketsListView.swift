@@ -6,6 +6,8 @@ struct R2BucketsListView: View {
     let accountId: String
     let buckets: CachedResource<[R2Bucket]>
 
+    @Environment(R2UploadCenter.self) private var uploads
+
     @State private var searchText = ""
 
     private var filteredBuckets: [R2Bucket] {
@@ -14,9 +16,16 @@ struct R2BucketsListView: View {
         return all.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
     }
 
+    private var accountUploads: [R2Upload] {
+        uploads.records.filter { $0.accountId == accountId }
+    }
+
     var body: some View {
         List {
             RefreshErrorSection(resource: buckets)
+            if !accountUploads.isEmpty {
+                R2UploadsSection(uploads: accountUploads, client: client, showsLocation: true)
+            }
             ForEach(filteredBuckets) { bucket in
                 NavigationLink(value: StorageDestination.r2Bucket(bucketName: bucket.name, prefix: "")) {
                     VStack(alignment: .leading, spacing: 3) {
